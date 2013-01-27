@@ -17,7 +17,7 @@ Supported Commands
 
 ``` ruby
 mongodump = Mongoid::Shell::Commands::Mongodump.new({ collection: 'test' })
-mongodump.to_s # mongodump --host localhost:27017 --db mongoid_shell_tests
+mongodump.to_s # mongodump --host localhost:27017 --db test --collection test
 ```
 
 Supports `--db`, `--host`, `--username`, `--password` and `--collection`.
