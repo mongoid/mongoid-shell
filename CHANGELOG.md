@@ -1,5 +1,4 @@
-0.1.0 (12/11/2012)
+0.1.0 (1/27/2013)
 ==================
 
 * Initial public release - [@dblock](https://github.com/dblock).
-
