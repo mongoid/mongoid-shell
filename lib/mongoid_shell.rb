@@ -1,2 +1,2 @@
-require 'mongoid/shell'
+require 'mongoid-shell'
 

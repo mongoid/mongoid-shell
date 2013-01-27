@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "mongoid"
+gemspec
 
 group :development, :test do
   gem "rake"

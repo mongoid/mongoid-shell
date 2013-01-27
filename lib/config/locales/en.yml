@@ -1,0 +1,10 @@
+en:
+  mongoid:
+    shell:
+      errors:
+        messages:
+          missing_session:
+            message: "Missing session."
+            summary: "The command requires a session."
+            resolution: "Your code is missing a parameter to `new` or `command_for`.
+              Typically you can obtain a session from `Mongoid.default_session`."
