@@ -1,4 +1,4 @@
-Mongoid::Shell [![Build Status](http://travis-ci.org/dblock/mongoid-shell.png)](http://travis-ci.org/dblock/mongoid-shell)
+Mongoid::Shell [![Build Status](https://travis-ci.org/dblock/mongoid-shell.png?branch=master)](https://travis-ci.org/dblock/mongoid-shell)
 ==============
 
 Create mongo command-lines from Mongoid configuration. 
