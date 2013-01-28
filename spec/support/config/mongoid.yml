@@ -1,0 +1,37 @@
+# Tell Mongoid which environment this configuration is for.
+production:
+  # This starts the session configuration settings. You may have as
+  # many sessions as you like, but you must have at least 1 named
+  # 'default'.
+  sessions:
+    # Define the default session.
+    default:
+      # A session can have any number of hosts. Usually 1 for a single
+      # server setup, and at least 3 for a replica set. Hosts must be
+      # an array of host:port pairs. This session is single server.
+      hosts:
+        - flame.mongohq.com:27017
+      # Define the default database name.
+      database: mongoid
+      # Since this database points at a session connected to MongoHQ, we must
+      # provide the authentication details.
+      username: user
+      password: password
+    # This defines a secondary session at a replica set.
+    replica_set:
+      # This configuration is a 3 node replica set.
+      hosts:
+        - dedicated1.myapp.com:27017
+        - dedicated2.myapp.com:27017
+        - dedicated3.myapp.com:27017
+      database: mongoid
+      # We can set session specific options, like reads executing
+      # on secondary nodes, and defaulting the session to safe mode.
+      options:
+        consistency: :eventual
+        safe: true
+      username: user
+      password: password
+    # This configuration shows an authenticated replica set via a uri.
+    url:
+      uri: mongodb://user:password@59.1.22.1:27017,59.1.22.2:27017/mongoid

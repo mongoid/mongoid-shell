@@ -6,12 +6,12 @@ describe Mongoid::Shell::Commands::Base do
       Mongoid.stub(:default_session).and_return(nil)
     end
     it "raises an exception when a session is missing" do
-      expect { 
+      expect {
         Mongoid::Shell::Commands::Base.new({})
       }.to raise_error Mongoid::Shell::Errors::MissingSessionError, /Missing session./
     end
     it "raises an exception when options are missing" do
-      expect { 
+      expect {
         Mongoid::Shell::Commands::Base.new(nil)
       }.to raise_error Mongoid::Shell::Errors::MissingSessionError, /Missing session./
     end

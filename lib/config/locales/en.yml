@@ -6,5 +6,12 @@ en:
           missing_session:
             message: "Missing session."
             summary: "The command requires a session."
-            resolution: "Your code is missing a parameter to `new` or `command_for`.
-              Typically you can obtain a session from `Mongoid.default_session`."
+            resolution: "Your code is missing a parameter to `new` or `command_for`.\n
+            \_Typically you can obtain a session from `Mongoid.default_session`.\n
+            \_Examples:\n
+            \_\_Mongoid::Shell::Commands::Mongodump.new(session: Mongoid.default_session).to_s\n
+            \_\_Mongoid::Shell::Commands::Mongodump.command_for(Mongoid.default_session).to_s"
+          session_not_connected:
+            message: "Session is not connected."
+            summary: "The command requires a connected session."
+            resolution: "Ensure that the database is up and can be reached."
