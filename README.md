@@ -21,7 +21,7 @@ The mongo shell is an interactive JavaScript shell for MongoDB. The `Mongoid::Sh
 Mongoid::Shell::Commands::Mongo.new.to_s
 ```
 
-Supports `--username`, `--password` and `--eval`.
+Supports `--username`, `--password`, `--eval`, `--nodb`, `--norc`, `--quiet` and `--ipv6`.
 
 ### Mongodump
 
@@ -32,7 +32,7 @@ mongodump = Mongoid::Shell::Commands::Mongodump.new({ collection: 'test' })
 mongodump.to_s # mongodump --db test --collection test
 ```
 
-The `Mongoid::Shell::Commands::Mongodump` class supports `--db`, `--host`, `--username`, `--password`, `--query`, `--out` and `--collection`.
+The `Mongoid::Shell::Commands::Mongodump` class supports `--db`, `--host`, `--username`, `--password`, `--query`, `--out`, `--collection`, `--directoryperdb`, `--journal`, `--oplog`, `--repair`, `--forceTableScan`, `--dbpath` and `--ipv6`.
 
 ### Mongostat
 
