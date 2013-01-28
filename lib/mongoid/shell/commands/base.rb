@@ -32,7 +32,7 @@ module Mongoid
             next unless value
             # TODO: quote other special characters?
             value = '"' + value + '"' if value.include? ' '
-            "#{key} #{value}"
+            key[0] == '-' ? "#{key} #{value}" : value
           end
         end
 

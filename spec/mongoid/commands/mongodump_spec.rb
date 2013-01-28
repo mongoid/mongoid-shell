@@ -20,7 +20,7 @@ describe Mongoid::Shell::Commands::Mongodump do
   context "sessions" do
     context "default" do
       before :each do
-        @session = Mongoid::Sessions.with_name(:default)
+        @session = moped_session(:default)
       end
       it "includes username and password" do
         Mongoid::Shell::Commands::Mongodump.new({

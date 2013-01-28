@@ -1,7 +1,7 @@
 Mongoid::Shell [![Build Status](https://travis-ci.org/dblock/mongoid-shell.png?branch=master)](https://travis-ci.org/dblock/mongoid-shell)
 ==============
 
-Create mongo command-lines from Mongoid configuration. 
+Create mongo command-lines from Mongoid configuration.
 
 Commands can be created for the current default session or you can pass a session as an argument to a new command.
 
@@ -13,11 +13,23 @@ Mongoid::Shell::Commands::Mongodump.new(session: Moped::Session.new([ "127.0.0.1
 Supported Commands
 ==================
 
+### Mongo
+
+Generates a command line to connect to MongoDB. Will always yield the address of the master node of a MongoDB replica set.
+
+``` ruby
+Mongoid::Shell::Commands::Mongo.new.to_s
+```
+
+Supports `--username`, `--password` and `--eval`.
+
 ### Mongodump
+
+Generates a command line to dump a MongoDB database or a single collection.
 
 ``` ruby
 mongodump = Mongoid::Shell::Commands::Mongodump.new({ collection: 'test' })
-mongodump.to_s # mongodump --host localhost:27017 --db test --collection test
+mongodump.to_s # mongodump --db test --collection test
 ```
 
 Supports `--db`, `--host`, `--username`, `--password` and `--collection`.

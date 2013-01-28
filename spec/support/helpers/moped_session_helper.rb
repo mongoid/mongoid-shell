@@ -4,6 +4,8 @@ module MopedSessionHelper
     config = File.join(File.dirname(__FILE__), "../../support/config/mongoid.yml")
     Mongoid.load! config, :production
     Moped::Node.any_instance.stub(:resolve_address)
-    Mongoid::Sessions.with_name(name)
+    session = Mongoid::Sessions.with_name(name)
+    session.cluster.nodes.last.stub(:primary?).and_return(true)
+    session
   end
 end

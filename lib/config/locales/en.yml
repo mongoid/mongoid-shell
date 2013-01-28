@@ -15,3 +15,7 @@ en:
             message: "Session is not connected."
             summary: "The command requires a connected session."
             resolution: "Ensure that the database is up and can be reached."
+          missing_primary_node:
+            message: "Session does not have a primary node."
+            summary: "The command requires a primary node."
+            resolution: "Ensure that the database is up and can be reached."
