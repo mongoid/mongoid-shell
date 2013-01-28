@@ -15,7 +15,7 @@ Supported Commands
 
 ### Mongo
 
-Generates a command line to connect to MongoDB. Will always yield the address of the master node of a MongoDB replica set.
+The mongo shell is an interactive JavaScript shell for MongoDB. The `Mongoid::Shell::Commands::Mongo` class generates a command line to connect to MongoDB. A particularly useful feature is that it will always yield the address of the master node of a MongoDB replica set.
 
 ``` ruby
 Mongoid::Shell::Commands::Mongo.new.to_s
@@ -25,14 +25,20 @@ Supports `--username`, `--password` and `--eval`.
 
 ### Mongodump
 
-Generates a command line to dump a MongoDB database or a single collection.
+Mongodump is a utility for creating a binary export of the contents of a database.
 
 ``` ruby
 mongodump = Mongoid::Shell::Commands::Mongodump.new({ collection: 'test' })
 mongodump.to_s # mongodump --db test --collection test
 ```
 
-Supports `--db`, `--host`, `--username`, `--password`, `--query`, `--out` and `--collection`.
+The `Mongoid::Shell::Commands::Mongodump` class supports `--db`, `--host`, `--username`, `--password`, `--query`, `--out` and `--collection`.
+
+### Mongostat
+
+The mongostat utility provides a quick overview of the status of a currently running mongod or mongos instance.
+
+The `Mongoid::Shell::Commands::Mongostat` class supports `--host`, `--username`, `--password`, `--rowcount`, `--discover`, `--noheaders`, `--http` and `--all`.
 
 Contributing
 ------------

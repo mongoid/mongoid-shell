@@ -30,9 +30,14 @@ module Mongoid
           args.map do |key, property|
             value = self.send(property)
             next unless value
-            # TODO: quote other special characters?
-            value = '"' + value + '"' if value.include? ' '
-            key[0] == '-' ? "#{key} #{value}" : value
+            if value.is_a? Boolean
+              key
+            else
+              value = value.to_s
+              # TODO: quote other special characters?
+              value = '"' + value + '"' if value.include? ' '
+              key[0] == '-' ? "#{key} #{value}" : value
+            end
           end
         end
 

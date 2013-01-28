@@ -11,6 +11,14 @@ describe Mongoid::Shell::Commands::Mongo do
         eval: 'find x'
       }).to_s.should == 'mongo mongoid_shell_tests --eval "find x"'
     end
+    [ :nodb, :norc, :quiet, :ipv6 ].each do |option|
+      it "includes #{option}" do
+        Mongoid::Shell::Commands::Mongo.new({
+          option => true
+        }).to_s.should == "mongo mongoid_shell_tests --#{option}"
+      end
+    end
+
   end
   context "sessions" do
     context "default" do

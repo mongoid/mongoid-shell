@@ -16,10 +16,19 @@ describe Mongoid::Shell::Commands::Mongodump do
         query: 'find x'
       }).to_s.should == 'mongodump --db mongoid_shell_tests --query "find x"'
     end
-    it "includes output" do
-      Mongoid::Shell::Commands::Mongodump.new({
-        out: '/this is a folder'
-      }).to_s.should == 'mongodump --db mongoid_shell_tests --out "/this is a folder"'
+    [ :out, :dbpath ].each do |option|
+      it "includes #{option}" do
+        Mongoid::Shell::Commands::Mongodump.new({
+          option => '/this is a folder'
+        }).to_s.should == "mongodump --db mongoid_shell_tests --#{option} \"/this is a folder\""
+      end
+    end
+    [ :directoryperdb, :journal, :oplog, :repair, :forceTableScan, :dbpath, :ipv6 ].each do |option|
+      it "includes #{option}" do
+        Mongoid::Shell::Commands::Mongodump.new({
+          option => true
+        }).to_s.should == "mongodump --db mongoid_shell_tests --#{option}"
+      end
     end
   end
   context "sessions" do

@@ -7,7 +7,7 @@ module Mongoid
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
-        attr_accessor :collection, :query, :out
+        attr_accessor :collection, :query, :out, :directoryperdb, :journal, :oplog, :repair, :forceTableScan, :dbpath, :ipv6
 
         def initialize(attrs = {})
           super
@@ -21,7 +21,14 @@ module Mongoid
             '--password' => :password,
             '--collection' => :collection,
             '--query' => :query,
-            '--out' => :out
+            '--out' => :out,
+            '--directoryperdb' => :directoryperdb,
+            '--journal' => :journal,
+            '--oplog' => :oplog,
+            '--repair' => :repair,
+            '--forceTableScan' => :forceTableScan,
+            '--dbpath' => :dbpath,
+            '--ipv6' => :ipv6
           })
         end
 
