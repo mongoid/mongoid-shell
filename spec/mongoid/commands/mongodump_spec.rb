@@ -16,6 +16,11 @@ describe Mongoid::Shell::Commands::Mongodump do
         query: 'find x'
       }).to_s.should == 'mongodump --db mongoid_shell_tests --query "find x"'
     end
+    it "includes output" do
+      Mongoid::Shell::Commands::Mongodump.new({
+        out: '/this is a folder'
+      }).to_s.should == 'mongodump --db mongoid_shell_tests --out "/this is a folder"'
+    end
   end
   context "sessions" do
     context "default" do

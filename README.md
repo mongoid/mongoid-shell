@@ -32,7 +32,7 @@ mongodump = Mongoid::Shell::Commands::Mongodump.new({ collection: 'test' })
 mongodump.to_s # mongodump --db test --collection test
 ```
 
-Supports `--db`, `--host`, `--username`, `--password` and `--collection`.
+Supports `--db`, `--host`, `--username`, `--password`, `--query`, `--out` and `--collection`.
 
 Contributing
 ------------

@@ -7,7 +7,7 @@ module Mongoid
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
-        attr_accessor :collection, :query
+        attr_accessor :collection, :query, :out
 
         def initialize(attrs = {})
           super
@@ -20,7 +20,8 @@ module Mongoid
             '--username' => :username,
             '--password' => :password,
             '--collection' => :collection,
-            '--query' => :query
+            '--query' => :query,
+            '--out' => :out
           })
         end
 
