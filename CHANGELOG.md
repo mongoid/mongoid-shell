@@ -1,6 +1,11 @@
 Next Release
 ============
 
+* Your contribution here.
+
+0.2.0 (1/29/2013)
+=================
+
 * Added `Mongoid::Shell::Commands::Mongo` that generates a command line which connects to the session's primary node - [@dblock](https://github.com/dblock).
 * Added `Mongoid::Shell::Commands::Mongostat` that generates a command line for `mongostat` - [@dblock](https://github.com/dblock).
 * Added `Mongoid::Shell::Commands::Mongorestore` that generates a command line for `mongorestore` - [@dblock](https://github.com/dblock).
