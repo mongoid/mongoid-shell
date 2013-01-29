@@ -1,13 +1,13 @@
 module Mongoid
   module Shell
     module Commands
-      class Mongodump < Mongoid::Shell::Commands::Base
+      class Mongorestore < Mongoid::Shell::Commands::Base
         include Mongoid::Shell::Properties::Host
         include Mongoid::Shell::Properties::Database
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
-        attr_accessor :collection, :query, :out, :directoryperdb, :journal, :oplog, :repair, :forceTableScan, :dbpath, :ipv6
+        attr_accessor :collection, :ipv6, :dbpath, :directoryperdb, :journal, :objcheck, :filter, :drop, :oplogReplay, :keepIndexVersion, :restore
 
         def initialize(attrs = {})
           super
@@ -20,15 +20,16 @@ module Mongoid
             '--username' => :username,
             '--password' => :password,
             '--collection' => :collection,
-            '--query' => :query,
-            '--out' => :out,
+            '--ipv6' => :ipv6,
+            '--dbpath' => :dbpath,
             '--directoryperdb' => :directoryperdb,
             '--journal' => :journal,
-            '--oplog' => :oplog,
-            '--repair' => :repair,
-            '--forceTableScan' => :forceTableScan,
-            '--dbpath' => :dbpath,
-            '--ipv6' => :ipv6
+            '--objcheck' => :objcheck,
+            '--filter' => :filter,
+            '--drop' => :drop,
+            '--oplogReplay' => :oplogReplay,
+            '--keepIndexVersion' => :keepIndexVersion,
+            'directory or filename to restore from' => :restore
           })
         end
 

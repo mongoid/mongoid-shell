@@ -11,6 +11,12 @@ describe Mongoid::Shell::Commands::Mongo do
         eval: 'find x'
       }).to_s.should == 'mongo mongoid_shell_tests --eval "find x"'
     end
+    it "overrides primary" do
+      Mongoid::Shell::Commands::Mongo.new({
+        eval: 'find x',
+        primary: 'my_primary'
+      }).to_s.should == 'mongo my_primary/mongoid_shell_tests --eval "find x"'
+    end
     [ :nodb, :norc, :quiet, :ipv6 ].each do |option|
       it "includes #{option}" do
         Mongoid::Shell::Commands::Mongo.new({

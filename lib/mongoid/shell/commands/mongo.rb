@@ -14,7 +14,7 @@ module Mongoid
         end
 
         def host_port_and_db
-          [ primary, database_name ].compact.join("/")
+          [ primary, db ].compact.join("/")
         end
 
         def vargs
