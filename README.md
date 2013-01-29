@@ -32,9 +32,9 @@ system mongodump.to_s # mongodump --db another_database --out /tmp/db_backup
 ```
 
 Supported Commands
-==================
+------------------
 
-## Mongo
+### Mongo
 
 The mongo shell is an interactive JavaScript shell for MongoDB. The `Mongoid::Shell::Commands::Mongo` class generates a command line to connect to MongoDB. A particularly useful feature is that it will always yield the address of the master node of a MongoDB replica set.
 
@@ -44,7 +44,7 @@ Mongoid::Shell::Commands::Mongo.new.to_s
 
 Supports `--username`, `--password`, `--eval`, `--nodb`, `--norc`, `--quiet` and `--ipv6`.
 
-## Mongodump
+### Mongodump
 
 Mongodump is a utility for creating a binary export of the contents of a database.
 
@@ -55,7 +55,7 @@ mongodump.to_s # mongodump --db test --collection test
 
 The `Mongoid::Shell::Commands::Mongodump` class supports `--db`, `--host`, `--username`, `--password`, `--query`, `--out`, `--collection`, `--directoryperdb`, `--journal`, `--oplog`, `--repair`, `--forceTableScan`, `--dbpath` and `--ipv6`.
 
-## Mongorestore
+### Mongorestore
 
 The mongorestore tool imports content from binary database dump, created by mongodump into a specific database.
 
