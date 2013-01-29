@@ -66,7 +66,7 @@ mongorestore.to_s # mongorestore --db test --collection test /tmp/db_backup
 
 The `Mongoid::Shell::Commands::Mongorestore` class supports `--db`, `--host`, `--username`, `--password`, `--collection`, `--ipv6, `--dbpath`, `--directoryperdb`, `--journal`, `--objcheck`, `--filter`, `--drop`, `--oplogReplay` and `--keepIndexVersion`.
 
-## Mongostat
+### Mongostat
 
 The mongostat utility provides a quick overview of the status of a currently running mongod or mongos instance.
 
