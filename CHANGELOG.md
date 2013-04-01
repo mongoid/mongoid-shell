@@ -1,7 +1,9 @@
 Next Release
 ============
 
-* Added support for `--noIndexRestore` to `Mongoid::Shell::Commands::Mongorestore` - [@macreery](https://github.com/macreery).
+* [#2](https://github.com/dblock/mongoid-shell/pull/2): Added support for `--noIndexRestore` to `Mongoid::Shell::Commands::Mongorestore` - [@macreery](https://github.com/macreery).
+* [#1](https://github.com/dblock/mongoid-shell/pull/1): Enforced compatibility with Mongoid 3.x only - [@macreery](https://github.com/macreery).
+* Your contribution here.
 
 0.2.0 (1/29/2013)
 =================
