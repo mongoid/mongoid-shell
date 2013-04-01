@@ -30,7 +30,7 @@ describe Mongoid::Shell::Commands::Mongorestore do
         }).to_s.should == "mongorestore --db mongoid_shell_tests --#{option} \"var arg\" \"a folder\""
       end
     end
-    [ :ipv6, :directoryperdb, :journal, :objcheck, :drop, :oplogReplay, :keepIndexVersion ].each do |option|
+    [ :ipv6, :directoryperdb, :journal, :objcheck, :drop, :oplogReplay, :keepIndexVersion, :noIndexRestore ].each do |option|
       it "includes #{option}" do
         Mongoid::Shell::Commands::Mongorestore.new({
           option => true

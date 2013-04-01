@@ -7,7 +7,7 @@ module Mongoid
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
-        attr_accessor :collection, :ipv6, :dbpath, :directoryperdb, :journal, :objcheck, :filter, :drop, :oplogReplay, :keepIndexVersion, :restore
+        attr_accessor :collection, :ipv6, :dbpath, :directoryperdb, :journal, :objcheck, :filter, :drop, :oplogReplay, :keepIndexVersion, :noIndexRestore, :restore
 
         def initialize(attrs = {})
           super
@@ -29,6 +29,7 @@ module Mongoid
             '--drop' => :drop,
             '--oplogReplay' => :oplogReplay,
             '--keepIndexVersion' => :keepIndexVersion,
+            '--noIndexRestore' => :noIndexRestore,
             'directory or filename to restore from' => :restore
           })
         end
