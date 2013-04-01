@@ -1,7 +1,7 @@
 Next Release
 ============
 
-* Your contribution here.
+* Added support for `--noIndexRestore` to `Mongoid::Shell::Commands::Mongorestore` - [@macreery](https://github.com/macreery).
 
 0.2.0 (1/29/2013)
 =================
