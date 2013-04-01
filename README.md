@@ -64,7 +64,7 @@ mongorestore = Mongoid::Shell::Commands::Mongorestore.new({ collection: 'test', 
 mongorestore.to_s # mongorestore --db test --collection test /tmp/db_backup
 ```
 
-The `Mongoid::Shell::Commands::Mongorestore` class supports `--db`, `--host`, `--username`, `--password`, `--collection`, `--ipv6, `--dbpath`, `--directoryperdb`, `--journal`, `--objcheck`, `--filter`, `--drop`, `--oplogReplay` and `--keepIndexVersion`.
+The `Mongoid::Shell::Commands::Mongorestore` class supports `--db`, `--host`, `--username`, `--password`, `--collection`, `--ipv6`, `--dbpath`, `--directoryperdb`, `--journal`, `--objcheck`, `--filter`, `--drop`, `--oplogReplay` and `--keepIndexVersion`.
 
 ### Mongostat
 
