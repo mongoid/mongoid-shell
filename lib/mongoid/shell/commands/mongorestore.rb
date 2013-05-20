@@ -2,15 +2,19 @@ module Mongoid
   module Shell
     module Commands
       class Mongorestore < Mongoid::Shell::Commands::Base
-        include Mongoid::Shell::Properties::Host
+        include Mongoid::Shell::Properties::Primary
         include Mongoid::Shell::Properties::Database
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
-        attr_accessor :collection, :ipv6, :dbpath, :directoryperdb, :journal, :objcheck, :filter, :drop, :oplogReplay, :keepIndexVersion, :noIndexRestore, :restore
+        attr_accessor :host, :collection, :ipv6, :dbpath, :directoryperdb, :journal, :objcheck, :filter, :drop, :oplogReplay, :keepIndexVersion, :noIndexRestore, :restore
 
         def initialize(attrs = {})
           super
+        end
+
+        def host
+          @host || primary
         end
 
         def vargs

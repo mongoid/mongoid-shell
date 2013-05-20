@@ -73,4 +73,19 @@ describe Mongoid::Shell::Commands::Mongorestore do
       end
     end
   end
+  context "without a primary" do
+    before :each do
+      @session = moped_session(:replica_set)
+      @session.cluster.nodes.each do |node|
+        node.stub(:primary?).and_return(false)
+      end
+    end
+    it "requires a primary" do
+      expect {
+        Mongoid::Shell::Commands::Mongorestore.new({
+          session: @session
+        }).to_s
+      }.to raise_error Mongoid::Shell::Errors::MissingPrimaryNodeError, /Session does not have a primary node./
+    end
+  end
 end
