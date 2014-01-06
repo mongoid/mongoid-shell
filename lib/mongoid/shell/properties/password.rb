@@ -10,10 +10,15 @@ module Mongoid
           @password || begin
             node = session.cluster.nodes.first
             raise Mongoid::Shell::Errors::SessionNotConnectedError unless node
-            return nil unless node.credentials && node.credentials.empty?
-            node.credentials[1]
+            return nil unless node.credentials.has_key? db || node.credentials[db].empty?
+            node.credentials[db][1]
           end
         end
+
+        private
+          def db
+            @db || session.send(:current_database).name
+          end
 
       end
     end
