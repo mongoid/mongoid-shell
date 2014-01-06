@@ -6,18 +6,16 @@ production:
   sessions:
     # Define the default session.
     default:
-      # A session can have any number of hosts. Usually 1 for a single
-      # server setup, and at least 3 for a replica set. Hosts must be
-      # an array of host:port pairs. This session is single server.
+      database: mongoid_shell_tests
+      hosts:
+        - localhost:27017
+    single_host:
+      # A single remote server.
       hosts:
         - flame.mongohq.com:27017
-      # Define the default database name.
       database: mongoid
-      # Since this database points at a session connected to MongoHQ, we must
-      # provide the authentication details.
       username: user
       password: password
-    # This defines a secondary session at a replica set.
     replica_set:
       # This configuration is a 3 node replica set.
       hosts:

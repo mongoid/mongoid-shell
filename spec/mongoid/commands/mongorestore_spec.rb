@@ -61,6 +61,17 @@ describe Mongoid::Shell::Commands::Mongorestore do
         }).to_s.should == "mongorestore --host dedicated1.myapp.com:27017 --db mongoid --username user --password password \"a folder\""
       end
     end
+    context "single host" do
+      before :each do
+        @session = moped_session(:single_host)
+      end
+      it "includes username and password" do
+        Mongoid::Shell::Commands::Mongorestore.new({
+          session: @session,
+          restore: "a folder"
+        }).to_s.should == "mongorestore --host flame.mongohq.com:27017 --db mongoid --username user --password password \"a folder\""
+      end
+    end
     context "url" do
       before :each do
         @session = moped_session(:url)
