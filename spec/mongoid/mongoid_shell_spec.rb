@@ -5,4 +5,3 @@ describe Mongoid::Shell do
     Mongoid::Shell::VERSION.should_not be_nil
   end
 end
-

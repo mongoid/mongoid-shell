@@ -24,7 +24,6 @@ module Mongoid
             '--all' => :all
           })
         end
-
       end
     end
   end

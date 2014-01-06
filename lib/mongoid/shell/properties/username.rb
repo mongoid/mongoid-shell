@@ -2,7 +2,6 @@ module Mongoid
   module Shell
     module Properties
       module Username
-
         attr_accessor :username
 
         # current username
@@ -12,7 +11,6 @@ module Mongoid
             session.context.cluster.auth.first[1][0]
           end
         end
-
       end
     end
   end

@@ -14,7 +14,7 @@ module Mongoid
         end
 
         def host_port_and_db
-          [ primary, db ].compact.join("/")
+          [primary, db].compact.join("/")
         end
 
         def vargs
@@ -29,7 +29,6 @@ module Mongoid
             '--ipv6' => :ipv6,
           })
         end
-
       end
     end
   end

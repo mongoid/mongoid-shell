@@ -21,7 +21,7 @@ describe Mongoid::Shell::Commands::Base do
     command.session.should eq Mongoid.default_session
   end
   it "creates a command using the session provided" do
-    session = Moped::Session.new([ "127.0.0.1:27017" ])
+    session = Moped::Session.new(["127.0.0.1:27017"])
     command = Mongoid::Shell::Commands::Base.new(session: session)
     command.session.should eq session
   end

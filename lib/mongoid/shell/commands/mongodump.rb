@@ -31,7 +31,6 @@ module Mongoid
             '--ipv6' => :ipv6
           })
         end
-
       end
     end
   end

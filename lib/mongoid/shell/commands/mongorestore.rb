@@ -37,7 +37,6 @@ module Mongoid
             'directory or filename to restore from' => :restore
           })
         end
-
       end
     end
   end

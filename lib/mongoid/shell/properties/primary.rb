@@ -2,7 +2,6 @@ module Mongoid
   module Shell
     module Properties
       module Primary
-
         attr_accessor :primary
 
         # primary database host
@@ -14,7 +13,6 @@ module Mongoid
             node.address == "localhost:27017" ? nil : node.address
           end
         end
-
       end
     end
   end

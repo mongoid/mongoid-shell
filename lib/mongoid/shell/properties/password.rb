@@ -2,7 +2,6 @@ module Mongoid
   module Shell
     module Properties
       module Password
-
         attr_accessor :password
 
         # current password
@@ -12,7 +11,6 @@ module Mongoid
             session.context.cluster.auth.first[1][1]
           end
         end
-
       end
     end
   end

@@ -6,7 +6,7 @@ require 'rspec'
 require 'mongoid'
 require 'mongoid-shell'
 
-[ "support/helpers/*.rb" ].each do |path|
+["support/helpers/*.rb"].each do |path|
   Dir["#{File.dirname(__FILE__)}/#{path}"].each do |file|
     require file
   end
