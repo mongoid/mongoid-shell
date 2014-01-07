@@ -7,9 +7,22 @@ module Mongoid
         # current password
         def password
           @password || begin
-            return nil unless session.context.cluster.auth && session.context.cluster.auth.first
-            session.context.cluster.auth.first[1][1]
+            if Mongoid::Shell.mongoid3?
+              return nil unless session.context.cluster.auth && session.context.cluster.auth.first
+              session.context.cluster.auth.first[1][1]
+            else
+              node = session.cluster.nodes.first
+              raise Mongoid::Shell::Errors::SessionNotConnectedError unless node
+              return nil unless node.credentials.has_key? db || node.credentials[db].empty?
+              node.credentials[db][1]
+            end
           end
+        end
+
+        private
+
+        def db
+          @db || session.send(:current_database).name
         end
       end
     end

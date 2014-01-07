@@ -27,7 +27,7 @@ module Mongoid
           args.map do |key, property|
             value = send(property)
             next unless value
-            if value.is_a? Boolean
+            if value.is_a?(Boolean) || value.is_a?(TrueClass)
               key
             else
               value = value.to_s

@@ -1,10 +1,5 @@
-# Tell Mongoid which environment this configuration is for.
 production:
-  # This starts the session configuration settings. You may have as
-  # many sessions as you like, but you must have at least 1 named
-  # 'default'.
   sessions:
-    # Define the default session.
     default:
       database: mongoid_shell_tests
       hosts:
@@ -12,7 +7,7 @@ production:
     single_host:
       # A single remote server.
       hosts:
-        - flame.mongohq.com:27017
+        - something.mongohq.com:27017
       database: mongoid
       username: user
       password: password
@@ -23,11 +18,6 @@ production:
         - dedicated2.myapp.com:27017
         - dedicated3.myapp.com:27017
       database: mongoid
-      # We can set session specific options, like reads executing
-      # on secondary nodes, and defaulting the session to safe mode.
-      options:
-        consistency: :eventual
-        safe: true
       username: user
       password: password
     # This configuration shows an authenticated replica set via a uri.

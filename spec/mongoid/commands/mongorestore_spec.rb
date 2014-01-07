@@ -69,7 +69,7 @@ describe Mongoid::Shell::Commands::Mongorestore do
         Mongoid::Shell::Commands::Mongorestore.new(
           session: @session,
           restore: "a folder"
-        ).to_s.should == "mongorestore --host flame.mongohq.com:27017 --db mongoid --username user --password password \"a folder\""
+        ).to_s.should == "mongorestore --host something.mongohq.com:27017 --db mongoid --username user --password password \"a folder\""
       end
     end
     context "url" do
