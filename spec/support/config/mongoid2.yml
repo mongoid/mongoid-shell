@@ -1,0 +1,26 @@
+default:
+  logger: false
+  database: mongoid_shell_tests
+  host: localhost
+  port: 27017
+single_host:
+  # A single remote server.
+  logger: false
+  database: mongoid_shell_tests
+  username: user
+  password: password
+  host: something.mongohq.com
+  port: 27017
+replica_set:
+  # This configuration is a 3 node replica set.
+  logger: false
+  host: dedicated1.myapp.com
+  port: 27017
+  slaves:
+    - host: dedicated2.myapp.com
+      port: 27017
+    - host: dedicated3.myapp.com
+      port: 27017
+  database: mongoid_shell_tests
+  username: user
+  password: password

@@ -1,5 +1,7 @@
-Mongoid::Shell [![Build Status](https://travis-ci.org/dblock/mongoid-shell.png?branch=master)](https://travis-ci.org/dblock/mongoid-shell)
+Mongoid::Shell [![Build Status](https://travis-ci.org/dblock/mongoid-shell.png?branch=mongoid-2x)](https://travis-ci.org/dblock/mongoid-shell)
 ==============
+
+This branch supports Mongoid 2.x, 3.x and 4.x.
 
 Create mongo command-lines from Mongoid configuration.
 

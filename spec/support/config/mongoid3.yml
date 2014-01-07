@@ -8,7 +8,7 @@ production:
       # A single remote server.
       hosts:
         - something.mongohq.com:27017
-      database: mongoid
+      database: mongoid_shell_tests
       username: user
       password: password
     replica_set:
@@ -17,9 +17,9 @@ production:
         - dedicated1.myapp.com:27017
         - dedicated2.myapp.com:27017
         - dedicated3.myapp.com:27017
-      database: mongoid
+      database: mongoid_shell_tests
       username: user
       password: password
     # This configuration shows an authenticated replica set via a uri.
     url:
-      uri: mongodb://user:password@59.1.22.1:27017,59.1.22.2:27017/mongoid
+      uri: mongodb://user:password@59.1.22.1:27017,59.1.22.2:27017/mongoid_shell_tests

@@ -13,5 +13,10 @@ require 'mongoid-shell'
 end
 
 Mongoid.configure do |config|
-  config.connect_to('mongoid_shell_tests')
+  if Mongoid::Shell.mongoid2?
+    config.master = Mongo::Connection.new.db('mongoid_shell_tests')
+    config.master.connection.instance_variable_set "@default_db", 'mongoid_shell_tests'
+  else
+    config.connect_to('mongoid_shell_tests')
+  end
 end

@@ -24,12 +24,11 @@ describe Mongoid::Shell::Commands::Mongo do
         ).to_s.should == "mongo mongoid_shell_tests --#{option}"
       end
     end
-
   end
   context "sessions" do
     context "default" do
       before :each do
-        @session = Mongoid::Sessions.with_name(:default)
+        @session = moped_session(:default)
       end
       it "includes username and password" do
         Mongoid::Shell::Commands::Mongo.new(
@@ -44,17 +43,19 @@ describe Mongoid::Shell::Commands::Mongo do
       it "includes username and password" do
         Mongoid::Shell::Commands::Mongo.new(
           session: @session
-        ).to_s.should == "mongo dedicated1.myapp.com:27017/mongoid --username user --password password"
+        ).to_s.should == "mongo dedicated1.myapp.com:27017/mongoid_shell_tests --username user --password password"
       end
     end
-    context "url" do
-      before :each do
-        @session = moped_session(:url)
-      end
-      it "includes username and password" do
-        Mongoid::Shell::Commands::Mongo.new(
-          session: @session
-        ).to_s.should == "mongo 59.1.22.1:27017/mongoid --username user --password password"
+    unless Mongoid::Shell.mongoid2?
+      context "url" do
+        before :each do
+          @session = moped_session(:url)
+        end
+        it "includes username and password" do
+          Mongoid::Shell::Commands::Mongo.new(
+            session: @session
+          ).to_s.should == "mongo 59.1.22.1:27017/mongoid_shell_tests --username user --password password"
+        end
       end
     end
   end

@@ -13,8 +13,6 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/dblock/mongoid-shell"
   s.licenses = [ "MIT" ]
   s.summary = "Derive shell commands from Mongoid configuration options."
-  s.add_dependency "mongoid", ">= 3.0.0"
+  s.add_dependency "mongoid", ">= 2.0.0"
   s.add_dependency "i18n"
 end
-
-

@@ -12,7 +12,13 @@ module Mongoid
 
         def initialize(options = nil)
           options ||= {}
-          options[:session] ||= Mongoid.default_session
+          options[:session] ||= begin
+            if Mongoid::Shell.mongoid2?
+              Mongoid.master
+            else
+              Mongoid.default_session
+            end
+          end
           options.each do |sym, val|
             send "#{sym}=", val
           end

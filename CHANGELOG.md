@@ -1,9 +1,9 @@
 Next Release
 ============
 
+* Mongoid 2.x backward compatibility - [@dblock](https://github.com/dblock).
 * [#3](https://github.com/dblock/mongoid-shell/pull/3): Added Mongoid 4.x support - [@pawelniewie](https://github.com/pawelniewie), [@dblock](https://github.com/dblock).
 * [#2](https://github.com/dblock/mongoid-shell/pull/2): Added support for `--noIndexRestore` to `Mongoid::Shell::Commands::Mongorestore` - [@macreery](https://github.com/macreery).
-* [#1](https://github.com/dblock/mongoid-shell/pull/1): Enforced compatibility with Mongoid 3.x only - [@macreery](https://github.com/macreery).
 * Fix: the `mongorestore` command requires a primary node in a replica set - [@dblock](https://github.com/dblock).
 * Added Rubocop, Ruby style linter - [@dblock](https://github.com/dblock).
 * Your contribution here.

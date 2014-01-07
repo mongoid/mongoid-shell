@@ -7,7 +7,11 @@ module Mongoid
         # current password
         def password
           @password || begin
-            if Mongoid::Shell.mongoid3?
+            if Mongoid::Shell.mongoid2?
+              raise Mongoid::Shell::Errors::SessionNotConnectedError unless session && session.connection
+              return nil unless session.connection.auths.any?
+              session.connection.auths.first[:password]
+            elsif Mongoid::Shell.mongoid3?
               return nil unless session.context.cluster.auth && session.context.cluster.auth.first
               session.context.cluster.auth.first[1][1]
             else
