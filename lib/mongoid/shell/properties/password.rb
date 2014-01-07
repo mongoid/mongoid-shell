@@ -18,12 +18,6 @@ module Mongoid
             end
           end
         end
-
-        private
-
-        def db
-          @db || session.send(:current_database).name
-        end
       end
     end
   end

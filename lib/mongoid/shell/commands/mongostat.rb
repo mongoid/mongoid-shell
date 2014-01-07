@@ -3,6 +3,7 @@ module Mongoid
     module Commands
       class Mongostat < Mongoid::Shell::Commands::Base
         include Mongoid::Shell::Properties::Host
+        include Mongoid::Shell::Properties::Database
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
