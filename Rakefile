@@ -24,4 +24,3 @@ require 'rubocop/rake_task'
 Rubocop::RakeTask.new(:rubocop)
 
 task default: [:rubocop, :spec]
-

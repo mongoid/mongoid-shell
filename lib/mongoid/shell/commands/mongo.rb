@@ -26,7 +26,7 @@ module Mongoid
             '--nodb' => :nodb,
             '--norc' => :norc,
             '--quiet' => :quiet,
-            '--ipv6' => :ipv6,
+            '--ipv6' => :ipv6
           })
         end
       end
