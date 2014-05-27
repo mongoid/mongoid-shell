@@ -13,7 +13,7 @@ module Mongoid
             else
               node = session.cluster.nodes.first
               raise Mongoid::Shell::Errors::SessionNotConnectedError unless node
-              return nil unless node.credentials.key?(db) || node.credentials[db].empty?
+              return nil if !node.credentials.key?(db) || node.credentials[db].empty?
               node.credentials[db][0]
             end
           end
