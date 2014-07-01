@@ -4,18 +4,18 @@ describe Mongoid::Shell::Commands::Mongostat do
   include MopedSessionHelper
   context "local" do
     it "defaults to local" do
-      Mongoid::Shell::Commands::Mongostat.new.to_s.should == "mongostat"
+      expect(Mongoid::Shell::Commands::Mongostat.new.to_s).to eq "mongostat"
     end
     it "rowcount" do
-      Mongoid::Shell::Commands::Mongostat.new(
+      expect(Mongoid::Shell::Commands::Mongostat.new(
         rowcount: 10
-      ).to_s.should == "mongostat --rowcount 10"
+      ).to_s).to eq "mongostat --rowcount 10"
     end
     [:http, :discover, :all, :noheaders].each do |option|
       it "includes #{option}" do
-        Mongoid::Shell::Commands::Mongostat.new(
+        expect(Mongoid::Shell::Commands::Mongostat.new(
           option => true
-        ).to_s.should == "mongostat --#{option}"
+        ).to_s).to eq "mongostat --#{option}"
       end
     end
   end
@@ -25,9 +25,9 @@ describe Mongoid::Shell::Commands::Mongostat do
         @session = Mongoid::Sessions.with_name(:default)
       end
       it "includes username and password" do
-        Mongoid::Shell::Commands::Mongostat.new(
+        expect(Mongoid::Shell::Commands::Mongostat.new(
           session: @session
-        ).to_s.should == "mongostat"
+        ).to_s).to eq "mongostat"
       end
     end
     context "a replica set" do
@@ -35,9 +35,9 @@ describe Mongoid::Shell::Commands::Mongostat do
         @session = moped_session(:replica_set)
       end
       it "includes username and password" do
-        Mongoid::Shell::Commands::Mongostat.new(
+        expect(Mongoid::Shell::Commands::Mongostat.new(
           session: @session
-        ).to_s.should == "mongostat --host dedicated1.myapp.com:27017 --username user --password password"
+        ).to_s).to eq "mongostat --host dedicated1.myapp.com:27017 --username user --password password"
       end
     end
     context "url" do
@@ -45,9 +45,9 @@ describe Mongoid::Shell::Commands::Mongostat do
         @session = moped_session(:url)
       end
       it "includes username and password" do
-        Mongoid::Shell::Commands::Mongostat.new(
+        expect(Mongoid::Shell::Commands::Mongostat.new(
           session: @session
-        ).to_s.should == "mongostat --host 59.1.22.1:27017 --username user --password password"
+        ).to_s).to eq "mongostat --host 59.1.22.1:27017 --username user --password password"
       end
     end
   end

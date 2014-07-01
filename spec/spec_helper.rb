@@ -12,6 +12,10 @@ require 'mongoid-shell'
   end
 end
 
+RSpec.configure do |config|
+  config.raise_errors_for_deprecations!
+end
+
 Mongoid.configure do |config|
   config.connect_to('mongoid_shell_tests')
 end

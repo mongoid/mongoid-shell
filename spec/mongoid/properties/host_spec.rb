@@ -12,7 +12,7 @@ describe Mongoid::Shell::Properties::Host do
     klass.new
   end
   it "raises an exception when the session is not connected" do
-    Mongoid.default_session.cluster.stub(:nodes).and_return([])
+    allow(Mongoid.default_session.cluster).to receive(:nodes).and_return([])
     expect {
       subject.host
     }.to raise_error Mongoid::Shell::Errors::SessionNotConnectedError, /Session is not connected./

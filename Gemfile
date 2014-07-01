@@ -2,9 +2,9 @@ source 'http://rubygems.org'
 
 gemspec
 
-case version = ENV['MONGOID_VERSION'] || '~> 3.1'
+case version = ENV['MONGOID_VERSION'] || '~> 4.0'
 when /4/
-  gem 'mongoid', github: 'mongoid/mongoid'
+  gem 'mongoid', '~> 4.0'
 when /3/
   gem 'mongoid', '~> 3.1'
 else
@@ -14,6 +14,6 @@ end
 group :development, :test do
   gem 'rake'
   gem 'bundler'
-  gem 'rspec'
-  gem 'rubocop', '0.22.0'
+  gem 'rspec', '~> 3.0'
+  gem 'rubocop', '0.24.0'
 end
