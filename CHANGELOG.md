@@ -1,3 +1,8 @@
+Next
+====
+
+* Your contribution here.
+
 0.3.0 (7/1/2014)
 ================
 
