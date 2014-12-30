@@ -1,5 +1,10 @@
-Mongoid::Shell [![Build Status](https://travis-ci.org/dblock/mongoid-shell.png?branch=master)](https://travis-ci.org/dblock/mongoid-shell)
+Mongoid::Shell
 ==============
+
+[![Gem Version](http://img.shields.io/gem/v/mongoid-shell.svg)](http://badge.fury.io/rb/mongoid-shell)
+[![Build Status](http://img.shields.io/travis/dblock/mongoid-shell.svg)](https://travis-ci.org/dblock/mongoid-shell)
+[![Dependency Status](https://gemnasium.com/dblock/mongoid-shell.svg)](https://gemnasium.com/dblock/mongoid-shell)
+[![Code Climate](https://codeclimate.com/github/dblock/mongoid-shell.svg)](https://codeclimate.com/github/dblock/mongoid-shell)
 
 Create mongo command-lines from Mongoid configuration.
 
