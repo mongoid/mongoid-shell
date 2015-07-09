@@ -22,7 +22,7 @@ describe Mongoid::Shell::Commands::Mongostat do
   context 'sessions' do
     context 'default' do
       before :each do
-        @session = Mongoid::Sessions.with_name(:default)
+        @session = moped_session(:default)
       end
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongostat.new(

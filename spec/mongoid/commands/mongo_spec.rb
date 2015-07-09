@@ -28,7 +28,11 @@ describe Mongoid::Shell::Commands::Mongo do
   context 'sessions' do
     context 'default' do
       before :each do
-        @session = Mongoid::Sessions.with_name(:default)
+        if ::Mongoid::Compatibility::Version.mongoid3? || ::Mongoid::Compatibility::Version.mongoid4?
+          @session = Mongoid::Sessions.with_name(:default)
+        else
+          @session = Mongoid::Clients.with_name(:default)
+        end
       end
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongo.new(

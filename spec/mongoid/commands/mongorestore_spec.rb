@@ -87,8 +87,15 @@ describe Mongoid::Shell::Commands::Mongorestore do
   context 'without a primary' do
     before :each do
       @session = moped_session(:replica_set)
-      @session.cluster.nodes.each do |node|
-        allow(node).to receive(:primary?).and_return(false)
+      if ::Mongoid::Compatibility::Version.mongoid3? || ::Mongoid::Compatibility::Version.mongoid4?
+        @session.cluster.nodes.each do |node|
+          allow(node).to receive(:primary?).and_return(false)
+        end
+      else
+        @session.cluster.servers.each do |node|
+          allow(node).to receive(:standalone?).and_return(false)
+          allow(node).to receive(:primary?).and_return(false)
+        end
       end
     end
     it 'requires a primary' do

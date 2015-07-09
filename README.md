@@ -39,7 +39,7 @@ system mongodump.to_s # mongodump --db another_database --out /tmp/db_backup
 Compatibility
 -------------
 
-This gem supports Mongoid 3, 4 and 5 beta.
+This gem supports Mongoid 3, 4 and 5.
 
 Supported Commands
 ------------------
