@@ -36,6 +36,11 @@ mongodump = Mongoid::Shell::Commands::Mongodump.new(db: 'another_database', out:
 system mongodump.to_s # mongodump --db another_database --out /tmp/db_backup
 ```
 
+Compatibility
+-------------
+
+This gem supports Mongoid 3 and 4.
+
 Supported Commands
 ------------------
 

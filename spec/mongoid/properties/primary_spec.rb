@@ -11,10 +11,10 @@ describe Mongoid::Shell::Properties::Primary do
     end
     klass.new
   end
-  it "raises an exception when the session is not connected" do
+  it 'raises an exception when the session is not connected' do
     allow(Mongoid.default_session.cluster.nodes.first).to receive(:primary?).and_return(false)
-    expect {
+    expect do
       subject.primary
-    }.to raise_error Mongoid::Shell::Errors::MissingPrimaryNodeError, /Session does not have a primary node./
+    end.to raise_error Mongoid::Shell::Errors::MissingPrimaryNodeError, /Session does not have a primary node./
   end
 end

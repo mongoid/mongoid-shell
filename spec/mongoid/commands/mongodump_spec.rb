@@ -2,16 +2,16 @@ require 'spec_helper'
 
 describe Mongoid::Shell::Commands::Mongodump do
   include MopedSessionHelper
-  context "local" do
-    it "defaults to local" do
-      expect(Mongoid::Shell::Commands::Mongodump.new.to_s).to eq "mongodump --db mongoid_shell_tests"
+  context 'local' do
+    it 'defaults to local' do
+      expect(Mongoid::Shell::Commands::Mongodump.new.to_s).to eq 'mongodump --db mongoid_shell_tests'
     end
-    it "includes collection" do
+    it 'includes collection' do
       expect(Mongoid::Shell::Commands::Mongodump.new(
         collection: 'test'
-      ).to_s).to eq "mongodump --db mongoid_shell_tests --collection test"
+      ).to_s).to eq 'mongodump --db mongoid_shell_tests --collection test'
     end
-    it "includes query" do
+    it 'includes query' do
       expect(Mongoid::Shell::Commands::Mongodump.new(
         query: 'find x'
       ).to_s).to eq 'mongodump --db mongoid_shell_tests --query "find x"'
@@ -31,35 +31,35 @@ describe Mongoid::Shell::Commands::Mongodump do
       end
     end
   end
-  context "sessions" do
-    context "default" do
+  context 'sessions' do
+    context 'default' do
       before :each do
         @session = moped_session(:default)
       end
-      it "includes username and password" do
+      it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongodump.new(
           session: @session
-        ).to_s).to eq "mongodump --db mongoid_shell_tests"
+        ).to_s).to eq 'mongodump --db mongoid_shell_tests'
       end
     end
-    context "a replica set" do
+    context 'a replica set' do
       before :each do
         @session = moped_session(:replica_set)
       end
-      it "includes username and password" do
+      it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongodump.new(
           session: @session
-        ).to_s).to eq "mongodump --host dedicated1.myapp.com:27017 --db mongoid --username user --password password"
+        ).to_s).to eq 'mongodump --host dedicated1.myapp.com:27017 --db mongoid --username user --password password'
       end
     end
-    context "url" do
+    context 'url' do
       before :each do
         @session = moped_session(:url)
       end
-      it "includes username and password" do
+      it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongodump.new(
           session: @session
-        ).to_s).to eq "mongodump --host 59.1.22.1:27017 --db mongoid --username user --password password"
+        ).to_s).to eq 'mongodump --host 59.1.22.1:27017 --db mongoid --username user --password password'
       end
     end
   end

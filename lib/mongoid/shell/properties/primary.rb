@@ -7,13 +7,13 @@ module Mongoid
         # primary database host
         def primary
           @primary || begin
-            raise Mongoid::Shell::Errors::SessionNotConnectedError unless session.cluster.nodes.any?
+            fail Mongoid::Shell::Errors::SessionNotConnectedError unless session.cluster.nodes.any?
             node = session.cluster.nodes.find(&:primary?)
-            raise Mongoid::Shell::Errors::MissingPrimaryNodeError unless node
+            fail Mongoid::Shell::Errors::MissingPrimaryNodeError unless node
             if Mongoid::Shell.mongoid3?
-              node.address == "localhost:27017" ? nil : node.address
+              node.address == 'localhost:27017' ? nil : node.address
             else
-              node.address.original == "localhost:27017" ? nil : node.address.original
+              node.address.original == 'localhost:27017' ? nil : node.address.original
             end
           end
         end

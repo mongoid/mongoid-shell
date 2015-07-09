@@ -15,5 +15,5 @@ group :development, :test do
   gem 'rake'
   gem 'bundler'
   gem 'rspec', '~> 3.0'
-  gem 'rubocop', '0.24.0'
+  gem 'rubocop', '0.32.1'
 end

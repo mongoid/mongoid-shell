@@ -6,15 +6,13 @@ require 'rspec'
 require 'mongoid'
 require 'mongoid-shell'
 
-["support/helpers/*.rb"].each do |path|
+['support/helpers/*.rb'].each do |path|
   Dir["#{File.dirname(__FILE__)}/#{path}"].each do |file|
     require file
   end
 end
 
-RSpec.configure do |config|
-  config.raise_errors_for_deprecations!
-end
+RSpec.configure(&:raise_errors_for_deprecations!)
 
 Mongoid.configure do |config|
   config.connect_to('mongoid_shell_tests')

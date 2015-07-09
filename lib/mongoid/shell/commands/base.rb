@@ -16,7 +16,7 @@ module Mongoid
           options.each do |sym, val|
             send "#{sym}=", val
           end
-          raise Mongoid::Shell::Errors::MissingSessionError unless @session
+          fail Mongoid::Shell::Errors::MissingSessionError unless @session
         end
 
         def cmd
@@ -39,7 +39,7 @@ module Mongoid
         end
 
         def to_s
-          [cmd, vargs].flatten.compact.join(" ")
+          [cmd, vargs].flatten.compact.join(' ')
         end
       end
     end
