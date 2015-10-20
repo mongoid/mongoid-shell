@@ -92,6 +92,6 @@ Copyright and License
 
 MIT License, see [LICENSE](http://github.com/dblock/mongoid-shell/raw/master/LICENSE.md) for details.
 
-(c) 2013 [Daniel Doubrovkine](http://github.com/dblock), [Artsy Inc.](http://artsy.net)
+(c) 2013-2015 [Daniel Doubrovkine](http://github.com/dblock), [Artsy Inc.](http://artsy.net)
 
 
