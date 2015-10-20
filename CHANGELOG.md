@@ -1,6 +1,7 @@
 Next
 ====
 
+* [#6](https://github.com/dblock/mongoid-shell/pull/6) - Compatibility with Mongoid 5.x - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 0.3.0 (7/1/2014)

@@ -5,15 +5,31 @@ module Mongoid
         attr_accessor :primary
 
         # primary database host
-        def primary
-          @primary || begin
-            fail Mongoid::Shell::Errors::SessionNotConnectedError unless session.cluster.nodes.any?
-            node = session.cluster.nodes.find(&:primary?)
-            fail Mongoid::Shell::Errors::MissingPrimaryNodeError unless node
-            if Mongoid::Shell.mongoid3?
+        if ::Mongoid::Compatibility::Version.mongoid3?
+          def primary
+            @primary || begin
+              fail Mongoid::Shell::Errors::SessionNotConnectedError unless session.cluster.nodes.any?
+              node = session.cluster.nodes.find(&:primary?)
+              fail Mongoid::Shell::Errors::MissingPrimaryNodeError unless node
               node.address == 'localhost:27017' ? nil : node.address
-            else
+            end
+          end
+        elsif ::Mongoid::Compatibility::Version.mongoid4?
+          def primary
+            @primary || begin
+              fail Mongoid::Shell::Errors::SessionNotConnectedError unless session.cluster.nodes.any?
+              node = session.cluster.nodes.find(&:primary?)
+              fail Mongoid::Shell::Errors::MissingPrimaryNodeError unless node
               node.address.original == 'localhost:27017' ? nil : node.address.original
+            end
+          end
+        else
+          def primary
+            @primary || begin
+              fail Mongoid::Shell::Errors::SessionNotConnectedError unless session.cluster.servers.any?
+              node = session.cluster.servers.find { |server| server.primary? || server.standalone? }
+              fail Mongoid::Shell::Errors::MissingPrimaryNodeError unless node
+              node.address.to_s == 'localhost:27017' ? nil : node.address.to_s
             end
           end
         end

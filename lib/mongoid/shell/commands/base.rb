@@ -12,7 +12,7 @@ module Mongoid
 
         def initialize(options = nil)
           options ||= {}
-          options[:session] ||= Mongoid.default_session
+          options[:session] ||= default_client_or_session
           options.each do |sym, val|
             send "#{sym}=", val
           end
@@ -40,6 +40,18 @@ module Mongoid
 
         def to_s
           [cmd, vargs].flatten.compact.join(' ')
+        end
+
+        private
+
+        if ::Mongoid::Compatibility::Version.mongoid3? || ::Mongoid::Compatibility::Version.mongoid4?
+          def default_client_or_session
+            Mongoid.default_session
+          end
+        else
+          def default_client_or_session
+            Mongoid.default_client
+          end
         end
       end
     end
