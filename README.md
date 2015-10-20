@@ -1,8 +1,8 @@
 Mongoid::Shell
 ==============
 
-[![Gem Version](http://img.shields.io/gem/v/mongoid-shell.svg)](http://badge.fury.io/rb/mongoid-shell)
-[![Build Status](http://img.shields.io/travis/dblock/mongoid-shell.svg)](https://travis-ci.org/dblock/mongoid-shell)
+[![Gem Version](https://badge.fury.io/rb/mongoid-shell.svg)](https://badge.fury.io/rb/mongoid-shell)
+[![Build Status](https://travis-ci.org/dblock/mongoid-shell.svg?branch=master)](https://travis-ci.org/dblock/mongoid-shell)
 [![Dependency Status](https://gemnasium.com/dblock/mongoid-shell.svg)](https://gemnasium.com/dblock/mongoid-shell)
 [![Code Climate](https://codeclimate.com/github/dblock/mongoid-shell.svg)](https://codeclimate.com/github/dblock/mongoid-shell)
 
