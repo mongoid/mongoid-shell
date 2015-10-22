@@ -7,7 +7,7 @@ module Mongoid
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
-        attr_accessor :verbose, :quiet, :version, :port, :ipv6, :ssl, :sslCAFile,
+        attr_accessor :verbose, :quiet, :port, :ipv6, :ssl, :sslCAFile,
                       :sslPEMKeyFile, :sslPEMKeyPassword, :sslCRLFile,
                       :sslAllowInvalidCertificates, :sslAllowInvalidHostnames, :sslFIPSMode,
                       :authenticationDatabase, :authenticationMechanism, :gssapiServiceName,
@@ -20,46 +20,48 @@ module Mongoid
         end
 
         def vargs
-          super({
-            '--db' => :db,
-            '--verbose' => :verbose,
-            '--quiet' => :quiet,
-            '--version' => :version,
-            '--host' => :host,
-            '--port' => :port,
-            '--ipv6' => :ipv6,
-            '--ssl' => :ssl,
+          super var_options.merge(boolean_options)
+        end
+
+        private
+
+        def var_options
+          {
+            '--db' => :db, '--host' => :host, '--port' => :port,
             '--sslCAFile' => :sslCAFile,
             '--sslPEMKeyFile' => :sslPEMKeyFile,
             '--sslPEMKeyPassword' => :sslPEMKeyPassword,
             '--sslCRLFile' => :sslCRLFile,
-            '--sslAllowInvalidCertificates' => :sslAllowInvalidCertificates,
-            '--sslAllowInvalidHostnames' => :sslAllowInvalidHostnames,
-            '--sslFIPSMode' => :sslFIPSMode,
             '--username' => :username,
             '--password' => :password,
             '--authenticationDatabase' => :authenticationDatabase,
             '--authenticationMechanism' => :authenticationMechanism,
+            '--collection' => :collection,
+            '--fields' => :fields, '--fieldFile' => :fieldFile,
+            '--query' => :query,
+            '--type' => :type, '--out' => :out,
+            '--skip' => :skip, '--limit' => :limit, '--sort' => :sort
+          }
+        end
+
+        def boolean_options
+          {
+            '--verbose' => :verbose, '--quiet' => :quiet,
+            '--ipv6' => :ipv6, '--ssl' => :ssl,
+            '--sslAllowInvalidCertificates' => :sslAllowInvalidCertificates,
+            '--sslAllowInvalidHostnames' => :sslAllowInvalidHostnames,
+            '--sslFIPSMode' => :sslFIPSMode,
             '--gssapiServiceName' => :gssapiServiceName,
             '--gssapiHostName' => :gssapiHostName,
-            '--collection' => :collection,
-            '--fields' => :fields,
-            '--fieldFile' => :fieldFile,
-            '--query' => :query,
-            '--type' => :type,
-            '--out' => :out,
             '--jsonArray' => :jsonArray,
             '--pretty' => :pretty,
             '--slaveOk' => :slaveOk,
             '--forceTableScan' => :forceTableScan,
-            '--skip' => :skip,
-            '--limit' => :limit,
-            '--sort' => :sort,
             '--csv' => :csv, # is deprecated from Mongo version 3.0.0, use type instead
-            '--directoryperdb' => :directoryperdb, # is deprecated from Mongo version 3.0.0
-            '--journal' => :journal, # is deprecated from Mongo version 3.0.0
-            '--dbpath' => :dbpath # is deprecated from Mongo version 3.0.0
-          })
+            # these 3 below are deprecated from Mongo version 3.0.0
+            '--directoryperdb' => :directoryperdb,
+            '--journal' => :journal, '--dbpath' => :dbpath
+          }
         end
       end
     end

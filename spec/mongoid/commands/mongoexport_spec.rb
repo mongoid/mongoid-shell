@@ -22,7 +22,7 @@ describe Mongoid::Shell::Commands::Mongoexport do
         out: 'tests.json'
       ).to_s).to eq 'mongoexport --db my_db --host my_host --username my_username --password my_password --collection tests --out tests.json'
     end
-    [:version, :host, :port, :sslCAFile, :sslPEMKeyFile, :sslPEMKeyPassword,
+    [:host, :port, :sslCAFile, :sslPEMKeyFile, :sslPEMKeyPassword,
      :sslCRLFile, :sslAllowInvalidCertificates, :out, :query, :limit].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongoexport.new(
@@ -30,7 +30,7 @@ describe Mongoid::Shell::Commands::Mongoexport do
         ).to_s).to eq "mongoexport --db mongoid_shell_tests --#{option} \"var arg\""
       end
     end
-    [:verbose, :quiet, :ipv6, :ssl].each do |option|
+    [:verbose, :quiet, :ipv6, :ssl, :sslAllowInvalidCertificates].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongoexport.new(
           option => true

@@ -7,7 +7,7 @@ module Mongoid
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
-        attr_accessor :verbose, :quiet, :version, :port, :ipv6, :ssl, :sslCAFile,
+        attr_accessor :verbose, :quiet, :port, :ipv6, :ssl, :sslCAFile,
                       :sslPEMKeyFile, :sslPEMKeyPassword, :sslCRLFile,
                       :sslAllowInvalidCertificates, :sslAllowInvalidHostnames, :sslFIPSMode,
                       :authenticationDatabase, :authenticationMechanism, :gssapiServiceName,
@@ -22,46 +22,51 @@ module Mongoid
 
         def vargs
           super({
-            '--db' => :db,
-            '--verbose' => :verbose,
-            '--quiet' => :quiet,
-            '--version' => :version,
-            '--host' => :host,
-            '--port' => :port,
-            '--ipv6' => :ipv6,
-            '--ssl' => :ssl,
+
+          })
+        end
+
+        def vargs
+          super var_options.merge(boolean_options)
+        end
+
+        private
+
+        def var_options
+          {
+            '--db' => :db, '--host' => :host, '--port' => :port,
             '--sslCAFile' => :sslCAFile,
             '--sslPEMKeyFile' => :sslPEMKeyFile,
             '--sslPEMKeyPassword' => :sslPEMKeyPassword,
             '--sslCRLFile' => :sslCRLFile,
+            '--username' => :username, '--password' => :password,
+            '--authenticationDatabase' => :authenticationDatabase,
+            '--authenticationMechanism' => :authenticationMechanism,
+            '--collection' => :collection, '--fields' => :fields,
+            '--fieldFile' => :fieldFile, '--type' => :type, '--file' => :file,
+            '--upsertFields' => :upsertFields,
+            '--maintainInsertionOrder' => :maintainInsertionOrder,
+            '--numInsertionWorkers' => :numInsertionWorkers,
+            '--writeConcern' => :writeConcern,
+            # these 3 below are deprecated from Mongo version 3.0.0
+            '--directoryperdb' => :directoryperdb,
+            '--journal' => :journal, '--dbpath' => :dbpath
+          }
+        end
+
+        def boolean_options
+          {
+            '--verbose' => :verbose, '--quiet' => :quiet,
+            '--ipv6' => :ipv6, '--ssl' => :ssl,
             '--sslAllowInvalidCertificates' => :sslAllowInvalidCertificates,
             '--sslAllowInvalidHostnames' => :sslAllowInvalidHostnames,
             '--sslFIPSMode' => :sslFIPSMode,
-            '--username' => :username,
-            '--password' => :password,
-            '--authenticationDatabase' => :authenticationDatabase,
-            '--authenticationMechanism' => :authenticationMechanism,
             '--gssapiServiceName' => :gssapiServiceName,
             '--gssapiHostName' => :gssapiHostName,
-            '--collection' => :collection,
-            '--fields' => :fields,
-            '--directoryperdb' => :directoryperdb, # is deprecated from Mongo version 3.0.0
-            '--journal' => :journal, # is deprecated from Mongo version 3.0.0
-            '--dbpath' => :dbpath, # is deprecated from Mongo version 3.0.0
-            '--fieldFile' => :fieldFile,
-            '--ignoreBlanks' => :ignoreBlanks,
-            '--type' => :type,
-            '--file' => :file,
-            '--drop' => :drop,
-            '--headerline' => :headerline,
-            '--upsert' => :upsert,
-            '--upsertFields' => :upsertFields,
-            '--stopOnError' => :stopOnError,
-            '--jsonArray' => :jsonArray,
-            '--maintainInsertionOrder' => :maintainInsertionOrder,
-            '--numInsertionWorkers' => :numInsertionWorkers,
-            '--writeConcern' => :writeConcern
-          })
+            '--ignoreBlanks' => :ignoreBlanks, '--drop' => :drop,
+            '--headerline' => :headerline, '--upsert' => :upsert,
+            '--stopOnError' => :stopOnError, '--jsonArray' => :jsonArray
+          }
         end
       end
     end
