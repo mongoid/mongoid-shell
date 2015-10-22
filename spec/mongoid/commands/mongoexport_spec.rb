@@ -23,7 +23,7 @@ describe Mongoid::Shell::Commands::Mongoexport do
       ).to_s).to eq 'mongoexport --db my_db --host my_host --username my_username --password my_password --collection tests --out tests.json'
     end
     [:version, :host, :port, :sslCAFile, :sslPEMKeyFile, :sslPEMKeyPassword,
-      :sslCRLFile, :sslAllowInvalidCertificates, :out, :query, :limit].each do |option|
+     :sslCRLFile, :sslAllowInvalidCertificates, :out, :query, :limit].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongoexport.new(
           option => 'var arg'
@@ -47,7 +47,7 @@ describe Mongoid::Shell::Commands::Mongoexport do
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongoexport.new(
           session: @session
-        ).to_s).to eq "mongoexport --db mongoid_shell_tests"
+        ).to_s).to eq 'mongoexport --db mongoid_shell_tests'
       end
     end
     context 'a replica set' do
@@ -57,7 +57,7 @@ describe Mongoid::Shell::Commands::Mongoexport do
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongoexport.new(
           session: @session
-        ).to_s).to eq "mongoexport --db mongoid --host dedicated1.myapp.com:27017 --username user --password password"
+        ).to_s).to eq 'mongoexport --db mongoid --host dedicated1.myapp.com:27017 --username user --password password'
       end
     end
     context 'url' do
@@ -67,7 +67,7 @@ describe Mongoid::Shell::Commands::Mongoexport do
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongoexport.new(
           session: @session
-        ).to_s).to eq "mongoexport --db mongoid --host 59.1.22.1:27017 --username user --password password"
+        ).to_s).to eq 'mongoexport --db mongoid --host 59.1.22.1:27017 --username user --password password'
       end
     end
   end

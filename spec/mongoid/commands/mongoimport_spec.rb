@@ -46,7 +46,7 @@ describe Mongoid::Shell::Commands::Mongoimport do
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongoimport.new(
           session: @session
-        ).to_s).to eq "mongoimport --db mongoid_shell_tests"
+        ).to_s).to eq 'mongoimport --db mongoid_shell_tests'
       end
     end
     context 'a replica set' do
@@ -56,7 +56,7 @@ describe Mongoid::Shell::Commands::Mongoimport do
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongoimport.new(
           session: @session
-        ).to_s).to eq "mongoimport --db mongoid --host dedicated1.myapp.com:27017 --username user --password password"
+        ).to_s).to eq 'mongoimport --db mongoid --host dedicated1.myapp.com:27017 --username user --password password'
       end
     end
     context 'url' do
@@ -66,7 +66,7 @@ describe Mongoid::Shell::Commands::Mongoimport do
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongoimport.new(
           session: @session
-        ).to_s).to eq "mongoimport --db mongoid --host 59.1.22.1:27017 --username user --password password"
+        ).to_s).to eq 'mongoimport --db mongoid --host 59.1.22.1:27017 --username user --password password'
       end
     end
   end

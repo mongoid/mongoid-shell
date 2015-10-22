@@ -8,13 +8,13 @@ module Mongoid
         include Mongoid::Shell::Properties::Password
 
         attr_accessor :verbose, :quiet, :version, :port, :ipv6, :ssl, :sslCAFile,
-          :sslPEMKeyFile, :sslPEMKeyPassword, :sslCRLFile,
-          :sslAllowInvalidCertificates, :sslAllowInvalidHostnames, :sslFIPSMode,
-          :authenticationDatabase, :authenticationMechanism, :gssapiServiceName,
-          :gssapiHostName, :collection, :fields, :directoryperdb, :journal, :dbpath,
-          :fieldFile, :ignoreBlanks, :type, :file, :drop, :headerline, :upsert,
-          :upsertFields, :stopOnError, :jsonArray, :maintainInsertionOrder,
-          :numInsertionWorkers, :writeConcern
+                      :sslPEMKeyFile, :sslPEMKeyPassword, :sslCRLFile,
+                      :sslAllowInvalidCertificates, :sslAllowInvalidHostnames, :sslFIPSMode,
+                      :authenticationDatabase, :authenticationMechanism, :gssapiServiceName,
+                      :gssapiHostName, :collection, :fields, :directoryperdb, :journal, :dbpath,
+                      :fieldFile, :ignoreBlanks, :type, :file, :drop, :headerline, :upsert,
+                      :upsertFields, :stopOnError, :jsonArray, :maintainInsertionOrder,
+                      :numInsertionWorkers, :writeConcern
 
         def initialize(attrs = {})
           super
