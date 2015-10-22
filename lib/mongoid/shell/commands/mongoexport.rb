@@ -7,8 +7,13 @@ module Mongoid
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
-        attr_accessor :version, :collection, :fields, :fieldFile, :query, :csv, :out, :jsonArray,
-          :directoryperdb, :journal, :forceTableScan, :limit, :sort, :dbpath, :ipv6
+        attr_accessor :verbose, :quiet, :version, :port, :ipv6, :ssl, :sslCAFile,
+          :sslPEMKeyFile, :sslPEMKeyPassword, :sslCRLFile,
+          :sslAllowInvalidCertificates, :sslAllowInvalidHostnames, :sslFIPSMode,
+          :authenticationDatabase, :authenticationMechanism, :gssapiServiceName,
+          :gssapiHostName, :collection, :fields, :fieldFile, :query, :csv,
+          :type, :out, :jsonArray, :pretty, :slaveOk, :forceTableScan, :skip,
+          :limit, :sort, :directoryperdb, :journal, :dbpath
 
         def initialize(attrs = {})
           super
@@ -16,25 +21,44 @@ module Mongoid
 
         def vargs
           super({
-            '--host' => :host,
             '--db' => :db,
+            '--verbose' => :verbose,
+            '--quiet' => :quiet,
+            '--version' => :version,
+            '--host' => :host,
+            '--port' => :port,
+            '--ipv6' => :ipv6,
+            '--ssl' => :ssl,
+            '--sslCAFile' => :sslCAFile,
+            '--sslPEMKeyFile' => :sslPEMKeyFile,
+            '--sslPEMKeyPassword' => :sslPEMKeyPassword,
+            '--sslCRLFile' => :sslCRLFile,
+            '--sslAllowInvalidCertificates' => :sslAllowInvalidCertificates,
+            '--sslAllowInvalidHostnames' => :sslAllowInvalidHostnames,
+            '--sslFIPSMode' => :sslFIPSMode,
             '--username' => :username,
             '--password' => :password,
-            '--version' => :version,
+            '--authenticationDatabase' => :authenticationDatabase,
+            '--authenticationMechanism' => :authenticationMechanism,
+            '--gssapiServiceName' => :gssapiServiceName,
+            '--gssapiHostName' => :gssapiHostName,
             '--collection' => :collection,
             '--fields' => :fields,
             '--fieldFile' => :fieldFile,
             '--query' => :query,
-            '--csv' => :csv,
+            '--type' => :type,
             '--out' => :out,
             '--jsonArray' => :jsonArray,
-            '--directoryperdb' => :directoryperdb,
-            '--journal' => :journal,
+            '--pretty' => :pretty,
+            '--slaveOk' => :slaveOk,
             '--forceTableScan' => :forceTableScan,
+            '--skip' => :skip,
             '--limit' => :limit,
             '--sort' => :sort,
-            '--dbpath' => :dbpath,
-            '--ipv6' => :ipv6
+            '--csv' => :csv, # is deprecated from Mongo version 3.0.0, use type instead
+            '--directoryperdb' => :directoryperdb, # is deprecated from Mongo version 3.0.0
+            '--journal' => :journal, # is deprecated from Mongo version 3.0.0
+            '--dbpath' => :dbpath # is deprecated from Mongo version 3.0.0
           })
         end
       end
