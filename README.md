@@ -76,6 +76,29 @@ mongorestore.to_s # mongorestore --db test --collection test /tmp/db_backup
 
 The `Mongoid::Shell::Commands::Mongorestore` class supports `--db`, `--host`, `--username`, `--password`, `--collection`, `--ipv6`, `--dbpath`, `--directoryperdb`, `--journal`, `--objcheck`, `--filter`, `--drop`, `--oplogReplay`, `--keepIndexVersion` and `--noIndexRestore`.
 
+### Mongoexport
+
+The mongoexport tool produces a JSON or CSV export of data stored in a MongoDB instance.
+
+``` ruby
+mongoexport = Mongoid::Shell::Commands::Mongoexport.new({ collection: 'traffic', out: 'traffic.json' })
+mongoexport.to_s # mongoexport --db test --collection traffic --out traffic.json
+```
+
+The `Mongoid::Shell::Commands::Mongoexport` class supports '--verbose', '--quiet', '--version', '--port', '--ipv6', '--ssl', '--sslCAFile', '--sslPEMKeyFile', '--sslPEMKeyPassword', '--sslCRLFile', '--sslAllowInvalidCertificates', '--sslAllowInvalidHostnames', '--sslFIPSMode', '--authenticationDatabase', '--authenticationMechanism', '--gssapiServiceName', '--gssapiHostName', '--collection', '--fields', '--fieldFile', '--query', '--csv', '--type', '--out', '--jsonArray', '--pretty', '--slaveOk', '--forceTableScan', '--skip', '--limit', '--sort', '--directoryperdb', '--journal', '--dbpath'.
+
+### Mongoimport
+
+The mongoimport tool imports content from an Extended JSON, CSV, or TSV export created by mongoexport, or potentially, another third-party export tool.
+
+
+``` ruby
+mongoimport = Mongoid::Shell::Commands::Mongoimport.new({ collection: 'contacts', file: 'contacts.json' })
+mongoimport.to_s # mongoimport --db test --collection contacts --file contacts.json
+```
+
+The `Mongoid::Shell::Commands::Mongoimport` class supports '--verbose', '--quiet', '--version', '--host', '--username', '--password', '--port', '--ipv6', '--ssl', '--sslCAFile', '--sslPEMKeyFile', '--sslPEMKeyPassword', '--sslCRLFile', '--sslAllowInvalidCertificates', '--sslAllowInvalidHostnames', '--sslFIPSMode', '--authenticationDatabase', '--authenticationMechanism', '--gssapiServiceName', '--gssapiHostName', '--db', '--collection', '--fields', '--directoryperdb', '--journal', '--dbpath', '--fieldFile', '--ignoreBlanks', '--type', '--file', '--drop', '--headerline', '--upsert', '--upsertFields', '--stopOnError', '--jsonArray', '--maintainInsertionOrder', '--numInsertionWorkers', '--writeConcern'
+
 ### Mongostat
 
 The mongostat utility provides a quick overview of the status of a currently running mongod or mongos instance.
@@ -93,5 +116,3 @@ Copyright and License
 MIT License, see [LICENSE](http://github.com/dblock/mongoid-shell/raw/master/LICENSE.md) for details.
 
 (c) 2013-2015 [Daniel Doubrovkine](http://github.com/dblock), [Artsy Inc.](http://artsy.net)
-
-
