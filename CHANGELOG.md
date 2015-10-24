@@ -1,7 +1,12 @@
-0.4.1 (Next)
+0.4.2 (Next)
 ============
 
 * Your contribution here.
+
+0.4.1 (Next)
+============
+
+* Added support for `mongoimport` and `mongoexport` - [@hoang1417](https://github.com/hoang1417).
 
 0.4.0 (10/20/2015)
 ==================
