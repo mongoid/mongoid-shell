@@ -1,8 +1,7 @@
-0.4.1 (Next)
-============
+0.4.1 (10/25/2015)
+==================
 
 * [#7](https://github.com/dblock/mongoid-shell/pull/7) - Added support for `mongoimport` and `mongoexport` - [@hoang1417](https://github.com/hoang1417).
-* Your contribution here.
 
 0.4.0 (10/20/2015)
 ==================
