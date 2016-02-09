@@ -1,7 +1,7 @@
 0.4.2 (Next)
 ============
 
-* Your contribution here.
+* [#8](https://github.com/dblock/mongoid-shell/pull/7) - Support repeatable parameters; add excludeCollection and excludeCollectionsWithPrefix - [@joeyAghion](https://github.com/joeyAghion).
 
 0.4.1 (10/25/2015)
 ==================
