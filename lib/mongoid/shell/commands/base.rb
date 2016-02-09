@@ -27,8 +27,9 @@ module Mongoid
           args.map do |key, property|
             value = send(property)
             next unless value
-            if value.is_a?(Boolean) || value.is_a?(TrueClass)
-              key
+            case value
+            when Boolean, TrueClass then key
+            when Array then value.map { |v| "#{key} #{v}" }.join(' ')
             else
               value = value.to_s
               # TODO: quote other special characters?

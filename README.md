@@ -36,6 +36,14 @@ mongodump = Mongoid::Shell::Commands::Mongodump.new(db: 'another_database', out:
 system mongodump.to_s # mongodump --db another_database --out /tmp/db_backup
 ```
 
+To specify parameters multiple times, set them to arrays.
+
+``` ruby
+mongodump = Mongoid::Shell::Commands::Mongodump.new(collection: %w(users products))
+system mongodump.to_s # mongodump --collection users --collection products
+```
+
+
 Compatibility
 -------------
 
@@ -63,7 +71,7 @@ mongodump = Mongoid::Shell::Commands::Mongodump.new({ collection: 'test' })
 mongodump.to_s # mongodump --db test --collection test
 ```
 
-The `Mongoid::Shell::Commands::Mongodump` class supports `--db`, `--host`, `--username`, `--password`, `--query`, `--out`, `--collection`, `--directoryperdb`, `--journal`, `--oplog`, `--repair`, `--forceTableScan`, `--dbpath` and `--ipv6`.
+The `Mongoid::Shell::Commands::Mongodump` class supports `--db`, `--host`, `--username`, `--password`, `--query`, `--out`, `--collection`, `--excludeCollection`, `--excludeCollectionsWithPrefix`, `--directoryperdb`, `--journal`, `--oplog`, `--repair`, `--forceTableScan`, `--dbpath` and `--ipv6`.
 
 ### Mongorestore
 
