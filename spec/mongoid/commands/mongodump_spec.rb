@@ -16,6 +16,16 @@ describe Mongoid::Shell::Commands::Mongodump do
         collection: %w(test1 test2)
       ).to_s).to eq 'mongodump --db mongoid_shell_tests --collection test1 --collection test2'
     end
+    it 'includes excludeCollection' do
+      expect(Mongoid::Shell::Commands::Mongodump.new(
+        excludeCollection: %w(test1 test2)
+      ).to_s).to eq 'mongodump --db mongoid_shell_tests --excludeCollection test1 --excludeCollection test2'
+    end
+    it 'includes excludeCollectionsWithPrefix' do
+      expect(Mongoid::Shell::Commands::Mongodump.new(
+        excludeCollectionsWithPrefix: %w(system local)
+      ).to_s).to eq 'mongodump --db mongoid_shell_tests --excludeCollectionsWithPrefix system --excludeCollectionsWithPrefix local'
+    end
     it 'includes query' do
       expect(Mongoid::Shell::Commands::Mongodump.new(
         query: 'find x'

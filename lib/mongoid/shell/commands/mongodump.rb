@@ -7,7 +7,8 @@ module Mongoid
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
-        attr_accessor :collection, :query, :out, :directoryperdb, :journal, :oplog, :repair, :forceTableScan, :dbpath, :ipv6
+        attr_accessor :collection, :query, :out, :directoryperdb, :journal, :oplog, :repair, :forceTableScan, :dbpath, :ipv6, :excludeCollection,
+                      :excludeCollectionsWithPrefix
 
         def initialize(attrs = {})
           super
@@ -20,6 +21,8 @@ module Mongoid
             '--username' => :username,
             '--password' => :password,
             '--collection' => :collection,
+            '--excludeCollection' => :excludeCollection,
+            '--excludeCollectionsWithPrefix' => :excludeCollectionsWithPrefix,
             '--query' => :query,
             '--out' => :out,
             '--directoryperdb' => :directoryperdb,
