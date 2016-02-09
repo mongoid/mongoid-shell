@@ -93,7 +93,7 @@ mongoexport = Mongoid::Shell::Commands::Mongoexport.new({ collection: 'traffic',
 mongoexport.to_s # mongoexport --db test --collection traffic --out traffic.json
 ```
 
-The `Mongoid::Shell::Commands::Mongoexport` class supports '--verbose', '--quiet', '--version', '--port', '--ipv6', '--ssl', '--sslCAFile', '--sslPEMKeyFile', '--sslPEMKeyPassword', '--sslCRLFile', '--sslAllowInvalidCertificates', '--sslAllowInvalidHostnames', '--sslFIPSMode', '--authenticationDatabase', '--authenticationMechanism', '--gssapiServiceName', '--gssapiHostName', '--collection', '--fields', '--fieldFile', '--query', '--csv', '--type', '--out', '--jsonArray', '--pretty', '--slaveOk', '--forceTableScan', '--skip', '--limit', '--sort', '--directoryperdb', '--journal', '--dbpath'.
+The `Mongoid::Shell::Commands::Mongoexport` class supports `--verbose`, `--quiet`, `--version`, `--port`, `--ipv6`, `--ssl`, `--sslCAFile`, `--sslPEMKeyFile`, `--sslPEMKeyPassword`, `--sslCRLFile`, `--sslAllowInvalidCertificates`, `--sslAllowInvalidHostnames`, `--sslFIPSMode`, `--authenticationDatabase`, `--authenticationMechanism`, `--gssapiServiceName`, `--gssapiHostName`, `--collection`, `--fields`, `--fieldFile`, `--query`, `--csv`, `--type`, `--out`, `--jsonArray`, `--pretty`, `--slaveOk`, `--forceTableScan`, `--skip`, `--limit`, `--sort`, `--directoryperdb`, `--journal`, `--dbpath`.
 
 ### Mongoimport
 
@@ -105,7 +105,7 @@ mongoimport = Mongoid::Shell::Commands::Mongoimport.new({ collection: 'contacts'
 mongoimport.to_s # mongoimport --db test --collection contacts --file contacts.json
 ```
 
-The `Mongoid::Shell::Commands::Mongoimport` class supports '--verbose', '--quiet', '--version', '--host', '--username', '--password', '--port', '--ipv6', '--ssl', '--sslCAFile', '--sslPEMKeyFile', '--sslPEMKeyPassword', '--sslCRLFile', '--sslAllowInvalidCertificates', '--sslAllowInvalidHostnames', '--sslFIPSMode', '--authenticationDatabase', '--authenticationMechanism', '--gssapiServiceName', '--gssapiHostName', '--db', '--collection', '--fields', '--directoryperdb', '--journal', '--dbpath', '--fieldFile', '--ignoreBlanks', '--type', '--file', '--drop', '--headerline', '--upsert', '--upsertFields', '--stopOnError', '--jsonArray', '--maintainInsertionOrder', '--numInsertionWorkers', '--writeConcern'
+The `Mongoid::Shell::Commands::Mongoimport` class supports `--verbose`, `--quiet`, `--version`, `--host`, `--username`, `--password`, `--port`, `--ipv6`, `--ssl`, `--sslCAFile`, `--sslPEMKeyFile`, `--sslPEMKeyPassword`, `--sslCRLFile`, `--sslAllowInvalidCertificates`, `--sslAllowInvalidHostnames`, `--sslFIPSMode`, `--authenticationDatabase`, `--authenticationMechanism`, `--gssapiServiceName`, `--gssapiHostName`, `--db`, `--collection`, `--fields`, `--directoryperdb`, `--journal`, `--dbpath`, `--fieldFile`, `--ignoreBlanks`, `--type`, `--file`, `--drop`, `--headerline`, `--upsert`, `--upsertFields`, `--stopOnError`, `--jsonArray`, `--maintainInsertionOrder`, `--numInsertionWorkers`, `--writeConcern`.
 
 ### Mongostat
 
