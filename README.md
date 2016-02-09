@@ -67,7 +67,7 @@ Supports `--username`, `--password`, `--eval`, `--nodb`, `--norc`, `--quiet` and
 Mongodump is a utility for creating a binary export of the contents of a database.
 
 ``` ruby
-mongodump = Mongoid::Shell::Commands::Mongodump.new({ collection: 'test' })
+mongodump = Mongoid::Shell::Commands::Mongodump.new(collection: 'test')
 mongodump.to_s # mongodump --db test --collection test
 ```
 
@@ -78,7 +78,7 @@ The `Mongoid::Shell::Commands::Mongodump` class supports `--db`, `--host`, `--us
 The mongorestore tool imports content from binary database dump, created by mongodump into a specific database.
 
 ``` ruby
-mongorestore = Mongoid::Shell::Commands::Mongorestore.new({ collection: 'test', restore: '/tmp/db_backup' })
+mongorestore = Mongoid::Shell::Commands::Mongorestore.new(collection: 'test', restore: '/tmp/db_backup')
 mongorestore.to_s # mongorestore --db test --collection test /tmp/db_backup
 ```
 
@@ -89,7 +89,7 @@ The `Mongoid::Shell::Commands::Mongorestore` class supports `--db`, `--host`, `-
 The mongoexport tool produces a JSON or CSV export of data stored in a MongoDB instance.
 
 ``` ruby
-mongoexport = Mongoid::Shell::Commands::Mongoexport.new({ collection: 'traffic', out: 'traffic.json' })
+mongoexport = Mongoid::Shell::Commands::Mongoexport.new(collection: 'traffic', out: 'traffic.json')
 mongoexport.to_s # mongoexport --db test --collection traffic --out traffic.json
 ```
 
@@ -101,7 +101,7 @@ The mongoimport tool imports content from an Extended JSON, CSV, or TSV export c
 
 
 ``` ruby
-mongoimport = Mongoid::Shell::Commands::Mongoimport.new({ collection: 'contacts', file: 'contacts.json' })
+mongoimport = Mongoid::Shell::Commands::Mongoimport.new(collection: 'contacts', file: 'contacts.json')
 mongoimport.to_s # mongoimport --db test --collection contacts --file contacts.json
 ```
 
