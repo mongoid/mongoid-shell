@@ -39,8 +39,8 @@ system mongodump.to_s # mongodump --db another_database --out /tmp/db_backup
 To specify parameters multiple times, set them to arrays.
 
 ``` ruby
-mongodump = Mongoid::Shell::Commands::Mongodump.new(collection: %w(users products))
-system mongodump.to_s # mongodump --collection users --collection products
+mongodump = Mongoid::Shell::Commands::Mongodump.new(excludeCollection: %w(users products))
+system mongodump.to_s # mongodump --excludeCollection users --excludeCollection products
 ```
 
 

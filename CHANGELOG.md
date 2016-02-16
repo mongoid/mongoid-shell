@@ -2,11 +2,12 @@
 ============
 
 * Your contribution here.
+* [#9](https://github.com/dblock/mongoid-shell/pull/9) - Remove example and spec alleging that `--collection` can be specified multiple times - [@joeyAghion](https://github.com/joeyAghion).
 
 0.4.2 (2/9/2015)
 ================
 
-* [#8](https://github.com/dblock/mongoid-shell/pull/7) - Support repeatable parameters; add `excludeCollection` and `excludeCollectionsWithPrefix` to `mongodump` - [@joeyAghion](https://github.com/joeyAghion).
+* [#8](https://github.com/dblock/mongoid-shell/pull/8) - Support repeatable parameters; add `excludeCollection` and `excludeCollectionsWithPrefix` to `mongodump` - [@joeyAghion](https://github.com/joeyAghion).
 
 0.4.1 (10/25/2015)
 ==================

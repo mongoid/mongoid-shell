@@ -11,11 +11,6 @@ describe Mongoid::Shell::Commands::Mongodump do
         collection: 'test'
       ).to_s).to eq 'mongodump --db mongoid_shell_tests --collection test'
     end
-    it 'includes multiple collections' do
-      expect(Mongoid::Shell::Commands::Mongodump.new(
-        collection: %w(test1 test2)
-      ).to_s).to eq 'mongodump --db mongoid_shell_tests --collection test1 --collection test2'
-    end
     it 'includes excludeCollection' do
       expect(Mongoid::Shell::Commands::Mongodump.new(
         excludeCollection: %w(test1 test2)
