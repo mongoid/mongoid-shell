@@ -1,7 +1,6 @@
-0.4.3 (Next)
-============
+0.4.3 (6/1/2016)
+================
 
-* Your contribution here.
 * [#9](https://github.com/dblock/mongoid-shell/pull/9) - Remove example and spec alleging that `--collection` can be specified multiple times - [@joeyAghion](https://github.com/joeyAghion).
 
 0.4.2 (2/9/2015)
