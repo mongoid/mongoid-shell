@@ -6,29 +6,29 @@
 0.4.3 (6/1/2016)
 ================
 
-* [#9](https://github.com/dblock/mongoid-shell/pull/9) - Remove example and spec alleging that `--collection` can be specified multiple times - [@joeyAghion](https://github.com/joeyAghion).
+* [#9](https://github.com/mongoid/mongoid-shell/pull/9) - Remove example and spec alleging that `--collection` can be specified multiple times - [@joeyAghion](https://github.com/joeyAghion).
 
 0.4.2 (2/9/2015)
 ================
 
-* [#8](https://github.com/dblock/mongoid-shell/pull/8) - Support repeatable parameters; add `excludeCollection` and `excludeCollectionsWithPrefix` to `mongodump` - [@joeyAghion](https://github.com/joeyAghion).
+* [#8](https://github.com/mongoid/mongoid-shell/pull/8) - Support repeatable parameters; add `excludeCollection` and `excludeCollectionsWithPrefix` to `mongodump` - [@joeyAghion](https://github.com/joeyAghion).
 
 0.4.1 (10/25/2015)
 ==================
 
-* [#7](https://github.com/dblock/mongoid-shell/pull/7) - Added support for `mongoimport` and `mongoexport` - [@hoang1417](https://github.com/hoang1417).
+* [#7](https://github.com/mongoid/mongoid-shell/pull/7) - Added support for `mongoimport` and `mongoexport` - [@hoang1417](https://github.com/hoang1417).
 
 0.4.0 (10/20/2015)
 ==================
 
-* [#6](https://github.com/dblock/mongoid-shell/pull/6) - Compatibility with Mongoid 5.x - [@dblock](https://github.com/dblock).
+* [#6](https://github.com/mongoid/mongoid-shell/pull/6) - Compatibility with Mongoid 5.x - [@dblock](https://github.com/dblock).
 
 0.3.0 (7/1/2014)
 ================
 
-* [#3](https://github.com/dblock/mongoid-shell/pull/3): Added Mongoid 4.x support - [@pawelniewie](https://github.com/pawelniewie), [@dblock](https://github.com/dblock).
-* [#2](https://github.com/dblock/mongoid-shell/pull/2): Added support for `--noIndexRestore` to `Mongoid::Shell::Commands::Mongorestore` - [@macreery](https://github.com/macreery).
-* [#1](https://github.com/dblock/mongoid-shell/pull/1): Enforced compatibility with Mongoid 3.x only - [@macreery](https://github.com/macreery).
+* [#3](https://github.com/mongoid/mongoid-shell/pull/3): Added Mongoid 4.x support - [@pawelniewie](https://github.com/pawelniewie), [@dblock](https://github.com/dblock).
+* [#2](https://github.com/mongoid/mongoid-shell/pull/2): Added support for `--noIndexRestore` to `Mongoid::Shell::Commands::Mongorestore` - [@macreery](https://github.com/macreery).
+* [#1](https://github.com/mongoid/mongoid-shell/pull/1): Enforced compatibility with Mongoid 3.x only - [@macreery](https://github.com/macreery).
 * Fix: the `mongorestore` command requires a primary node in a replica set - [@dblock](https://github.com/dblock).
 * Added Rubocop, Ruby style linter - [@dblock](https://github.com/dblock).
 * Upgraded to RSpec 3.x expectation syntax - [@dblock](https://github.com/dblock).

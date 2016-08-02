@@ -2,9 +2,9 @@ Mongoid::Shell
 ==============
 
 [![Gem Version](https://badge.fury.io/rb/mongoid-shell.svg)](https://badge.fury.io/rb/mongoid-shell)
-[![Build Status](https://travis-ci.org/dblock/mongoid-shell.svg?branch=master)](https://travis-ci.org/dblock/mongoid-shell)
-[![Dependency Status](https://gemnasium.com/dblock/mongoid-shell.svg)](https://gemnasium.com/dblock/mongoid-shell)
-[![Code Climate](https://codeclimate.com/github/dblock/mongoid-shell.svg)](https://codeclimate.com/github/dblock/mongoid-shell)
+[![Build Status](https://travis-ci.org/mongoid/mongoid-shell.svg?branch=master)](https://travis-ci.org/mongoid/mongoid-shell)
+[![Dependency Status](https://gemnasium.com/mongoid/mongoid-shell.svg)](https://gemnasium.com/mongoid/mongoid-shell)
+[![Code Climate](https://codeclimate.com/github/mongoid/mongoid-shell.svg)](https://codeclimate.com/github/mongoid/mongoid-shell)
 
 Create mongo command-lines from Mongoid configuration.
 
@@ -121,6 +121,6 @@ Fork the project. Make your feature addition or bug fix with tests. Send a pull 
 Copyright and License
 ---------------------
 
-MIT License, see [LICENSE](http://github.com/dblock/mongoid-shell/raw/master/LICENSE.md) for details.
+MIT License, see [LICENSE](http://github.com/mongoid/mongoid-shell/raw/master/LICENSE.md) for details.
 
 (c) 2013-2015 [Daniel Doubrovkine](http://github.com/dblock), [Artsy Inc.](http://artsy.net)

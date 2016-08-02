@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = '>= 1.3.6'
   s.files = Dir['LICENSE.md', 'README.md', 'CHANGELOG.md', 'lib/**/*']
   s.require_paths = ['lib']
-  s.homepage = 'http://github.com/dblock/mongoid-shell'
+  s.homepage = 'http://github.com/mongoid/mongoid-shell'
   s.licenses = ['MIT']
   s.summary = 'Derive shell commands from Mongoid configuration options.'
   s.add_dependency 'mongoid', '>= 3.0.0'
