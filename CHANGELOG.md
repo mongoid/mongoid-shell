@@ -7,7 +7,7 @@
 0.5.0 (12/1/2016)
 ============
 
-* [#10](https://github.com/mongoid/mongoid-shell/pull/10) - Compatibility with Mongoid 6 - [@jbach](https://github.com/jbach).
+* [#11](https://github.com/mongoid/mongoid-shell/pull/11) - Compatibility with Mongoid 6 - [@jbach](https://github.com/jbach).
 
 0.4.3 (6/1/2016)
 ================
