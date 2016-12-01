@@ -1,7 +1,13 @@
-0.4.4 (Next)
+0.5.1 (Next)
 ============
 
 * Your contribution here.
+
+
+0.5.0 (12/1/2016)
+============
+
+* [#10](https://github.com/mongoid/mongoid-shell/pull/10) - Compatibility with Mongoid 6 - [@jbach](https://github.com/jbach).
 
 0.4.3 (6/1/2016)
 ================

@@ -19,7 +19,7 @@ describe Mongoid::Shell::Commands::Base do
       end.to raise_error Mongoid::Shell::Errors::MissingSessionError, /Missing session./
     end
   end
-  if ::Mongoid::Compatibility::Version.mongoid5?
+  if ::Mongoid::Compatibility::Version.mongoid5? || ::Mongoid::Compatibility::Version.mongoid6?
     it 'creates a command using the default session' do
       command = Mongoid::Shell::Commands::Base.new
       expect(command.session).to eq Mongoid.default_client

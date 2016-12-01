@@ -47,7 +47,7 @@ system mongodump.to_s # mongodump --excludeCollection users --excludeCollection 
 Compatibility
 -------------
 
-This gem supports Mongoid 3, 4 and 5.
+This gem supports Mongoid 3, 4, 5 and 6.
 
 Supported Commands
 ------------------
@@ -123,4 +123,4 @@ Copyright and License
 
 MIT License, see [LICENSE](http://github.com/mongoid/mongoid-shell/raw/master/LICENSE.md) for details.
 
-(c) 2013-2015 [Daniel Doubrovkine](http://github.com/dblock), [Artsy Inc.](http://artsy.net)
+(c) 2013-2016 [Daniel Doubrovkine](http://github.com/dblock), [Artsy Inc.](http://artsy.net)
