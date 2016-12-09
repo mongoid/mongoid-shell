@@ -16,7 +16,7 @@ module Mongoid
           options.each do |sym, val|
             send "#{sym}=", val
           end
-          fail Mongoid::Shell::Errors::MissingSessionError unless @session
+          raise Mongoid::Shell::Errors::MissingSessionError unless @session
         end
 
         def cmd

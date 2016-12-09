@@ -9,7 +9,7 @@ module Mongoid
           def host
             @host || begin
               node = session.cluster.nodes.first
-              fail Mongoid::Shell::Errors::SessionNotConnectedError unless node
+              raise Mongoid::Shell::Errors::SessionNotConnectedError unless node
               node.address == 'localhost:27017' ? nil : node.address
             end
           end
@@ -17,7 +17,7 @@ module Mongoid
           def host
             @host || begin
               node = session.cluster.nodes.first
-              fail Mongoid::Shell::Errors::SessionNotConnectedError unless node
+              raise Mongoid::Shell::Errors::SessionNotConnectedError unless node
               node.address.original == 'localhost:27017' ? nil : node.address.original
             end
           end
@@ -25,7 +25,7 @@ module Mongoid
           def host
             @host || begin
               node = session.cluster.servers.first
-              fail Mongoid::Shell::Errors::SessionNotConnectedError unless node
+              raise Mongoid::Shell::Errors::SessionNotConnectedError unless node
               node.address.to_s == 'localhost:27017' ? nil : node.address.to_s
             end
           end
