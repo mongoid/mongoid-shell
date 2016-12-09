@@ -16,7 +16,7 @@ module Mongoid
           def password
             @password || begin
               node = session.cluster.nodes.first
-              fail Mongoid::Shell::Errors::SessionNotConnectedError unless node
+              raise Mongoid::Shell::Errors::SessionNotConnectedError unless node
               return nil if !node.credentials.key?(db) || node.credentials[db].empty?
               node.credentials[db][1]
             end
@@ -25,7 +25,7 @@ module Mongoid
           def password
             @password || begin
               server = session.cluster.servers.first
-              fail Mongoid::Shell::Errors::SessionNotConnectedError unless server
+              raise Mongoid::Shell::Errors::SessionNotConnectedError unless server
               server.context.with_connection do |connection|
                 connection.options[:password]
               end

@@ -47,7 +47,7 @@ describe Mongoid::Shell::Commands::Mongorestore do
         expect(Mongoid::Shell::Commands::Mongorestore.new(
           session: @session,
           restore: 'a folder'
-        ).to_s).to eq "mongorestore --db mongoid_shell_tests \"a folder\""
+        ).to_s).to eq 'mongorestore --db mongoid_shell_tests "a folder"'
       end
     end
     context 'a replica set' do
@@ -58,7 +58,7 @@ describe Mongoid::Shell::Commands::Mongorestore do
         expect(Mongoid::Shell::Commands::Mongorestore.new(
           session: @session,
           restore: 'a folder'
-        ).to_s).to eq "mongorestore --host dedicated1.myapp.com:27017 --db mongoid --username user --password password \"a folder\""
+        ).to_s).to eq 'mongorestore --host dedicated1.myapp.com:27017 --db mongoid --username user --password password "a folder"'
       end
     end
     context 'single host' do
@@ -69,7 +69,7 @@ describe Mongoid::Shell::Commands::Mongorestore do
         expect(Mongoid::Shell::Commands::Mongorestore.new(
           session: @session,
           restore: 'a folder'
-        ).to_s).to eq "mongorestore --host something.mongohq.com:27017 --db mongoid --username user --password password \"a folder\""
+        ).to_s).to eq 'mongorestore --host something.mongohq.com:27017 --db mongoid --username user --password password "a folder"'
       end
     end
     context 'url' do
@@ -80,7 +80,7 @@ describe Mongoid::Shell::Commands::Mongorestore do
         expect(Mongoid::Shell::Commands::Mongorestore.new(
           session: @session,
           restore: 'a folder'
-        ).to_s).to eq "mongorestore --host 59.1.22.1:27017 --db mongoid --username user --password password \"a folder\""
+        ).to_s).to eq 'mongorestore --host 59.1.22.1:27017 --db mongoid --username user --password password "a folder"'
       end
     end
   end
