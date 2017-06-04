@@ -1,8 +1,7 @@
-### 0.4.4 (Next)
+### 0.4.4 (6/4/2017)
 
 * [#11](https://github.com/mongoid/mongoid-shell/pull/11): Compatibility with Mongoid 6 - [@jbach](https://github.com/jbach).
 * [#12](https://github.com/mongoid/mongoid-shell/pull/12): Added Danger, PR linter - [@dblock](https://github.com/dblock).
-* Your contribution here.
 
 ### 0.4.3 (6/1/2016)
 
