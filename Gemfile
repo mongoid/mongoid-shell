@@ -20,4 +20,5 @@ group :development, :test do
   gem 'bundler'
   gem 'rspec', '~> 3.0'
   gem 'rubocop', '~> 0.46.0'
+  gem 'mongoid-danger', '~> 0.1.1'
 end
