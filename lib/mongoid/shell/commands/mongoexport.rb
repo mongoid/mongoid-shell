@@ -13,10 +13,10 @@ module Mongoid
         option :port
         option :sslCAFile
         option :sslPEMKeyFile
-        option :sslPEMKeyPassword
+        option :sslPEMKeyPassword, sensitive: true
         option :sslCRLFile
         option :username
-        option :password
+        option :password, sensitive: true
         option :authenticationDatabase
         option :authenticationMechanism
         option :collection

@@ -59,6 +59,16 @@ describe Mongoid::Shell::Commands::Mongo do
           session: @session
         ).to_s).to eq 'mongo 59.1.22.1:27017/mongoid --username user --password password'
       end
+      it 'masks username and password' do
+        expect(Mongoid::Shell::Commands::Mongo.new(
+          session: @session
+        ).to_s(mask_sensitive: true)).to eq 'mongo 59.1.22.1:27017/mongoid --username user --password ********'
+      end
+      it 'masks username and password with a custom mask' do
+        expect(Mongoid::Shell::Commands::Mongo.new(
+          session: @session
+        ).to_s(mask_sensitive: '(hidden)')).to eq 'mongo 59.1.22.1:27017/mongoid --username user --password (hidden)'
+      end
     end
   end
 end

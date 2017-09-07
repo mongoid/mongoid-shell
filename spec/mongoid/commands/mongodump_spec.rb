@@ -61,6 +61,11 @@ describe Mongoid::Shell::Commands::Mongodump do
           session: @session
         ).to_s).to eq 'mongodump --host dedicated1.myapp.com:27017 --db mongoid --username user --password password'
       end
+      it 'masks password' do
+        expect(Mongoid::Shell::Commands::Mongodump.new(
+          session: @session
+        ).to_s(mask_sensitive: true)).to eq 'mongodump --host dedicated1.myapp.com:27017 --db mongoid --username user --password ********'
+      end
     end
     context 'url' do
       before :each do

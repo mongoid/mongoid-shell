@@ -1,5 +1,6 @@
 ### 0.4.5 (Next)
 
+* [#13](https://github.com/mongoid/mongoid-shell/issues/13): Support masking sensitive values with `to_s(mask_sensitive: true)` - [@dblock](https://github.com/dblock).
 * [#14](https://github.com/mongoid/mongoid-shell/pull/14): Refactored arg definitions into `arg` and `option` - [@dblock](https://github.com/dblock).
 * Your contribution here.
 

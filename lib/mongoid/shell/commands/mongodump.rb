@@ -10,7 +10,7 @@ module Mongoid
         option :host
         option :db
         option :username
-        option :password
+        option :password, sensitive: true
         option :collection
         option :excludeCollection
         option :excludeCollectionsWithPrefix

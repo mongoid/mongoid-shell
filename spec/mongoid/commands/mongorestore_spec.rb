@@ -60,6 +60,12 @@ describe Mongoid::Shell::Commands::Mongorestore do
           restore: 'a folder'
         ).to_s).to eq 'mongorestore --host dedicated1.myapp.com:27017 --db mongoid --username user --password password "a folder"'
       end
+      it 'masks password' do
+        expect(Mongoid::Shell::Commands::Mongorestore.new(
+          session: @session,
+          restore: 'a folder'
+        ).to_s(mask_sensitive: true)).to eq 'mongorestore --host dedicated1.myapp.com:27017 --db mongoid --username user --password ******** "a folder"'
+      end
     end
     context 'single host' do
       before :each do

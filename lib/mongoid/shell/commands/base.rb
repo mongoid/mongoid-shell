@@ -45,7 +45,9 @@ module Mongoid
           self.class.name.downcase.split(':').last
         end
 
-        def vargs
+        def vargs(options = {})
+          mask_sensitive = options[:mask_sensitive]
+          mask_sensitive = '********' if mask_sensitive && mask_sensitive.is_a?(TrueClass)
           self.class.args.values.map do |arg|
             key = arg[:key]
             value = send(arg[:property])
@@ -54,16 +56,20 @@ module Mongoid
             when Boolean, TrueClass then key
             when Array then value.map { |v| "#{key} #{v}" }.join(' ')
             else
-              value = value.to_s
-              # TODO: quote other special characters?
-              value = '"' + value + '"' if value.include? ' '
+              if mask_sensitive && arg[:sensitive]
+                value = mask_sensitive
+              else
+                # TODO: quote other special characters?
+                value = value.to_s
+                value = '"' + value + '"' if value.include? ' '
+              end
               key ? "#{key} #{value}" : value
             end
           end
         end
 
-        def to_s
-          [cmd, vargs].flatten.compact.join(' ')
+        def to_s(options = {})
+          [cmd, vargs(options)].flatten.compact.join(' ')
         end
 
         private

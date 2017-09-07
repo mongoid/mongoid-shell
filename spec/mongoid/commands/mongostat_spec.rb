@@ -39,6 +39,11 @@ describe Mongoid::Shell::Commands::Mongostat do
           session: @session
         ).to_s).to eq 'mongostat --host dedicated1.myapp.com:27017 --username user --password password'
       end
+      it 'masks password' do
+        expect(Mongoid::Shell::Commands::Mongostat.new(
+          session: @session
+        ).to_s(mask_sensitive: true)).to eq 'mongostat --host dedicated1.myapp.com:27017 --username user --password ********'
+      end
     end
     context 'url' do
       before :each do

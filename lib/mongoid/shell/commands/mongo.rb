@@ -10,7 +10,7 @@ module Mongoid
         arg :host_port_and_db
 
         option :username
-        option :password
+        option :password, sensitive: true
         option :eval
         option :nodb
         option :norc

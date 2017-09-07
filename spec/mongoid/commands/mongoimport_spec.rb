@@ -36,6 +36,11 @@ describe Mongoid::Shell::Commands::Mongoimport do
         ).to_s).to eq "mongoimport --db mongoid_shell_tests --#{option}"
       end
     end
+    it 'masks sslPEMKeyPassword' do
+      expect(Mongoid::Shell::Commands::Mongoimport.new(
+        sslPEMKeyPassword: 'var arg'
+      ).to_s(mask_sensitive: true)).to eq 'mongoimport --db mongoid_shell_tests --sslPEMKeyPassword ********'
+    end
   end
 
   context 'sessions' do
@@ -57,6 +62,11 @@ describe Mongoid::Shell::Commands::Mongoimport do
         expect(Mongoid::Shell::Commands::Mongoimport.new(
           session: @session
         ).to_s).to eq 'mongoimport --db mongoid --host dedicated1.myapp.com:27017 --username user --password password'
+      end
+      it 'masks password' do
+        expect(Mongoid::Shell::Commands::Mongoimport.new(
+          session: @session
+        ).to_s(mask_sensitive: true)).to eq 'mongoimport --db mongoid --host dedicated1.myapp.com:27017 --username user --password ********'
       end
     end
     context 'url' do

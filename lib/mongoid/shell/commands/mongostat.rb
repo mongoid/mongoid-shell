@@ -9,7 +9,7 @@ module Mongoid
 
         option :host
         option :username
-        option :password
+        option :password, sensitive: true
         option :rowcount
         option :discover
         option :noheaders
