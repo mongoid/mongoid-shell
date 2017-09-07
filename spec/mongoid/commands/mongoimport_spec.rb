@@ -22,14 +22,14 @@ describe Mongoid::Shell::Commands::Mongoimport do
         file: 'tests.json'
       ).to_s).to eq 'mongoimport --db my_db --host my_host --username my_username --password my_password --collection tests --file tests.json'
     end
-    [:host, :port, :fields, :fieldFile, :type, :upsertFields].each do |option|
+    %i[host port fields fieldFile type upsertFields].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongoimport.new(
           option => 'var arg'
         ).to_s).to eq "mongoimport --db mongoid_shell_tests --#{option} \"var arg\""
       end
     end
-    [:verbose, :quiet, :ipv6, :ignoreBlanks, :drop, :stopOnError].each do |option|
+    %i[verbose quiet ipv6 ignoreBlanks drop stopOnError].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongoimport.new(
           option => true

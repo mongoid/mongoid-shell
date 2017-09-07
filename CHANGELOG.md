@@ -1,5 +1,6 @@
 ### 0.4.5 (Next)
 
+* [#14](https://github.com/mongoid/mongoid-shell/pull/14): Refactored arg definitions into `arg` and `option` - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 ### 0.4.4 (6/4/2017)

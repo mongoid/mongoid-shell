@@ -17,7 +17,7 @@ describe Mongoid::Shell::Commands::Mongo do
         primary: 'my_primary'
       ).to_s).to eq 'mongo my_primary/mongoid_shell_tests --eval "find x"'
     end
-    [:nodb, :norc, :quiet, :ipv6].each do |option|
+    %i[nodb norc quiet ipv6].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongo.new(
           option => true

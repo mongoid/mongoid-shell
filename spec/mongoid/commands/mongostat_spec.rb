@@ -11,7 +11,7 @@ describe Mongoid::Shell::Commands::Mongostat do
         rowcount: 10
       ).to_s).to eq 'mongostat --rowcount 10'
     end
-    [:http, :discover, :all, :noheaders].each do |option|
+    %i[http discover all noheaders].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongostat.new(
           option => true
