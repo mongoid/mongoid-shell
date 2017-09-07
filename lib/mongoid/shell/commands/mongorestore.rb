@@ -7,35 +7,26 @@ module Mongoid
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
-        attr_accessor :host, :collection, :ipv6, :dbpath, :directoryperdb, :journal, :objcheck, :filter, :drop, :oplogReplay, :keepIndexVersion, :noIndexRestore, :restore
+        option :host
+        option :db
+        option :username
+        option :password
+        option :collection
+        option :ipv6
+        option :dbpath
+        option :directoryperdb
+        option :journal
+        option :objcheck
+        option :filter
+        option :drop
+        option :oplogReplay
+        option :keepIndexVersion
+        option :noIndexRestore
 
-        def initialize(attrs = {})
-          super
-        end
+        arg :restore
 
         def host
           @host || primary
-        end
-
-        def vargs
-          super({
-            '--host' => :host,
-            '--db' => :db,
-            '--username' => :username,
-            '--password' => :password,
-            '--collection' => :collection,
-            '--ipv6' => :ipv6,
-            '--dbpath' => :dbpath,
-            '--directoryperdb' => :directoryperdb,
-            '--journal' => :journal,
-            '--objcheck' => :objcheck,
-            '--filter' => :filter,
-            '--drop' => :drop,
-            '--oplogReplay' => :oplogReplay,
-            '--keepIndexVersion' => :keepIndexVersion,
-            '--noIndexRestore' => :noIndexRestore,
-            'directory or filename to restore from' => :restore
-          })
         end
       end
     end

@@ -7,62 +7,50 @@ module Mongoid
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
-        attr_accessor :verbose, :quiet, :port, :ipv6, :ssl, :sslCAFile,
-                      :sslPEMKeyFile, :sslPEMKeyPassword, :sslCRLFile,
-                      :sslAllowInvalidCertificates, :sslAllowInvalidHostnames, :sslFIPSMode,
-                      :authenticationDatabase, :authenticationMechanism, :gssapiServiceName,
-                      :gssapiHostName, :collection, :fields, :fieldFile, :query, :csv,
-                      :type, :out, :jsonArray, :pretty, :slaveOk, :forceTableScan, :skip,
-                      :limit, :sort, :directoryperdb, :journal, :dbpath
+        # args
+        option :db
+        option :host
+        option :port
+        option :sslCAFile
+        option :sslPEMKeyFile
+        option :sslPEMKeyPassword
+        option :sslCRLFile
+        option :username
+        option :password
+        option :authenticationDatabase
+        option :authenticationMechanism
+        option :collection
+        option :fields
+        option :fieldFile
+        option :query
+        option :type
+        option :out
+        option :skip
+        option :limit
+        option :sort
 
-        def initialize(attrs = {})
-          super
-        end
+        # boolean options
+        option :verbose
+        option :quiet
+        option :ipv6
+        option :ssl
+        option :sslAllowInvalidCertificates
+        option :sslAllowInvalidHostnames
+        option :sslFIPSMode
+        option :gssapiServiceName
+        option :gssapiHostName
+        option :jsonArray
+        option :pretty
+        option :slaveOk
+        option :forceTableScan
 
-        def vargs
-          super var_options.merge(boolean_options)
-        end
+        # is deprecated from Mongo version 3.0.0, use type instead
+        option :csv
 
-        private
-
-        def var_options
-          {
-            '--db' => :db, '--host' => :host, '--port' => :port,
-            '--sslCAFile' => :sslCAFile,
-            '--sslPEMKeyFile' => :sslPEMKeyFile,
-            '--sslPEMKeyPassword' => :sslPEMKeyPassword,
-            '--sslCRLFile' => :sslCRLFile,
-            '--username' => :username,
-            '--password' => :password,
-            '--authenticationDatabase' => :authenticationDatabase,
-            '--authenticationMechanism' => :authenticationMechanism,
-            '--collection' => :collection,
-            '--fields' => :fields, '--fieldFile' => :fieldFile,
-            '--query' => :query,
-            '--type' => :type, '--out' => :out,
-            '--skip' => :skip, '--limit' => :limit, '--sort' => :sort
-          }
-        end
-
-        def boolean_options
-          {
-            '--verbose' => :verbose, '--quiet' => :quiet,
-            '--ipv6' => :ipv6, '--ssl' => :ssl,
-            '--sslAllowInvalidCertificates' => :sslAllowInvalidCertificates,
-            '--sslAllowInvalidHostnames' => :sslAllowInvalidHostnames,
-            '--sslFIPSMode' => :sslFIPSMode,
-            '--gssapiServiceName' => :gssapiServiceName,
-            '--gssapiHostName' => :gssapiHostName,
-            '--jsonArray' => :jsonArray,
-            '--pretty' => :pretty,
-            '--slaveOk' => :slaveOk,
-            '--forceTableScan' => :forceTableScan,
-            '--csv' => :csv, # is deprecated from Mongo version 3.0.0, use type instead
-            # these 3 below are deprecated from Mongo version 3.0.0
-            '--directoryperdb' => :directoryperdb,
-            '--journal' => :journal, '--dbpath' => :dbpath
-          }
-        end
+        # these 3 below are deprecated from Mongo version 3.0.0
+        option :directoryperdb
+        option :journal
+        option :dbpath
       end
     end
   end

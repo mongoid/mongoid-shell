@@ -5,8 +5,30 @@ module Mongoid
         attr_accessor :session
 
         class << self
+          attr_accessor :args
+          @args = {}
+
+          def inherit_args(args)
+            @args ||= {}
+            @args.merge(args || {})
+          end
+
+          def inherited(sublass)
+            sublass.inherit_args(@args)
+          end
+
           def command_for(session)
             new(session: session)
+          end
+
+          def arg(name, options = {})
+            attr_accessor name unless instance_methods.include?(name)
+            args[name] = { property: name }.merge(options)
+          end
+
+          def option(name, options = {})
+            attr_accessor name unless instance_methods.include?(name)
+            args[name] = { key: "--#{name}", property: name }.merge(options)
           end
         end
 
@@ -23,9 +45,10 @@ module Mongoid
           self.class.name.downcase.split(':').last
         end
 
-        def vargs(args = {})
-          args.map do |key, property|
-            value = send(property)
+        def vargs
+          self.class.args.values.map do |arg|
+            key = arg[:key]
+            value = send(arg[:property])
             next unless value
             case value
             when Boolean, TrueClass then key
@@ -34,7 +57,7 @@ module Mongoid
               value = value.to_s
               # TODO: quote other special characters?
               value = '"' + value + '"' if value.include? ' '
-              key[0] == '-' ? "#{key} #{value}" : value
+              key ? "#{key} #{value}" : value
             end
           end
         end

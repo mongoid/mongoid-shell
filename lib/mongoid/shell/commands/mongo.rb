@@ -7,27 +7,18 @@ module Mongoid
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
-        attr_accessor :eval, :nodb, :norc, :quiet, :ipv6
+        arg :host_port_and_db
 
-        def initialize(attrs = {})
-          super
-        end
+        option :username
+        option :password
+        option :eval
+        option :nodb
+        option :norc
+        option :quiet
+        option :ipv6
 
         def host_port_and_db
           [primary, db].compact.join('/')
-        end
-
-        def vargs
-          super({
-            'db address' => :host_port_and_db,
-            '--username' => :username,
-            '--password' => :password,
-            '--eval' => :eval,
-            '--nodb' => :nodb,
-            '--norc' => :norc,
-            '--quiet' => :quiet,
-            '--ipv6' => :ipv6
-          })
         end
       end
     end
