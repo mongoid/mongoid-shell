@@ -46,8 +46,11 @@ system mongodump.to_s # mongodump --excludeCollection users --excludeCollection 
 To use output in logs, pass the `mask_sensitive` option to `to_s`.
 
 ``` ruby
-Mongoid::Shell::Commands::Mongo.new.to_s(mask_sensitive: true) # mongo 59.1.22.1:27017/mongoid --username user --password ********
-Mongoid::Shell::Commands::Mongo.new.to_s(mask_sensitive: '(masked)') # mongo 59.1.22.1:27017/mongoid --username user --password (masked)
+> Mongoid::Shell::Commands::Mongo.new.to_s(mask_sensitive: true)
+ => "mongo 59.1.22.1:27017/mongoid --username user --password ********"
+
+> Mongoid::Shell::Commands::Mongo.new.to_s(mask_sensitive: '(masked)')
+ => "mongo 59.1.22.1:27017/mongoid --username user --password (masked)"
 ```
 
 Compatibility
