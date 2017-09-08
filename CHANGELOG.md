@@ -1,3 +1,7 @@
+### 0.4.6 (Next)
+
+* Your contribution here.
+
 ### 0.4.5 (9/7/2017)
 
 * [#13](https://github.com/mongoid/mongoid-shell/issues/13): Support masking sensitive values with `to_s(mask_sensitive: true)` - [@dblock](https://github.com/dblock).
