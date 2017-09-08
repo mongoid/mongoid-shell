@@ -7,33 +7,22 @@ module Mongoid
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
-        attr_accessor :collection, :query, :out, :directoryperdb, :journal, :oplog, :repair, :forceTableScan, :dbpath, :ipv6, :excludeCollection,
-                      :excludeCollectionsWithPrefix
-
-        def initialize(attrs = {})
-          super
-        end
-
-        def vargs
-          super({
-            '--host' => :host,
-            '--db' => :db,
-            '--username' => :username,
-            '--password' => :password,
-            '--collection' => :collection,
-            '--excludeCollection' => :excludeCollection,
-            '--excludeCollectionsWithPrefix' => :excludeCollectionsWithPrefix,
-            '--query' => :query,
-            '--out' => :out,
-            '--directoryperdb' => :directoryperdb,
-            '--journal' => :journal,
-            '--oplog' => :oplog,
-            '--repair' => :repair,
-            '--forceTableScan' => :forceTableScan,
-            '--dbpath' => :dbpath,
-            '--ipv6' => :ipv6
-          })
-        end
+        option :host
+        option :db
+        option :username
+        option :password, sensitive: true
+        option :collection
+        option :excludeCollection
+        option :excludeCollectionsWithPrefix
+        option :query
+        option :out
+        option :directoryperdb
+        option :journal
+        option :oplog
+        option :repair
+        option :forceTableScan
+        option :dbpath
+        option :ipv6
       end
     end
   end

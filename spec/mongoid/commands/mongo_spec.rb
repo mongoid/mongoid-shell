@@ -17,7 +17,7 @@ describe Mongoid::Shell::Commands::Mongo do
         primary: 'my_primary'
       ).to_s).to eq 'mongo my_primary/mongoid_shell_tests --eval "find x"'
     end
-    [:nodb, :norc, :quiet, :ipv6].each do |option|
+    %i[nodb norc quiet ipv6].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongo.new(
           option => true
@@ -58,6 +58,16 @@ describe Mongoid::Shell::Commands::Mongo do
         expect(Mongoid::Shell::Commands::Mongo.new(
           session: @session
         ).to_s).to eq 'mongo 59.1.22.1:27017/mongoid --username user --password password'
+      end
+      it 'masks username and password' do
+        expect(Mongoid::Shell::Commands::Mongo.new(
+          session: @session
+        ).to_s(mask_sensitive: true)).to eq 'mongo 59.1.22.1:27017/mongoid --username user --password ********'
+      end
+      it 'masks username and password with a custom mask' do
+        expect(Mongoid::Shell::Commands::Mongo.new(
+          session: @session
+        ).to_s(mask_sensitive: '(hidden)')).to eq 'mongo 59.1.22.1:27017/mongoid --username user --password (hidden)'
       end
     end
   end

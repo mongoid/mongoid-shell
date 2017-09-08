@@ -13,12 +13,12 @@ describe Mongoid::Shell::Commands::Mongodump do
     end
     it 'includes excludeCollection' do
       expect(Mongoid::Shell::Commands::Mongodump.new(
-        excludeCollection: %w(test1 test2)
+        excludeCollection: %w[test1 test2]
       ).to_s).to eq 'mongodump --db mongoid_shell_tests --excludeCollection test1 --excludeCollection test2'
     end
     it 'includes excludeCollectionsWithPrefix' do
       expect(Mongoid::Shell::Commands::Mongodump.new(
-        excludeCollectionsWithPrefix: %w(system local)
+        excludeCollectionsWithPrefix: %w[system local]
       ).to_s).to eq 'mongodump --db mongoid_shell_tests --excludeCollectionsWithPrefix system --excludeCollectionsWithPrefix local'
     end
     it 'includes query' do
@@ -26,14 +26,14 @@ describe Mongoid::Shell::Commands::Mongodump do
         query: 'find x'
       ).to_s).to eq 'mongodump --db mongoid_shell_tests --query "find x"'
     end
-    [:out, :dbpath].each do |option|
+    %i[out dbpath].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongodump.new(
           option => '/this is a folder'
         ).to_s).to eq "mongodump --db mongoid_shell_tests --#{option} \"/this is a folder\""
       end
     end
-    [:directoryperdb, :journal, :oplog, :repair, :forceTableScan, :dbpath, :ipv6].each do |option|
+    %i[directoryperdb journal oplog repair forceTableScan dbpath ipv6].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongodump.new(
           option => true
@@ -60,6 +60,11 @@ describe Mongoid::Shell::Commands::Mongodump do
         expect(Mongoid::Shell::Commands::Mongodump.new(
           session: @session
         ).to_s).to eq 'mongodump --host dedicated1.myapp.com:27017 --db mongoid --username user --password password'
+      end
+      it 'masks password' do
+        expect(Mongoid::Shell::Commands::Mongodump.new(
+          session: @session
+        ).to_s(mask_sensitive: true)).to eq 'mongodump --host dedicated1.myapp.com:27017 --db mongoid --username user --password ********'
       end
     end
     context 'url' do

@@ -22,20 +22,25 @@ describe Mongoid::Shell::Commands::Mongoexport do
         out: 'tests.json'
       ).to_s).to eq 'mongoexport --db my_db --host my_host --username my_username --password my_password --collection tests --out tests.json'
     end
-    [:host, :port, :sslCAFile, :sslPEMKeyFile, :sslPEMKeyPassword,
-     :sslCRLFile, :sslAllowInvalidCertificates, :out, :query, :limit].each do |option|
+    %i[host port sslCAFile sslPEMKeyFile sslPEMKeyPassword
+       sslCRLFile sslAllowInvalidCertificates out query limit].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongoexport.new(
           option => 'var arg'
         ).to_s).to eq "mongoexport --db mongoid_shell_tests --#{option} \"var arg\""
       end
     end
-    [:verbose, :quiet, :ipv6, :ssl, :sslAllowInvalidCertificates].each do |option|
+    %i[verbose quiet ipv6 ssl sslAllowInvalidCertificates].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongoexport.new(
           option => true
         ).to_s).to eq "mongoexport --db mongoid_shell_tests --#{option}"
       end
+    end
+    it 'masks sslPEMKeyPassword' do
+      expect(Mongoid::Shell::Commands::Mongoexport.new(
+        sslPEMKeyPassword: 'var arg'
+      ).to_s(mask_sensitive: true)).to eq 'mongoexport --db mongoid_shell_tests --sslPEMKeyPassword ********'
     end
   end
 
@@ -58,6 +63,11 @@ describe Mongoid::Shell::Commands::Mongoexport do
         expect(Mongoid::Shell::Commands::Mongoexport.new(
           session: @session
         ).to_s).to eq 'mongoexport --db mongoid --host dedicated1.myapp.com:27017 --username user --password password'
+      end
+      it 'masks password' do
+        expect(Mongoid::Shell::Commands::Mongoexport.new(
+          session: @session
+        ).to_s(mask_sensitive: true)).to eq 'mongoexport --db mongoid --host dedicated1.myapp.com:27017 --username user --password ********'
       end
     end
     context 'url' do

@@ -7,24 +7,14 @@ module Mongoid
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
-        attr_accessor :rowcount, :discover, :all, :http, :noheaders
-
-        def initialize(attrs = {})
-          super
-        end
-
-        def vargs
-          super({
-            '--host' => :host,
-            '--username' => :username,
-            '--password' => :password,
-            '--rowcount' => :rowcount,
-            '--discover' => :discover,
-            '--noheaders' => :noheaders,
-            '--http' => :http,
-            '--all' => :all
-          })
-        end
+        option :host
+        option :username
+        option :password, sensitive: true
+        option :rowcount
+        option :discover
+        option :noheaders
+        option :http
+        option :all
       end
     end
   end

@@ -22,7 +22,7 @@ describe Mongoid::Shell::Commands::Mongorestore do
         restore: 'folder'
       ).to_s).to eq 'mongorestore --host my_host --db my_db --username my_username --password my_password --collection test folder'
     end
-    [:collection, :dbpath, :filter].each do |option|
+    %i[collection dbpath filter].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongorestore.new(
           option => 'var arg',
@@ -30,7 +30,7 @@ describe Mongoid::Shell::Commands::Mongorestore do
         ).to_s).to eq "mongorestore --db mongoid_shell_tests --#{option} \"var arg\" \"a folder\""
       end
     end
-    [:ipv6, :directoryperdb, :journal, :objcheck, :drop, :oplogReplay, :keepIndexVersion, :noIndexRestore].each do |option|
+    %i[ipv6 directoryperdb journal objcheck drop oplogReplay keepIndexVersion noIndexRestore].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongorestore.new(
           option => true
@@ -59,6 +59,12 @@ describe Mongoid::Shell::Commands::Mongorestore do
           session: @session,
           restore: 'a folder'
         ).to_s).to eq 'mongorestore --host dedicated1.myapp.com:27017 --db mongoid --username user --password password "a folder"'
+      end
+      it 'masks password' do
+        expect(Mongoid::Shell::Commands::Mongorestore.new(
+          session: @session,
+          restore: 'a folder'
+        ).to_s(mask_sensitive: true)).to eq 'mongorestore --host dedicated1.myapp.com:27017 --db mongoid --username user --password ******** "a folder"'
       end
     end
     context 'single host' do

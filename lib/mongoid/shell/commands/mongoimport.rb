@@ -7,67 +7,47 @@ module Mongoid
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
-        attr_accessor :verbose, :quiet, :port, :ipv6, :ssl, :sslCAFile,
-                      :sslPEMKeyFile, :sslPEMKeyPassword, :sslCRLFile,
-                      :sslAllowInvalidCertificates, :sslAllowInvalidHostnames, :sslFIPSMode,
-                      :authenticationDatabase, :authenticationMechanism, :gssapiServiceName,
-                      :gssapiHostName, :collection, :fields, :directoryperdb, :journal, :dbpath,
-                      :fieldFile, :ignoreBlanks, :type, :file, :drop, :headerline, :upsert,
-                      :upsertFields, :stopOnError, :jsonArray, :maintainInsertionOrder,
-                      :numInsertionWorkers, :writeConcern
+        option :db
+        option :host
+        option :port
+        option :sslCAFile
+        option :sslPEMKeyFile
+        option :sslPEMKeyPassword, sensitive: true
+        option :sslCRLFile
+        option :username
+        option :password, sensitive: true
+        option :authenticationDatabase
+        option :authenticationMechanism
+        option :collection
+        option :fields
+        option :fieldFile
+        option :type
+        option :file
+        option :upsertFields
+        option :maintainInsertionOrder
+        option :numInsertionWorkers
+        option :writeConcern
 
-        def initialize(attrs = {})
-          super
-        end
+        # these 3 below are deprecated from Mongo version 3.0.0
+        option :directoryperdb
+        option :journal
+        option :dbpath
 
-        def vargs
-          super({
-
-          })
-        end
-
-        def vargs
-          super var_options.merge(boolean_options)
-        end
-
-        private
-
-        def var_options
-          {
-            '--db' => :db, '--host' => :host, '--port' => :port,
-            '--sslCAFile' => :sslCAFile,
-            '--sslPEMKeyFile' => :sslPEMKeyFile,
-            '--sslPEMKeyPassword' => :sslPEMKeyPassword,
-            '--sslCRLFile' => :sslCRLFile,
-            '--username' => :username, '--password' => :password,
-            '--authenticationDatabase' => :authenticationDatabase,
-            '--authenticationMechanism' => :authenticationMechanism,
-            '--collection' => :collection, '--fields' => :fields,
-            '--fieldFile' => :fieldFile, '--type' => :type, '--file' => :file,
-            '--upsertFields' => :upsertFields,
-            '--maintainInsertionOrder' => :maintainInsertionOrder,
-            '--numInsertionWorkers' => :numInsertionWorkers,
-            '--writeConcern' => :writeConcern,
-            # these 3 below are deprecated from Mongo version 3.0.0
-            '--directoryperdb' => :directoryperdb,
-            '--journal' => :journal, '--dbpath' => :dbpath
-          }
-        end
-
-        def boolean_options
-          {
-            '--verbose' => :verbose, '--quiet' => :quiet,
-            '--ipv6' => :ipv6, '--ssl' => :ssl,
-            '--sslAllowInvalidCertificates' => :sslAllowInvalidCertificates,
-            '--sslAllowInvalidHostnames' => :sslAllowInvalidHostnames,
-            '--sslFIPSMode' => :sslFIPSMode,
-            '--gssapiServiceName' => :gssapiServiceName,
-            '--gssapiHostName' => :gssapiHostName,
-            '--ignoreBlanks' => :ignoreBlanks, '--drop' => :drop,
-            '--headerline' => :headerline, '--upsert' => :upsert,
-            '--stopOnError' => :stopOnError, '--jsonArray' => :jsonArray
-          }
-        end
+        option :verbose
+        option :quiet
+        option :ipv6
+        option :ssl
+        option :sslAllowInvalidCertificates
+        option :sslAllowInvalidHostnames
+        option :sslFIPSMode
+        option :gssapiServiceName
+        option :gssapiHostName
+        option :ignoreBlanks
+        option :drop
+        option :headerline
+        option :upsert
+        option :stopOnError
+        option :jsonArray
       end
     end
   end
