@@ -6,6 +6,8 @@ module Mongoid
         include Mongoid::Shell::Properties::Database
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
+        include Mongoid::Shell::Properties::AuthenticationDatabase
+        include Mongoid::Shell::Properties::SSL
 
         arg :host_port_and_db
 
@@ -16,6 +18,8 @@ module Mongoid
         option :norc
         option :quiet
         option :ipv6
+        option :authenticationDatabase
+        option :ssl
 
         def host_port_and_db
           [primary, db].compact.join('/')

@@ -4,3 +4,6 @@ AllCops:
     - bin/**/*
 
 inherit_from: .rubocop_todo.yml
+
+Style/MethodName:
+  Enabled: false
