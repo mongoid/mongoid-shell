@@ -21,12 +21,6 @@ module Mongoid
         end
 
         def vargs
-          super({
-
-          })
-        end
-
-        def vargs
           super var_options.merge(boolean_options)
         end
 
