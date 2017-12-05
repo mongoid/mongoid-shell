@@ -8,7 +8,7 @@ module Mongoid
         include Mongoid::Shell::Properties::Password
 
         attr_accessor :collection, :query, :out, :directoryperdb, :journal, :oplog, :repair, :forceTableScan, :dbpath, :ipv6, :excludeCollection,
-                      :excludeCollectionsWithPrefix
+                      :excludeCollectionsWithPrefix, :ssl, :authenticationDatabase
 
         def initialize(attrs = {})
           super
@@ -31,7 +31,9 @@ module Mongoid
             '--repair' => :repair,
             '--forceTableScan' => :forceTableScan,
             '--dbpath' => :dbpath,
-            '--ipv6' => :ipv6
+            '--ipv6' => :ipv6,
+            '--ssl' => :ssl,
+            '--authenticationDatabase' => :authenticationDatabase
           })
         end
       end

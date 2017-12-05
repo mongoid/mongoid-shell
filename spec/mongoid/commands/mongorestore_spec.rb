@@ -49,6 +49,12 @@ describe Mongoid::Shell::Commands::Mongorestore do
           restore: 'a folder'
         ).to_s).to eq 'mongorestore --db mongoid_shell_tests "a folder"'
       end
+      it 'includes ssl and authenticationDatabase' do
+        expect(Mongoid::Shell::Commands::Mongorestore.new(
+          ssl: true,
+          authenticationDatabase: 'admin'
+        ).to_s).to eq 'mongorestore --db mongoid_shell_tests --ssl --authenticationDatabase admin'
+      end
     end
     context 'a replica set' do
       before :each do

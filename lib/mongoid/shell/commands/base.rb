@@ -28,7 +28,7 @@ module Mongoid
             value = send(property)
             next unless value
             case value
-            when TrueClass then key
+            when Boolean, TrueClass then key
             when Array then value.map { |v| "#{key} #{v}" }.join(' ')
             else
               value = value.to_s

@@ -7,7 +7,7 @@ module Mongoid
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
-        attr_accessor :rowcount, :discover, :all, :http, :noheaders
+        attr_accessor :rowcount, :discover, :all, :http, :noheaders, :ssl, :authenticationDatabase
 
         def initialize(attrs = {})
           super
@@ -22,7 +22,9 @@ module Mongoid
             '--discover' => :discover,
             '--noheaders' => :noheaders,
             '--http' => :http,
-            '--all' => :all
+            '--all' => :all,
+            '--ssl' => :ssl,
+            '--authenticationDatabase' => :authenticationDatabase
           })
         end
       end

@@ -29,6 +29,12 @@ describe Mongoid::Shell::Commands::Mongostat do
           session: @session
         ).to_s).to eq 'mongostat'
       end
+      it 'includes ssl and authenticationDatabase' do
+        expect(Mongoid::Shell::Commands::Mongostat.new(
+          ssl: true,
+          authenticationDatabase: 'admin'
+        ).to_s).to eq 'mongostat --ssl --authenticationDatabase admin'
+      end
     end
     context 'a replica set' do
       before :each do

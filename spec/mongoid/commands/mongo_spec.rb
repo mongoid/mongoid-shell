@@ -39,6 +39,12 @@ describe Mongoid::Shell::Commands::Mongo do
           session: @session
         ).to_s).to eq 'mongo mongoid_shell_tests'
       end
+      it 'includes ssl and authenticationDatabase' do
+        expect(Mongoid::Shell::Commands::Mongo.new(
+          ssl: true,
+          authenticationDatabase: 'admin'
+        ).to_s).to eq 'mongo mongoid_shell_tests --ssl --authenticationDatabase admin'
+      end
     end
     context 'a replica set' do
       before :each do

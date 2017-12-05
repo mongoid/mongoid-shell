@@ -7,7 +7,7 @@ module Mongoid
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
 
-        attr_accessor :eval, :nodb, :norc, :quiet, :ipv6
+        attr_accessor :eval, :nodb, :norc, :quiet, :ipv6, :ssl, :authenticationDatabase
 
         def initialize(attrs = {})
           super
@@ -26,7 +26,9 @@ module Mongoid
             '--nodb' => :nodb,
             '--norc' => :norc,
             '--quiet' => :quiet,
-            '--ipv6' => :ipv6
+            '--ipv6' => :ipv6,
+            '--ssl' => :ssl,
+            '--authenticationDatabase' => :authenticationDatabase
           })
         end
       end
