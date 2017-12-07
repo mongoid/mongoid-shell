@@ -6,6 +6,8 @@ module Mongoid
         include Mongoid::Shell::Properties::Database
         include Mongoid::Shell::Properties::Username
         include Mongoid::Shell::Properties::Password
+        include Mongoid::Shell::Properties::AuthenticationDatabase
+        include Mongoid::Shell::Properties::SSL
 
         option :host
         option :db
@@ -23,6 +25,8 @@ module Mongoid
         option :forceTableScan
         option :dbpath
         option :ipv6
+        option :authenticationDatabase
+        option :ssl
       end
     end
   end

@@ -69,7 +69,7 @@ The mongo shell is an interactive JavaScript shell for MongoDB. The `Mongoid::Sh
 Mongoid::Shell::Commands::Mongo.new.to_s
 ```
 
-Supports `--username`, `--password`, `--eval`, `--nodb`, `--norc`, `--quiet` and `--ipv6`.
+Supports `--username`, `--password`, `--eval`, `--nodb`, `--norc`, `--quiet`, `--ipv6`, `--ssl` and `--authenticationDatabase`.
 
 ### Mongodump
 
@@ -80,7 +80,7 @@ mongodump = Mongoid::Shell::Commands::Mongodump.new(collection: 'test')
 mongodump.to_s # mongodump --db test --collection test
 ```
 
-The `Mongoid::Shell::Commands::Mongodump` class supports `--db`, `--host`, `--username`, `--password`, `--query`, `--out`, `--collection`, `--excludeCollection`, `--excludeCollectionsWithPrefix`, `--directoryperdb`, `--journal`, `--oplog`, `--repair`, `--forceTableScan`, `--dbpath` and `--ipv6`.
+The `Mongoid::Shell::Commands::Mongodump` class supports `--db`, `--host`, `--username`, `--password`, `--query`, `--out`, `--collection`, `--excludeCollection`, `--excludeCollectionsWithPrefix`, `--directoryperdb`, `--journal`, `--oplog`, `--repair`, `--forceTableScan`, `--dbpath`, `--ipv6`, `--ssl` and `--authenticationDatabase`
 
 ### Mongorestore
 
@@ -91,7 +91,7 @@ mongorestore = Mongoid::Shell::Commands::Mongorestore.new(collection: 'test', re
 mongorestore.to_s # mongorestore --db test --collection test /tmp/db_backup
 ```
 
-The `Mongoid::Shell::Commands::Mongorestore` class supports `--db`, `--host`, `--username`, `--password`, `--collection`, `--ipv6`, `--dbpath`, `--directoryperdb`, `--journal`, `--objcheck`, `--filter`, `--drop`, `--oplogReplay`, `--keepIndexVersion` and `--noIndexRestore`.
+The `Mongoid::Shell::Commands::Mongorestore` class supports `--db`, `--host`, `--username`, `--password`, `--collection`, `--ipv6`, `--dbpath`, `--directoryperdb`, `--journal`, `--objcheck`, `--filter`, `--drop`, `--oplogReplay`, `--keepIndexVersion`, `--noIndexRestore`, `--ssl` and `--authenticationDatabase`
 
 ### Mongoexport
 
@@ -120,7 +120,7 @@ The `Mongoid::Shell::Commands::Mongoimport` class supports `--verbose`, `--quiet
 
 The mongostat utility provides a quick overview of the status of a currently running mongod or mongos instance.
 
-The `Mongoid::Shell::Commands::Mongostat` class supports `--host`, `--username`, `--password`, `--rowcount`, `--discover`, `--noheaders`, `--http` and `--all`.
+The `Mongoid::Shell::Commands::Mongostat` class supports `--host`, `--username`, `--password`, `--rowcount`, `--discover`, `--noheaders`, `--http`, `--all`, `--ssl` and `--authenticationDatabase`.
 
 Contributing
 ------------
