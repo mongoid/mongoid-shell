@@ -1,6 +1,5 @@
-### 0.4.6 (Next)
+### 0.4.6 (12/29/2017)
 
-* Your contribution here.
 * [#16](https://github.com/mongoid/mongoid-shell/pull/16): Add `--ssl` and `--authenticationDatabase` support to all commands - [@cavvia](https://github.com/cavvia).
 
 ### 0.4.5 (9/7/2017)
