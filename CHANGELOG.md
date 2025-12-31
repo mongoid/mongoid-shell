@@ -1,5 +1,6 @@
 ### 0.4.7 (Next)
 
+* [#18](https://github.com/mongoid/mongoid-shell/pull/18): Migrate Danger to danger-pr-comment workflow - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 ### 0.4.6 (12/29/2017)
