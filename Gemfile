@@ -33,7 +33,9 @@ end
 
 group :development, :test do
   gem 'bundler'
-  gem 'mongoid-danger', '~> 0.1.1'
+  gem 'danger'
+  gem 'danger-changelog'
+  gem 'danger-pr-comment'
   gem 'rake'
   gem 'rspec', '~> 3.0'
   gem 'rubocop', '~> 1.84.1'
