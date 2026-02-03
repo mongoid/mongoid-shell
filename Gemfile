@@ -9,13 +9,13 @@ when /^6/
   gem 'bigdecimal'
   gem 'mongoid', '~> 6.0'
 when /^5/
-  gem 'bigdecimal', '< 4'
+  gem 'bigdecimal', '< 2'
   gem 'mongoid', '~> 5.0'
 when /^4/
-  gem 'bigdecimal', '< 4'
+  gem 'bigdecimal', '< 2'
   gem 'mongoid', '~> 4.0'
 when /^3/
-  gem 'bigdecimal', '< 4'
+  gem 'bigdecimal', '< 2'
   gem 'mongoid', '~> 3.1'
 else
   gem 'bigdecimal'

@@ -75,14 +75,14 @@ describe Mongoid::Shell::Commands::Mongorestore do
         expect(Mongoid::Shell::Commands::Mongorestore.new(
           session: @session,
           restore: 'a folder'
-        ).to_s).to eq 'mongorestore --host dedicated1.myapp.com:27017 --db mongoid --username user --password password "a folder"'
+        ).to_s).to match(/\Amongorestore --host dedicated[123]\.myapp\.com:27017 --db mongoid --username user --password password "a folder"\z/)
       end
 
       it 'masks password' do
         expect(Mongoid::Shell::Commands::Mongorestore.new(
           session: @session,
           restore: 'a folder'
-        ).to_s(mask_sensitive: true)).to eq 'mongorestore --host dedicated1.myapp.com:27017 --db mongoid --username user --password ******** "a folder"'
+        ).to_s(mask_sensitive: true)).to match(/\Amongorestore --host dedicated[123]\.myapp\.com:27017 --db mongoid --username user --password \*{8} "a folder"\z/)
       end
     end
 

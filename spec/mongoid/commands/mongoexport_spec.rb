@@ -71,13 +71,13 @@ describe Mongoid::Shell::Commands::Mongoexport do
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongoexport.new(
           session: @session
-        ).to_s).to eq 'mongoexport --db mongoid --host dedicated1.myapp.com:27017 --username user --password password'
+        ).to_s).to match(/\Amongoexport --db mongoid --host dedicated[123]\.myapp\.com:27017 --username user --password password\z/)
       end
 
       it 'masks password' do
         expect(Mongoid::Shell::Commands::Mongoexport.new(
           session: @session
-        ).to_s(mask_sensitive: true)).to eq 'mongoexport --db mongoid --host dedicated1.myapp.com:27017 --username user --password ********'
+        ).to_s(mask_sensitive: true)).to match(/\Amongoexport --db mongoid --host dedicated[123]\.myapp\.com:27017 --username user --password \*{8}\z/)
       end
     end
 

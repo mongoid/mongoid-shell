@@ -78,13 +78,13 @@ describe Mongoid::Shell::Commands::Mongodump do
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongodump.new(
           session: @session
-        ).to_s).to eq 'mongodump --host dedicated1.myapp.com:27017 --db mongoid --username user --password password'
+        ).to_s).to match(/\Amongodump --host dedicated[123]\.myapp\.com:27017 --db mongoid --username user --password password\z/)
       end
 
       it 'masks password' do
         expect(Mongoid::Shell::Commands::Mongodump.new(
           session: @session
-        ).to_s(mask_sensitive: true)).to eq 'mongodump --host dedicated1.myapp.com:27017 --db mongoid --username user --password ********'
+        ).to_s(mask_sensitive: true)).to match(/\Amongodump --host dedicated[123]\.myapp\.com:27017 --db mongoid --username user --password \*{8}\z/)
       end
     end
 

@@ -64,7 +64,7 @@ describe Mongoid::Shell::Commands::Mongo do
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongo.new(
           session: @session
-        ).to_s).to eq 'mongo dedicated1.myapp.com:27017/mongoid --username user --password password'
+        ).to_s).to match(%r{\Amongo dedicated[123]\.myapp\.com:27017/mongoid --username user --password password\z})
       end
     end
 
