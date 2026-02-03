@@ -56,7 +56,7 @@ To use output in logs, pass the `mask_sensitive` option to `to_s`.
 Compatibility
 -------------
 
-This gem supports Mongoid 3, 4, 5 and 6.
+This gem supports Mongoid 3, 4, 5, 6, 7, 8 and 9.
 
 Supported Commands
 ------------------

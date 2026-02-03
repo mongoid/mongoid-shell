@@ -4,7 +4,16 @@ source 'http://rubygems.org'
 
 gemspec
 
-case version = ENV['MONGOID_VERSION'] || '6.0'
+case version = ENV['MONGOID_VERSION'] || '9.0'
+when /^9/
+  gem 'bigdecimal'
+  gem 'mongoid', '~> 9.0'
+when /^8/
+  gem 'bigdecimal'
+  gem 'mongoid', '~> 8.0'
+when /^7/
+  gem 'bigdecimal'
+  gem 'mongoid', '~> 7.0'
 when /^6/
   gem 'bigdecimal'
   gem 'mongoid', '~> 6.0'
@@ -24,7 +33,9 @@ end
 
 group :development, :test do
   gem 'bundler'
-  gem 'mongoid-danger', '~> 0.1.1'
+  gem 'danger'
+  gem 'danger-changelog'
+  gem 'danger-pr-comment'
   gem 'rake'
   gem 'rspec', '~> 3.0'
   gem 'rubocop', '~> 1.84.1'
