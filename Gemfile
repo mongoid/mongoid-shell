@@ -4,6 +4,8 @@ source 'http://rubygems.org'
 
 gemspec
 
+gem 'bigdecimal'
+
 case version = ENV['MONGOID_VERSION'] || '6.0'
 when /^6/
   gem 'mongoid', '~> 6.0'
