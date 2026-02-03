@@ -18,10 +18,10 @@ jobs:
       fail-fast: false
       matrix:
         entry:
-          - { ruby: '2.7', mongoid: '3', bundler: '1.17.3' }
-          - { ruby: '2.7', mongoid: '4', bundler: '1.17.3' }
-          - { ruby: '2.7', mongoid: '5', bundler: '2.4.19' }
-          - { ruby: '3.3', mongoid: '6', bundler: '2.4.19' }
+          - { ruby: '2.7', mongoid: '3' }
+          - { ruby: '2.7', mongoid: '4' }
+          - { ruby: '2.7', mongoid: '5' }
+          - { ruby: '3.3', mongoid: '6' }
 
     name: test (ruby=${{ matrix.entry.ruby }}, mongoid=${{ matrix.entry.mongoid }})
 
@@ -34,7 +34,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '${{ matrix.entry.ruby }}'
-          bundler: '${{ matrix.entry.bundler }}'
           bundler-cache: true
       - name: Run Tests
         run: bundle exec rake
