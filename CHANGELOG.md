@@ -1,6 +1,7 @@
-### 0.4.7 (Next)
+### 0.5.0 (Next)
 
 * Your contribution here.
+* [#20](https://github.com/mongoid/mongoid-shell/pull/20): Added compatibility with Mongoid 7, 8, 9 - [@dblock](https://github.com/dblock).
 * Migrated CI from Travis CI to GitHub Actions - [@dblock](https://github.com/dblock).
 
 ### 0.4.6 (12/29/2017)

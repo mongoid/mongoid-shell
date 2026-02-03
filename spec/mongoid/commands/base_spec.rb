@@ -7,7 +7,7 @@ describe Mongoid::Shell::Commands::Base do
 
   context 'without a default session' do
     before do
-      default_function = Mongoid::Compatibility::Version.mongoid3? || Mongoid::Compatibility::Version.mongoid4? ? :default_session : :default_client
+      default_function = Mongoid::Compatibility::Version.mongoid5_or_newer? ? :default_client : :default_session
       allow(Mongoid).to receive(default_function).and_return(nil)
     end
 
@@ -24,7 +24,7 @@ describe Mongoid::Shell::Commands::Base do
     end
   end
 
-  if Mongoid::Compatibility::Version.mongoid5? || Mongoid::Compatibility::Version.mongoid6?
+  if Mongoid::Compatibility::Version.mongoid5_or_newer?
     it 'creates a command using the default session' do
       command = Mongoid::Shell::Commands::Base.new
       expect(command.session).to eq Mongoid.default_client

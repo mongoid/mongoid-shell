@@ -4,7 +4,16 @@ source 'http://rubygems.org'
 
 gemspec
 
-case version = ENV['MONGOID_VERSION'] || '6.0'
+case version = ENV['MONGOID_VERSION'] || '9.0'
+when /^9/
+  gem 'bigdecimal'
+  gem 'mongoid', '~> 9.0'
+when /^8/
+  gem 'bigdecimal'
+  gem 'mongoid', '~> 8.0'
+when /^7/
+  gem 'bigdecimal'
+  gem 'mongoid', '~> 7.0'
 when /^6/
   gem 'bigdecimal'
   gem 'mongoid', '~> 6.0'
