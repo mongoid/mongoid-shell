@@ -2,8 +2,7 @@ Mongoid::Shell
 ==============
 
 [![Gem Version](https://badge.fury.io/rb/mongoid-shell.svg)](https://badge.fury.io/rb/mongoid-shell)
-[![Build Status](https://travis-ci.org/mongoid/mongoid-shell.svg?branch=master)](https://travis-ci.org/mongoid/mongoid-shell)
-[![Dependency Status](https://gemnasium.com/mongoid/mongoid-shell.svg)](https://gemnasium.com/mongoid/mongoid-shell)
+[![CI](https://github.com/mongoid/mongoid-shell/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/mongoid/mongoid-shell/actions/workflows/ci.yml)
 [![Code Climate](https://codeclimate.com/github/mongoid/mongoid-shell.svg)](https://codeclimate.com/github/mongoid/mongoid-shell)
 
 Create mongo command-lines from Mongoid configuration.
