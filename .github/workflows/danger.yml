@@ -4,6 +4,9 @@ on:
   pull_request:
     types: [opened, reopened, edited, synchronize]
 
+env:
+  BUNDLE_GEMFILE: ${{ github.workspace }}/Gemfile.danger
+
 jobs:
   danger:
     uses: numbata/danger-pr-comment/.github/workflows/danger-run.yml@v0.1.0

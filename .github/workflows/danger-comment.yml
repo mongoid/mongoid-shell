@@ -5,6 +5,9 @@ on:
     workflows: [Danger]
     types: [completed]
 
+env:
+  BUNDLE_GEMFILE: ${{ github.workspace }}/Gemfile.danger
+
 jobs:
   comment:
     uses: numbata/danger-pr-comment/.github/workflows/danger-comment.yml@v0.1.0
