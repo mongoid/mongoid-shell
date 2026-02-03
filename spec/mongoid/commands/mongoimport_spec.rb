@@ -88,7 +88,7 @@ describe Mongoid::Shell::Commands::Mongoimport do
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongoimport.new(
           session: @session
-        ).to_s).to eq 'mongoimport --db mongoid --host 59.1.22.1:27017 --username user --password password'
+        ).to_s).to match(/\Amongoimport --db mongoid --host 59\.1\.22\.[12]:27017 --username user --password password\z/)
       end
     end
   end

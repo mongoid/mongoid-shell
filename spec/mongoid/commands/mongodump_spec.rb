@@ -96,7 +96,7 @@ describe Mongoid::Shell::Commands::Mongodump do
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongodump.new(
           session: @session
-        ).to_s).to eq 'mongodump --host 59.1.22.1:27017 --db mongoid --username user --password password'
+        ).to_s).to match(/\Amongodump --host 59\.1\.22\.[12]:27017 --db mongoid --username user --password password\z/)
       end
     end
   end

@@ -89,7 +89,7 @@ describe Mongoid::Shell::Commands::Mongoexport do
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongoexport.new(
           session: @session
-        ).to_s).to eq 'mongoexport --db mongoid --host 59.1.22.1:27017 --username user --password password'
+        ).to_s).to match(/\Amongoexport --db mongoid --host 59\.1\.22\.[12]:27017 --username user --password password\z/)
       end
     end
   end

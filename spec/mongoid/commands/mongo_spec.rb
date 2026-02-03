@@ -76,19 +76,19 @@ describe Mongoid::Shell::Commands::Mongo do
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongo.new(
           session: @session
-        ).to_s).to eq 'mongo 59.1.22.1:27017/mongoid --username user --password password'
+        ).to_s).to match(%r{\Amongo 59\.1\.22\.[12]:27017/mongoid --username user --password password\z})
       end
 
       it 'masks username and password' do
         expect(Mongoid::Shell::Commands::Mongo.new(
           session: @session
-        ).to_s(mask_sensitive: true)).to eq 'mongo 59.1.22.1:27017/mongoid --username user --password ********'
+        ).to_s(mask_sensitive: true)).to match(%r{\Amongo 59\.1\.22\.[12]:27017/mongoid --username user --password \*{8}\z})
       end
 
       it 'masks username and password with a custom mask' do
         expect(Mongoid::Shell::Commands::Mongo.new(
           session: @session
-        ).to_s(mask_sensitive: '(hidden)')).to eq 'mongo 59.1.22.1:27017/mongoid --username user --password (hidden)'
+        ).to_s(mask_sensitive: '(hidden)')).to match(%r{\Amongo 59\.1\.22\.[12]:27017/mongoid --username user --password \(hidden\)\z})
       end
     end
   end

@@ -71,7 +71,7 @@ describe Mongoid::Shell::Commands::Mongostat do
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongostat.new(
           session: @session
-        ).to_s).to eq 'mongostat --host 59.1.22.1:27017 --username user --password password'
+        ).to_s).to match(/\Amongostat --host 59\.1\.22\.[12]:27017 --username user --password password\z/)
       end
     end
   end

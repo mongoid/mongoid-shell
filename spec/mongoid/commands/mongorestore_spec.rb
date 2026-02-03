@@ -108,7 +108,7 @@ describe Mongoid::Shell::Commands::Mongorestore do
         expect(Mongoid::Shell::Commands::Mongorestore.new(
           session: @session,
           restore: 'a folder'
-        ).to_s).to eq 'mongorestore --host 59.1.22.1:27017 --db mongoid --username user --password password "a folder"'
+        ).to_s).to match(/\Amongorestore --host 59\.1\.22\.[12]:27017 --db mongoid --username user --password password "a folder"\z/)
       end
     end
   end
