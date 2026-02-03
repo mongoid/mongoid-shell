@@ -27,14 +27,7 @@ module Mongoid
           end
         else
           def password
-            @password || begin
-              server = session.cluster.servers.first
-              raise Mongoid::Shell::Errors::SessionNotConnectedError unless server
-
-              server.context.with_connection do |connection|
-                connection.options[:password]
-              end
-            end
+            @password || session.options[:password]
           end
         end
       end

@@ -28,7 +28,7 @@ module MopedSessionHelper
       Mongoid.load! config, :production
       session = Mongoid::Clients.with_name(name)
       allow(session.cluster).to receive(:servers).and_return(session.cluster.instance_variable_get(:@servers))
-      server = session.cluster.servers.last
+      server = session.cluster.servers.first
       allow(server).to receive(:primary?).and_return(true)
       session
     end

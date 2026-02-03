@@ -27,14 +27,7 @@ module Mongoid
           end
         else
           def username
-            @username || begin
-              server = session.cluster.servers.first
-              raise Mongoid::Shell::Errors::SessionNotConnectedError unless server
-
-              server.context.with_connection do |connection|
-                connection.options[:user]
-              end
-            end
+            @username || session.options[:user]
           end
         end
       end

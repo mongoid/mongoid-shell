@@ -7,7 +7,10 @@ module Mongoid
         attr_accessor :authenticationDatabase
 
         def authenticationDatabase
-          @authenticationDatabase || session.options['auth_source']
+          @authenticationDatabase || begin
+            auth_source = session.options['auth_source']
+            auth_source unless auth_source == db
+          end
         end
       end
     end
