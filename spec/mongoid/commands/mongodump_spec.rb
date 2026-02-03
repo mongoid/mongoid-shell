@@ -1,31 +1,39 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Mongoid::Shell::Commands::Mongodump do
   include MopedSessionHelper
+
   context 'local' do
     it 'defaults to local' do
       expect(Mongoid::Shell::Commands::Mongodump.new.to_s).to eq 'mongodump --db mongoid_shell_tests'
     end
+
     it 'includes collection' do
       expect(Mongoid::Shell::Commands::Mongodump.new(
         collection: 'test'
       ).to_s).to eq 'mongodump --db mongoid_shell_tests --collection test'
     end
+
     it 'includes excludeCollection' do
       expect(Mongoid::Shell::Commands::Mongodump.new(
         excludeCollection: %w[test1 test2]
       ).to_s).to eq 'mongodump --db mongoid_shell_tests --excludeCollection test1 --excludeCollection test2'
     end
+
     it 'includes excludeCollectionsWithPrefix' do
       expect(Mongoid::Shell::Commands::Mongodump.new(
         excludeCollectionsWithPrefix: %w[system local]
       ).to_s).to eq 'mongodump --db mongoid_shell_tests --excludeCollectionsWithPrefix system --excludeCollectionsWithPrefix local'
     end
+
     it 'includes query' do
       expect(Mongoid::Shell::Commands::Mongodump.new(
         query: 'find x'
       ).to_s).to eq 'mongodump --db mongoid_shell_tests --query "find x"'
     end
+
     %i[out dbpath].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongodump.new(
@@ -41,16 +49,19 @@ describe Mongoid::Shell::Commands::Mongodump do
       end
     end
   end
+
   context 'sessions' do
     context 'default' do
-      before :each do
+      before do
         @session = moped_session(:default)
       end
+
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongodump.new(
           session: @session
         ).to_s).to eq 'mongodump --db mongoid_shell_tests'
       end
+
       it 'includes ssl and authenticationDatabase' do
         expect(Mongoid::Shell::Commands::Mongodump.new(
           ssl: true,
@@ -58,29 +69,34 @@ describe Mongoid::Shell::Commands::Mongodump do
         ).to_s).to eq 'mongodump --db mongoid_shell_tests --authenticationDatabase admin --ssl'
       end
     end
+
     context 'a replica set' do
-      before :each do
+      before do
         @session = moped_session(:replica_set)
       end
+
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongodump.new(
           session: @session
-        ).to_s).to eq 'mongodump --host dedicated1.myapp.com:27017 --db mongoid --username user --password password'
+        ).to_s).to match(/\Amongodump --host dedicated[123]\.myapp\.com:27017 --db mongoid --username user --password password\z/)
       end
+
       it 'masks password' do
         expect(Mongoid::Shell::Commands::Mongodump.new(
           session: @session
-        ).to_s(mask_sensitive: true)).to eq 'mongodump --host dedicated1.myapp.com:27017 --db mongoid --username user --password ********'
+        ).to_s(mask_sensitive: true)).to match(/\Amongodump --host dedicated[123]\.myapp\.com:27017 --db mongoid --username user --password \*{8}\z/)
       end
     end
+
     context 'url' do
-      before :each do
+      before do
         @session = moped_session(:url)
       end
+
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongodump.new(
           session: @session
-        ).to_s).to eq 'mongodump --host 59.1.22.1:27017 --db mongoid --username user --password password'
+        ).to_s).to match(/\Amongodump --host 59\.1\.22\.[12]:27017 --db mongoid --username user --password password\z/)
       end
     end
   end

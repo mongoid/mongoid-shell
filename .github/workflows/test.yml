@@ -1,0 +1,39 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mongodb:
+        image: mongo:4.4
+        ports:
+          - 27017:27017
+
+    strategy:
+      fail-fast: false
+      matrix:
+        entry:
+          - { ruby: '2.7', mongoid: '3' }
+          - { ruby: '2.7', mongoid: '4' }
+          - { ruby: '2.7', mongoid: '5' }
+          - { ruby: '3.3', mongoid: '6' }
+
+    name: test (ruby=${{ matrix.entry.ruby }}, mongoid=${{ matrix.entry.mongoid }})
+
+    env:
+      MONGOID_VERSION: ${{ matrix.entry.mongoid }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '${{ matrix.entry.ruby }}'
+          bundler-cache: true
+      - name: Run Tests
+        run: bundle exec rake

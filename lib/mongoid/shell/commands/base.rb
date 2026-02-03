@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mongoid
   module Shell
     module Commands
@@ -6,6 +8,7 @@ module Mongoid
 
         class << self
           attr_accessor :args
+
           @args = {}
 
           def inherit_args(args)
@@ -22,12 +25,12 @@ module Mongoid
           end
 
           def arg(name, options = {})
-            attr_accessor name unless instance_methods.include?(name)
+            attr_accessor name unless method_defined?(name)
             args[name] = { property: name }.merge(options)
           end
 
           def option(name, options = {})
-            attr_accessor name unless instance_methods.include?(name)
+            attr_accessor name unless method_defined?(name)
             args[name] = { key: "--#{name}", property: name }.merge(options)
           end
         end
@@ -47,11 +50,12 @@ module Mongoid
 
         def vargs(options = {})
           mask_sensitive = options[:mask_sensitive]
-          mask_sensitive = '********' if mask_sensitive && mask_sensitive.is_a?(TrueClass)
+          mask_sensitive = '********' if mask_sensitive.is_a?(TrueClass)
           self.class.args.values.map do |arg|
             key = arg[:key]
             value = send(arg[:property])
             next unless value
+
             case value
             when Boolean, TrueClass then key
             when Array then value.map { |v| "#{key} #{v}" }.join(' ')
@@ -61,7 +65,7 @@ module Mongoid
               else
                 # TODO: quote other special characters?
                 value = value.to_s
-                value = '"' + value + '"' if value.include? ' '
+                value = "\"#{value}\"" if value.include? ' '
               end
               key ? "#{key} #{value}" : value
             end

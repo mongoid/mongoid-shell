@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MopedSessionHelper
   # returns a Moped session with stubbed address resolution
   if ::Mongoid::Compatibility::Version.mongoid3?
@@ -25,8 +27,9 @@ module MopedSessionHelper
       config = File.join(File.dirname(__FILE__), '../../support/config/mongoid5.yml')
       Mongoid.load! config, :production
       session = Mongoid::Clients.with_name(name)
-      allow(session.cluster).to receive(:servers).and_return(session.cluster.instance_variable_get(:@servers))
-      server = session.cluster.servers.last
+      servers = session.cluster.instance_variable_get(:@servers)
+      allow(session.cluster).to receive(:servers).and_return(servers)
+      server = servers.first
       allow(server).to receive(:primary?).and_return(true)
       session
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'mongoid/shell/properties/host'
 require 'mongoid/shell/properties/primary'
 require 'mongoid/shell/properties/database'

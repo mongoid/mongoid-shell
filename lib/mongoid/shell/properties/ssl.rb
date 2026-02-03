@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mongoid
   module Shell
     module Properties
@@ -6,6 +8,7 @@ module Mongoid
 
         def ssl
           return @ssl unless @ssl.nil?
+
           session.options['ssl']
         end
       end

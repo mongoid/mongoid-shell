@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rubygems'
 require 'bundler/setup'
 require 'bundler/gem_tasks'
 
-require File.expand_path('../lib/mongoid/shell/version', __FILE__)
+require File.expand_path('lib/mongoid/shell/version', __dir__)
 
 require 'rake'
 require 'rspec/core'

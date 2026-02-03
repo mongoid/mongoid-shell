@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Mongoid::Shell::Properties::Host do
@@ -12,8 +14,9 @@ describe Mongoid::Shell::Properties::Host do
     end
     klass.new
   end
+
   it 'raises an exception when the session is not connected' do
-    if ::Mongoid::Compatibility::Version.mongoid5? || ::Mongoid::Compatibility::Version.mongoid6?
+    if Mongoid::Compatibility::Version.mongoid5? || Mongoid::Compatibility::Version.mongoid6?
       allow(Mongoid.default_client.cluster).to receive(:servers).and_return([])
     else
       allow(Mongoid.default_session.cluster).to receive(:nodes).and_return([])

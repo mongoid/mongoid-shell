@@ -1,6 +1,7 @@
 ### 0.4.7 (Next)
 
 * Your contribution here.
+* Migrated CI from Travis CI to GitHub Actions - [@dblock](https://github.com/dblock).
 
 ### 0.4.6 (12/29/2017)
 

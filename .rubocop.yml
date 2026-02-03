@@ -1,9 +1,14 @@
 AllCops:
+  NewCops: enable
   Exclude:
     - vendor/**/*
     - bin/**/*
 
 inherit_from: .rubocop_todo.yml
 
-Style/MethodName:
+Naming/MethodName:
   Enabled: false
+
+plugins:
+  - rubocop-rake
+  - rubocop-rspec

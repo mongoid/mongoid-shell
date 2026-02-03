@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mongoid
   module Shell
     module Errors
@@ -21,13 +23,13 @@ module Mongoid
           @resolution = create_resolution(key, attributes)
 
           "\nProblem:\n  #{@problem}" \
-          "\nSummary:\n  #{@summary}" \
-          "\nResolution:\n  #{@resolution}"
+            "\nSummary:\n  #{@summary}" \
+            "\nResolution:\n  #{@resolution}"
         end
 
         private
 
-        BASE_KEY = 'mongoid.shell.errors.messages'.freeze #:nodoc:
+        BASE_KEY = 'mongoid.shell.errors.messages' # :nodoc:
 
         # Given the key of the specific error and the options hash, translate the
         # message.
@@ -38,7 +40,7 @@ module Mongoid
         #
         # Returns a localized error message string.
         def translate(key, options)
-          ::I18n.translate("#{BASE_KEY}.#{key}", { locale: :en }.merge(options)).strip
+          ::I18n.translate("#{BASE_KEY}.#{key}", locale: :en, **options).strip
         end
 
         # Create the problem.
