@@ -1,17 +1,22 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Mongoid::Shell::Commands::Mongorestore do
   include MopedSessionHelper
+
   context 'local' do
     it 'defaults to local' do
       expect(Mongoid::Shell::Commands::Mongorestore.new.to_s).to eq 'mongorestore --db mongoid_shell_tests'
     end
+
     it 'includes collection' do
       expect(Mongoid::Shell::Commands::Mongorestore.new(
         collection: 'test',
         restore: 'folder'
       ).to_s).to eq 'mongorestore --db mongoid_shell_tests --collection test folder'
     end
+
     it 'can override the database, username, password and host' do
       expect(Mongoid::Shell::Commands::Mongorestore.new(
         host: 'my_host',
@@ -22,6 +27,7 @@ describe Mongoid::Shell::Commands::Mongorestore do
         restore: 'folder'
       ).to_s).to eq 'mongorestore --host my_host --db my_db --username my_username --password my_password --collection test folder'
     end
+
     %i[collection dbpath filter].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongorestore.new(
@@ -38,17 +44,20 @@ describe Mongoid::Shell::Commands::Mongorestore do
       end
     end
   end
+
   context 'sessions' do
     context 'default' do
-      before :each do
+      before do
         @session = moped_session(:default)
       end
+
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongorestore.new(
           session: @session,
           restore: 'a folder'
         ).to_s).to eq 'mongorestore --db mongoid_shell_tests "a folder"'
       end
+
       it 'includes ssl and authenticationDatabase' do
         expect(Mongoid::Shell::Commands::Mongorestore.new(
           ssl: true,
@@ -56,16 +65,19 @@ describe Mongoid::Shell::Commands::Mongorestore do
         ).to_s).to eq 'mongorestore --db mongoid_shell_tests --authenticationDatabase admin --ssl'
       end
     end
+
     context 'a replica set' do
-      before :each do
+      before do
         @session = moped_session(:replica_set)
       end
+
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongorestore.new(
           session: @session,
           restore: 'a folder'
         ).to_s).to eq 'mongorestore --host dedicated1.myapp.com:27017 --db mongoid --username user --password password "a folder"'
       end
+
       it 'masks password' do
         expect(Mongoid::Shell::Commands::Mongorestore.new(
           session: @session,
@@ -73,10 +85,12 @@ describe Mongoid::Shell::Commands::Mongorestore do
         ).to_s(mask_sensitive: true)).to eq 'mongorestore --host dedicated1.myapp.com:27017 --db mongoid --username user --password ******** "a folder"'
       end
     end
+
     context 'single host' do
-      before :each do
+      before do
         @session = moped_session(:single_host)
       end
+
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongorestore.new(
           session: @session,
@@ -84,10 +98,12 @@ describe Mongoid::Shell::Commands::Mongorestore do
         ).to_s).to eq 'mongorestore --host something.mongohq.com:27017 --db mongoid --username user --password password "a folder"'
       end
     end
+
     context 'url' do
-      before :each do
+      before do
         @session = moped_session(:url)
       end
+
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongorestore.new(
           session: @session,
@@ -96,10 +112,11 @@ describe Mongoid::Shell::Commands::Mongorestore do
       end
     end
   end
+
   context 'without a primary' do
-    before :each do
+    before do
       @session = moped_session(:replica_set)
-      if ::Mongoid::Compatibility::Version.mongoid3? || ::Mongoid::Compatibility::Version.mongoid4?
+      if Mongoid::Compatibility::Version.mongoid3? || Mongoid::Compatibility::Version.mongoid4?
         @session.cluster.nodes.each do |node|
           allow(node).to receive(:primary?).and_return(false)
         end
@@ -110,6 +127,7 @@ describe Mongoid::Shell::Commands::Mongorestore do
         end
       end
     end
+
     it 'requires a primary' do
       expect do
         Mongoid::Shell::Commands::Mongorestore.new(

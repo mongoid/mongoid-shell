@@ -1,17 +1,22 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Mongoid::Shell::Commands::Mongoexport do
   include MopedSessionHelper
+
   context 'local' do
     it 'defaults to local' do
       expect(Mongoid::Shell::Commands::Mongoexport.new.to_s).to eq 'mongoexport --db mongoid_shell_tests'
     end
+
     it 'includes collection' do
       expect(Mongoid::Shell::Commands::Mongoexport.new(
         collection: 'tests',
         out: 'tests.json'
       ).to_s).to eq 'mongoexport --db mongoid_shell_tests --collection tests --out tests.json'
     end
+
     it 'can override the database, username, password and host' do
       expect(Mongoid::Shell::Commands::Mongoexport.new(
         host: 'my_host',
@@ -22,6 +27,7 @@ describe Mongoid::Shell::Commands::Mongoexport do
         out: 'tests.json'
       ).to_s).to eq 'mongoexport --db my_db --host my_host --username my_username --password my_password --collection tests --out tests.json'
     end
+
     %i[host port sslCAFile sslPEMKeyFile sslPEMKeyPassword
        sslCRLFile sslAllowInvalidCertificates out query limit].each do |option|
       it "includes #{option}" do
@@ -46,34 +52,40 @@ describe Mongoid::Shell::Commands::Mongoexport do
 
   context 'sessions' do
     context 'default' do
-      before :each do
+      before do
         @session = moped_session(:default)
       end
+
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongoexport.new(
           session: @session
         ).to_s).to eq 'mongoexport --db mongoid_shell_tests'
       end
     end
+
     context 'a replica set' do
-      before :each do
+      before do
         @session = moped_session(:replica_set)
       end
+
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongoexport.new(
           session: @session
         ).to_s).to eq 'mongoexport --db mongoid --host dedicated1.myapp.com:27017 --username user --password password'
       end
+
       it 'masks password' do
         expect(Mongoid::Shell::Commands::Mongoexport.new(
           session: @session
         ).to_s(mask_sensitive: true)).to eq 'mongoexport --db mongoid --host dedicated1.myapp.com:27017 --username user --password ********'
       end
     end
+
     context 'url' do
-      before :each do
+      before do
         @session = moped_session(:url)
       end
+
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongoexport.new(
           session: @session

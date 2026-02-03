@@ -1,4 +1,6 @@
-$LOAD_PATH.push File.expand_path('../lib', __FILE__)
+# frozen_string_literal: true
+
+$LOAD_PATH.push File.expand_path('lib', __dir__)
 require 'mongoid/shell/version'
 
 Gem::Specification.new do |s|
@@ -13,7 +15,8 @@ Gem::Specification.new do |s|
   s.homepage = 'http://github.com/mongoid/mongoid-shell'
   s.licenses = ['MIT']
   s.summary = 'Derive shell commands from Mongoid configuration options.'
-  s.add_dependency 'mongoid', '>= 3.0.0'
   s.add_dependency 'i18n'
+  s.add_dependency 'mongoid', '>= 3.0.0'
   s.add_dependency 'mongoid-compatibility'
+  s.metadata['rubygems_mfa_required'] = 'true'
 end

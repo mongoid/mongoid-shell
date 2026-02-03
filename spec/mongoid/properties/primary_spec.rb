@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Mongoid::Shell::Properties::Primary do
@@ -12,8 +14,9 @@ describe Mongoid::Shell::Properties::Primary do
     end
     klass.new
   end
+
   it 'raises an exception when the session is not connected' do
-    if ::Mongoid::Compatibility::Version.mongoid3? || ::Mongoid::Compatibility::Version.mongoid4?
+    if Mongoid::Compatibility::Version.mongoid3? || Mongoid::Compatibility::Version.mongoid4?
       allow(Mongoid.default_session.cluster.nodes.first).to receive(:primary?).and_return(false)
     else
       server = Mongoid.default_client.cluster.servers.first

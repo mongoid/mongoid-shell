@@ -1,16 +1,21 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Mongoid::Shell::Commands::Mongostat do
   include MopedSessionHelper
+
   context 'local' do
     it 'defaults to local' do
       expect(Mongoid::Shell::Commands::Mongostat.new.to_s).to eq 'mongostat'
     end
+
     it 'rowcount' do
       expect(Mongoid::Shell::Commands::Mongostat.new(
         rowcount: 10
       ).to_s).to eq 'mongostat --rowcount 10'
     end
+
     %i[http discover all noheaders].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongostat.new(
@@ -19,16 +24,19 @@ describe Mongoid::Shell::Commands::Mongostat do
       end
     end
   end
+
   context 'sessions' do
     context 'default' do
-      before :each do
+      before do
         @session = moped_session(:default)
       end
+
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongostat.new(
           session: @session
         ).to_s).to eq 'mongostat'
       end
+
       it 'includes ssl and authenticationDatabase' do
         expect(Mongoid::Shell::Commands::Mongostat.new(
           ssl: true,
@@ -36,25 +44,30 @@ describe Mongoid::Shell::Commands::Mongostat do
         ).to_s).to eq 'mongostat --authenticationDatabase admin --ssl'
       end
     end
+
     context 'a replica set' do
-      before :each do
+      before do
         @session = moped_session(:replica_set)
       end
+
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongostat.new(
           session: @session
         ).to_s).to eq 'mongostat --host dedicated1.myapp.com:27017 --username user --password password'
       end
+
       it 'masks password' do
         expect(Mongoid::Shell::Commands::Mongostat.new(
           session: @session
         ).to_s(mask_sensitive: true)).to eq 'mongostat --host dedicated1.myapp.com:27017 --username user --password ********'
       end
     end
+
     context 'url' do
-      before :each do
+      before do
         @session = moped_session(:url)
       end
+
       it 'includes username and password' do
         expect(Mongoid::Shell::Commands::Mongostat.new(
           session: @session

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MopedSessionHelper
   # returns a Moped session with stubbed address resolution
   if ::Mongoid::Compatibility::Version.mongoid3?

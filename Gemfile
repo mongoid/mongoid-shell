@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'http://rubygems.org'
 
 gemspec
@@ -16,9 +18,11 @@ else
 end
 
 group :development, :test do
-  gem 'rake'
   gem 'bundler'
-  gem 'rspec', '~> 3.0'
-  gem 'rubocop', '~> 0.49.1'
   gem 'mongoid-danger', '~> 0.1.1'
+  gem 'rake'
+  gem 'rspec', '~> 3.0'
+  gem 'rubocop', '~> 1.84.1'
+  gem 'rubocop-rake'
+  gem 'rubocop-rspec'
 end
