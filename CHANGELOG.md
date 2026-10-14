@@ -1,6 +1,7 @@
 ### 0.5.0 (Next)
 
 * Your contribution here.
+* [#24](https://github.com/mongoid/mongoid-shell/pull/24): Test through Ruby 4.0 and MongoDB 8.0 with Mongoid 9, retain legacy coverage, and explicitly bundle OpenStruct - [@dblock](https://github.com/dblock).
 * [#20](https://github.com/mongoid/mongoid-shell/pull/20): Added compatibility with Mongoid 7, 8, 9 - [@dblock](https://github.com/dblock).
 * Migrated CI from Travis CI to GitHub Actions - [@dblock](https://github.com/dblock).
 
