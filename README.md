@@ -4,6 +4,9 @@ Mongoid::Shell
 [![Gem Version](https://badge.fury.io/rb/mongoid-shell.svg)](https://badge.fury.io/rb/mongoid-shell)
 [![Test](https://github.com/mongoid/mongoid-shell/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/mongoid/mongoid-shell/actions/workflows/test.yml)
 [![Rubocop](https://github.com/mongoid/mongoid-shell/actions/workflows/rubocop.yml/badge.svg?branch=master)](https://github.com/mongoid/mongoid-shell/actions/workflows/rubocop.yml)
+[![Coverage Status](https://coveralls.io/repos/github/mongoid/mongoid-shell/badge.svg?branch=master)](https://coveralls.io/github/mongoid/mongoid-shell?branch=master)
+
+CI collects SimpleCov coverage on Ruby 3.4 with Mongoid 9 and MongoDB 8.0 and submits one report to Coveralls using GitHub's workflow token. To generate a local report, run `COVERAGE=true MONGOID_VERSION=9 bundle install` followed by `COVERAGE=true MONGOID_VERSION=9 bundle exec rake spec`. Reports are written to `coverage/`.
 
 Create mongo command-lines from Mongoid configuration.
 

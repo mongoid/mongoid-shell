@@ -42,4 +42,5 @@ group :development, :test do
   gem 'rubocop', '~> 1.84.1'
   gem 'rubocop-rake'
   gem 'rubocop-rspec'
+  gem 'simplecov', '~> 0.22' if ENV['COVERAGE'] == 'true'
 end
