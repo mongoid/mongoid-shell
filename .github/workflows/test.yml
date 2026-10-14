@@ -8,31 +8,31 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    services:
-      mongodb:
-        image: mongo:4.4
-        ports:
-          - 27017:27017
-
     strategy:
       fail-fast: false
       matrix:
         entry:
-          - { ruby: '2.7', mongoid: '3' }
-          - { ruby: '2.7', mongoid: '4' }
-          - { ruby: '2.7', mongoid: '5' }
-          - { ruby: '3.3', mongoid: '6' }
-          - { ruby: '2.7', mongoid: '7' }
-          - { ruby: '3.2', mongoid: '8' }
-          - { ruby: '3.3', mongoid: '9' }
+          - { ruby: '2.7', mongoid: '3', mongodb: '4.4' }
+          - { ruby: '2.7', mongoid: '4', mongodb: '4.4' }
+          - { ruby: '2.7', mongoid: '5', mongodb: '4.4' }
+          - { ruby: '3.3', mongoid: '6', mongodb: '4.4' }
+          - { ruby: '2.7', mongoid: '7', mongodb: '5.0' }
+          - { ruby: '3.2', mongoid: '8', mongodb: '6.0' }
+          - { ruby: '3.3', mongoid: '9', mongodb: '7.0' }
+          - { ruby: '3.4', mongoid: '9', mongodb: '8.0' }
+          - { ruby: '4.0', mongoid: '9', mongodb: '8.0' }
 
-    name: test (ruby=${{ matrix.entry.ruby }}, mongoid=${{ matrix.entry.mongoid }})
+    name: test (ruby=${{ matrix.entry.ruby }}, mongoid=${{ matrix.entry.mongoid }}, mongodb=${{ matrix.entry.mongodb }})
 
     env:
       MONGOID_VERSION: ${{ matrix.entry.mongoid }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+      - name: Set up MongoDB
+        uses: supercharge/mongodb-github-action@1.12.1
+        with:
+          mongodb-version: ${{ matrix.entry.mongodb }}
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:

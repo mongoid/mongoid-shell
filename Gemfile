@@ -36,6 +36,7 @@ group :development, :test do
   gem 'danger'
   gem 'danger-changelog'
   gem 'danger-pr-comment'
+  gem 'ostruct'
   gem 'rake'
   gem 'rspec', '~> 3.0'
   gem 'rubocop', '~> 1.84.1'
