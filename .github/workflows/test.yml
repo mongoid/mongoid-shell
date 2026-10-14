@@ -25,6 +25,7 @@ jobs:
     name: test (ruby=${{ matrix.entry.ruby }}, mongoid=${{ matrix.entry.mongoid }}, mongodb=${{ matrix.entry.mongodb }})
 
     env:
+      COVERAGE: ${{ matrix.entry.ruby == '3.4' }}
       MONGOID_VERSION: ${{ matrix.entry.mongoid }}
 
     steps:
@@ -40,3 +41,10 @@ jobs:
           bundler-cache: true
       - name: Run Tests
         run: bundle exec rake
+      - name: Coveralls
+        if: matrix.entry.ruby == '3.4'
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          file: coverage/.resultset.json
+          format: simplecov
