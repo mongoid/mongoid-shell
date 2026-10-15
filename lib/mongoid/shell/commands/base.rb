@@ -60,13 +60,7 @@ module Mongoid
             when Boolean, TrueClass then key
             when Array then value.map { |v| "#{key} #{v}" }.join(' ')
             else
-              if mask_sensitive && arg[:sensitive]
-                value = mask_sensitive
-              else
-                # TODO: quote other special characters?
-                value = value.to_s
-                value = "\"#{value}\"" if value.include? ' '
-              end
+              value = format_value(value, arg, mask_sensitive)
               key ? "#{key} #{value}" : value
             end
           end
@@ -77,6 +71,18 @@ module Mongoid
         end
 
         private
+
+        def format_value(value, arg, mask_sensitive)
+          return mask_sensitive if mask_sensitive && arg[:sensitive]
+
+          if arg[:json]
+            value = ::JSON.generate(value) if value.is_a?(Hash)
+            Shellwords.escape(value.to_s)
+          else
+            value = value.to_s
+            value.include?(' ') ? "\"#{value}\"" : value
+          end
+        end
 
         if ::Mongoid::Compatibility::Version.mongoid5_or_newer?
           def default_client_or_session

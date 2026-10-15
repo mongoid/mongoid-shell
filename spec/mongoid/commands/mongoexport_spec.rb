@@ -29,7 +29,7 @@ describe Mongoid::Shell::Commands::Mongoexport do
     end
 
     %i[host port sslCAFile sslPEMKeyFile sslPEMKeyPassword
-       sslCRLFile sslAllowInvalidCertificates out query limit].each do |option|
+       sslCRLFile sslAllowInvalidCertificates out limit].each do |option|
       it "includes #{option}" do
         expect(Mongoid::Shell::Commands::Mongoexport.new(
           option => 'var arg'

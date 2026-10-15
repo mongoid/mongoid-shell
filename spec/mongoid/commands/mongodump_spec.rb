@@ -31,7 +31,7 @@ describe Mongoid::Shell::Commands::Mongodump do
     it 'includes query' do
       expect(Mongoid::Shell::Commands::Mongodump.new(
         query: 'find x'
-      ).to_s).to eq 'mongodump --db mongoid_shell_tests --query "find x"'
+      ).to_s).to eq 'mongodump --db mongoid_shell_tests --query find\\ x'
     end
 
     %i[out dbpath].each do |option|

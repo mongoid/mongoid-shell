@@ -1,5 +1,6 @@
 ### 0.5.1 (Next)
 
+* [#17](https://github.com/mongoid/mongoid-shell/issues/17): Preserve Extended JSON queries through shell escaping and serialize Hash queries for `mongodump` and `mongoexport` - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 ### 0.5.0 (2026/10/14)
