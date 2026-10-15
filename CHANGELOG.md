@@ -1,3 +1,7 @@
+### 0.5.1 (Next)
+
+* Your contribution here.
+
 ### 0.5.0 (2026/10/14)
 
 * [#25](https://github.com/mongoid/mongoid-shell/pull/25): Add SimpleCov and Coveralls reporting in CI and update status badges - [@dblock](https://github.com/dblock).
