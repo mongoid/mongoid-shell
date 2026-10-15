@@ -26,7 +26,7 @@ module Mongoid
         option :collection
         option :fields
         option :fieldFile
-        option :query
+        option :query, json: true
         option :type
         option :out
         option :skip

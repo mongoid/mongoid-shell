@@ -84,6 +84,16 @@ mongodump.to_s # mongodump --db test --collection test
 
 The `Mongoid::Shell::Commands::Mongodump` class supports `--db`, `--host`, `--username`, `--password`, `--query`, `--out`, `--collection`, `--excludeCollection`, `--excludeCollectionsWithPrefix`, `--directoryperdb`, `--journal`, `--oplog`, `--repair`, `--forceTableScan`, `--dbpath`, `--ipv6`, `--ssl` and `--authenticationDatabase`
 
+For `mongodump` and `mongoexport`, `query` accepts an Extended JSON string or a Hash containing Extended JSON values. Hashes are serialized as JSON and queries are shell-escaped, preserving operators such as `$eq` and `$date` literally.
+
+```ruby
+mongodump = Mongoid::Shell::Commands::Mongodump.new(
+  collection: 'history_trackers',
+  query: { scope: { '$eq' => 'offer' }, created_at: { '$gte' => { '$date' => '2019-12-24T09:36:56.312Z' } } }
+)
+system mongodump.to_s
+```
+
 ### Mongorestore
 
 The mongorestore tool imports content from binary database dump, created by mongodump into a specific database.

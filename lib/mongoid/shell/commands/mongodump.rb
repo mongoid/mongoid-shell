@@ -18,7 +18,7 @@ module Mongoid
         option :collection
         option :excludeCollection
         option :excludeCollectionsWithPrefix
-        option :query
+        option :query, json: true
         option :out
         option :directoryperdb
         option :journal
