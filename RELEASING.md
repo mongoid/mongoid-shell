@@ -1,68 +1,50 @@
-Releasing Mongoid::Shell
-========================
+# Releasing Mongoid::Shell
 
-There're no particular rules about when to release mongoid-shell. Release bug fixes frequently, features not so frequently and breaking API changes rarely.
+## Prepare
 
-### Release
+Use the upstream checkout on clean `master`, verify `origin` is `mongoid/mongoid-shell`, and run `git pull --ff-only`. Check supported platforms in [GitHub Actions](https://github.com/mongoid/mongoid-shell/actions). Follow semantic versioning: patch for fixes, minor for backward-compatible features, major for breaking changes.
 
-Run tests, check that all tests succeed locally.
+Set `lib/mongoid/shell/version.rb` to the release version, date its `CHANGELOG.md` section using `YYYY/MM/DD`, and remove the contribution placeholder.
 
-```
+```sh
 bundle install
-rake
-```
-
-Check that the last build succeeded in [Travis CI](https://travis-ci.org/mongoid/mongoid-shell) for all supported platforms.
-
-Increment the version, modify [lib/mongoid/shell/version.rb](lib/mongoid/shell/version.rb).
-
-*  Increment the third number if the release has bug fixes and/or very minor features, only (eg. change `0.5.1` to `0.5.2`).
-*  Increment the second number if the release contains major features or breaking API changes (eg. change `0.5.1` to `0.4.0`).
-
-Change "Next Release" in [CHANGELOG.md](CHANGELOG.md) to the new version.
-
-```
-### 0.4.0 (2014-01-27)
-```
-
-Remove the line with "Your contribution here.", since there will be no more contributions to this release.
-
-Commit your changes.
-
-```
-git add CHANGELOG.md lib/mongoid-shell/version.rb
-git commit -m "Preparing for release, 0.4.0."
+bundle exec rake
+git add CHANGELOG.md lib/mongoid/shell/version.rb RELEASING.md
+git commit -m "Preparing for release, 0.5.0."
 git push origin master
 ```
 
-Release.
+Wait for the preparation commit's CI checks to pass.
 
-```
-$ rake release
+## Publish RubyGems and GitHub
 
-mongoid-shell 0.4.0 built to pkg/mongoid-shell-0.4.0.gem.
-Tagged v0.4.0.
-Pushed git commits and tags.
-Pushed mongoid-shell 0.4.0 to rubygems.org.
+```sh
+bundle exec rake release
 ```
 
-### Prepare for the Next Version
+The task builds the gem, pushes its tag, and publishes to RubyGems. Complete MFA when prompted. If interrupted, inspect the tag and RubyGems version before retrying; never move a published tag. If only publication is missing, resume with `gem push pkg/mongoid-shell-0.5.0.gem`.
 
-Add the next release to [CHANGELOG.md](CHANGELOG.md).
+A tag is not a GitHub release. After confirming RubyGems publication, create the matching GitHub release with changelog notes:
 
+```sh
+version=0.5.0
+notes="$(mktemp)"
+awk -v version="$version" '
+  /^### / {
+    if (found) exit
+    if ($2 == version) found = 1
+    next
+  }
+  found { print }
+' CHANGELOG.md > "$notes"
+gh release create "v$version" --repo mongoid/mongoid-shell --verify-tag --title "$version" --notes-file "$notes" --latest
+rm "$notes"
+curl --fail --silent --show-error "https://rubygems.org/api/v2/rubygems/mongoid-shell/versions/$version.json"
+gh release view "v$version" --repo mongoid/mongoid-shell
 ```
-Next Release
-============
 
-* Your contribution here.
-```
+Verify both the published gem and non-draft GitHub release before declaring completion.
 
-Increment the minor version, modify [lib/mongoid-shell/version.rb](lib/mongoid-shell/version.rb).
+## Prepare the Next Version
 
-Commit your changes.
-
-```
-git add CHANGELOG.md lib/mongoid-shell/version.rb
-git commit -m "Preparing for next release, 0.4.1."
-git push origin master
-```
+Increment the development patch version in `lib/mongoid/shell/version.rb` (for example, `0.5.1`). Add `### 0.5.1 (Next)` with a contribution placeholder above the released changelog section. Commit and push those changes to `master`, leaving the released tag unchanged.

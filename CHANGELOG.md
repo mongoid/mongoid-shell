@@ -1,6 +1,5 @@
-### 0.5.0 (Next)
+### 0.5.0 (2026/10/14)
 
-* Your contribution here.
 * [#25](https://github.com/mongoid/mongoid-shell/pull/25): Add SimpleCov and Coveralls reporting in CI and update status badges - [@dblock](https://github.com/dblock).
 * [#24](https://github.com/mongoid/mongoid-shell/pull/24): Test through Ruby 4.0 and MongoDB 8.0 with Mongoid 9, retain legacy coverage, and explicitly bundle OpenStruct - [@dblock](https://github.com/dblock).
 * [#20](https://github.com/mongoid/mongoid-shell/pull/20): Added compatibility with Mongoid 7, 8, 9 - [@dblock](https://github.com/dblock).
