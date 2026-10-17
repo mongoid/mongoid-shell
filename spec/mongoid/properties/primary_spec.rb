@@ -27,4 +27,15 @@ describe Mongoid::Shell::Properties::Primary do
       subject.primary
     end.to raise_error Mongoid::Shell::Errors::MissingPrimaryNodeError, /Session does not have a primary node./
   end
+
+  it 'raises a connection error when there are no nodes' do
+    if Mongoid::Compatibility::Version.mongoid5_or_newer?
+      allow(Mongoid.default_client.cluster).to receive(:servers).and_return([])
+    else
+      allow(Mongoid.default_session.cluster).to receive(:nodes).and_return([])
+    end
+    expect do
+      subject.primary
+    end.to raise_error Mongoid::Shell::Errors::SessionNotConnectedError, /Session is not connected./
+  end
 end
