@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module MopedSessionHelper
+  MONGODB_PORT = ENV.fetch('MONGODB_PORT', 27_017).to_i
+
   # returns a Moped session with stubbed address resolution
   if ::Mongoid::Compatibility::Version.mongoid3?
     def moped_session(name)
@@ -22,7 +24,7 @@ module MopedSessionHelper
     end
   else
     def moped_session(name)
-      socket = Mongo::Socket::TCP.new('127.0.0.1', 27_017, 30, Socket::PF_INET)
+      socket = Mongo::Socket::TCP.new('127.0.0.1', MONGODB_PORT, 30, Socket::PF_INET)
       allow_any_instance_of(Mongo::Address).to receive(:socket).and_return(socket)
       config = File.join(File.dirname(__FILE__), '../../support/config/mongoid5.yml')
       Mongoid.load! config, :production

@@ -44,4 +44,31 @@ describe Mongoid::Shell::Commands::Base do
     command = Mongoid::Shell::Commands::Base.command_for(default_client_or_session)
     expect(command.session).to eq default_client_or_session
   end
+
+  context 'with custom argument definitions' do
+    let(:command_class) do
+      Class.new(described_class) do
+        def destination
+          'archive'
+        end
+
+        option :quiet
+        arg :destination
+      end
+    end
+
+    it 'preserves an existing property reader when registering an argument' do
+      expect(command_class.new.destination).to eq 'archive'
+    end
+
+    it 'renders positional arguments without an option key' do
+      expect(command_class.new(quiet: true).vargs).to eq %w[--quiet archive]
+    end
+
+    it 'does not leak argument definitions to the base class' do
+      original_args = described_class.args
+      command_class
+      expect(described_class.args).to eq(original_args)
+    end
+  end
 end
