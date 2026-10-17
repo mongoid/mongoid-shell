@@ -1,6 +1,7 @@
 ### 0.5.2 (Next)
 
 * Your contribution here.
+* [#27](https://github.com/mongoid/mongoid-shell/pull/27): Expand command rendering, error, and entrypoint tests and combine coverage across supported Mongoid versions - [@dblock](https://github.com/dblock).
 
 ### 0.5.1 (2026/10/15)
 

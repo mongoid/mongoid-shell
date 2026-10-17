@@ -6,7 +6,9 @@ Mongoid::Shell
 [![Rubocop](https://github.com/mongoid/mongoid-shell/actions/workflows/rubocop.yml/badge.svg?branch=master)](https://github.com/mongoid/mongoid-shell/actions/workflows/rubocop.yml)
 [![Coverage Status](https://coveralls.io/repos/github/mongoid/mongoid-shell/badge.svg?branch=master)](https://coveralls.io/github/mongoid/mongoid-shell?branch=master)
 
-CI collects SimpleCov coverage on Ruby 3.4 with Mongoid 9 and MongoDB 8.0 and submits one report to Coveralls using GitHub's workflow token. To generate a local report, run `COVERAGE=true MONGOID_VERSION=9 bundle install` followed by `COVERAGE=true MONGOID_VERSION=9 bundle exec rake spec`. Reports are written to `coverage/`.
+CI collects SimpleCov coverage across the supported Ruby, Mongoid, and MongoDB matrix and combines parallel reports on Coveralls using GitHub's workflow token. Legacy Moped and modern driver paths run against their actual supported Mongoid versions, rather than being simulated in one job. To generate a local report, run `COVERAGE=true MONGOID_VERSION=9 bundle install` followed by `COVERAGE=true MONGOID_VERSION=9 bundle exec rake spec`. Reports are written to `coverage/`; a single Mongoid version cannot cover every version-specific path. Fresh-process entrypoint tests also collect coverage, including files loaded by Bundler before the main test suite starts.
+
+Set `MONGODB_PORT` to redirect the fixture sessions' local socket connection (default: `27017`). These tests render commands; they do not execute MongoDB shell tools or write to or drop databases.
 
 Create mongo command-lines from Mongoid configuration.
 
