@@ -2,6 +2,7 @@
 
 * Your contribution here.
 * [#27](https://github.com/mongoid/mongoid-shell/pull/27): Expand command rendering, error, and entrypoint tests and combine coverage across supported Mongoid versions - [@dblock](https://github.com/dblock).
+* [#28](https://github.com/mongoid/mongoid-shell/pull/28): Lint Markdown, YAML, and spelling with rubocop-md, rubocop-prose, rubocop-spellcheck, and rubocop-yaml in a separate Lint workflow, and clean up documentation - [@dblock](https://github.com/dblock).
 
 ### 0.5.1 (2026/10/15)
 
@@ -50,7 +51,7 @@
 * [#2](https://github.com/mongoid/mongoid-shell/pull/2): Added support for `--noIndexRestore` to `Mongoid::Shell::Commands::Mongorestore` - [@macreery](https://github.com/macreery).
 * [#1](https://github.com/mongoid/mongoid-shell/pull/1): Enforced compatibility with Mongoid 3.x only - [@macreery](https://github.com/macreery).
 * Fix: the `mongorestore` command requires a primary node in a replica set - [@dblock](https://github.com/dblock).
-* Added Rubocop, Ruby style linter - [@dblock](https://github.com/dblock).
+* Added RuboCop, Ruby style linter - [@dblock](https://github.com/dblock).
 * Upgraded to RSpec 3.x expectation syntax - [@dblock](https://github.com/dblock).
 
 ### 0.2.0 (2013/01/29)
