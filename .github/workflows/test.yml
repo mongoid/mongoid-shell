@@ -2,11 +2,17 @@ name: Test
 
 on:
   push:
+    branches: [master]
   pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     strategy:
       fail-fast: false
@@ -41,7 +47,7 @@ jobs:
           ruby-version: '${{ matrix.entry.ruby }}'
           bundler-cache: true
       - name: Run Tests
-        run: bundle exec rake
+        run: bundle exec rake spec
       - name: Coveralls
         uses: coverallsapp/github-action@v2
         with:
@@ -55,6 +61,7 @@ jobs:
     needs: test
     if: ${{ always() }}
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Finish parallel coverage
         uses: coverallsapp/github-action@v2
