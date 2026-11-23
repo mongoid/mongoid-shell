@@ -4,6 +4,7 @@
 * [#27](https://github.com/mongoid/mongoid-shell/pull/27): Expand command rendering, error, and entrypoint tests and combine coverage across supported Mongoid versions - [@dblock](https://github.com/dblock).
 * [#29](https://github.com/mongoid/mongoid-shell/pull/29): Lint Markdown, YAML, and spelling with rubocop-md, rubocop-prose, rubocop-spellcheck, and rubocop-yaml in a separate Lint workflow, and clean up documentation - [@dblock](https://github.com/dblock).
 * [#30](https://github.com/mongoid/mongoid-shell/pull/30): Run tests only on default-branch pushes and pull requests, cancel superseded pull request runs, skip duplicate lint in the test matrix, and bound job times - [@dblock](https://github.com/dblock).
+* [#31](https://github.com/mongoid/mongoid-shell/pull/31): Release with ruby-gem-release from a manually dispatched GitHub Actions workflow using RubyGems Trusted Publishing, with dry runs - [@dblock](https://github.com/dblock).
 
 ### 0.5.1 (2026/10/15)
 
