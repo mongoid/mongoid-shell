@@ -1,24 +1,26 @@
-Mongoid::Shell
-==============
+# Mongoid::Shell
 
-[![Gem Version](https://badge.fury.io/rb/mongoid-shell.svg)](https://badge.fury.io/rb/mongoid-shell)
-[![Test](https://github.com/mongoid/mongoid-shell/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/mongoid/mongoid-shell/actions/workflows/test.yml)
-[![Rubocop](https://github.com/mongoid/mongoid-shell/actions/workflows/rubocop.yml/badge.svg?branch=master)](https://github.com/mongoid/mongoid-shell/actions/workflows/rubocop.yml)
-[![Coverage Status](https://coveralls.io/repos/github/mongoid/mongoid-shell/badge.svg?branch=master)](https://coveralls.io/github/mongoid/mongoid-shell?branch=master)
-
-CI collects SimpleCov coverage across the supported Ruby, Mongoid, and MongoDB matrix and combines parallel reports on Coveralls using GitHub's workflow token. Legacy Moped and modern driver paths run against their actual supported Mongoid versions, rather than being simulated in one job. To generate a local report, run `COVERAGE=true MONGOID_VERSION=9 bundle install` followed by `COVERAGE=true MONGOID_VERSION=9 bundle exec rake spec`. Reports are written to `coverage/`; a single Mongoid version cannot cover every version-specific path. Fresh-process entrypoint tests also collect coverage, including files loaded by Bundler before the main test suite starts.
-
-Set `MONGODB_PORT` to redirect the fixture sessions' local socket connection (default: `27017`). These tests render commands; they do not execute MongoDB shell tools or write to or drop databases.
+[![Gem Version](https://badge.fury.io/rb/mongoid-shell.svg)](https://badge.fury.io/rb/mongoid-shell) [![Test](https://github.com/mongoid/mongoid-shell/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/mongoid/mongoid-shell/actions/workflows/test.yml) [![Lint](https://github.com/mongoid/mongoid-shell/actions/workflows/lint.yml/badge.svg?branch=master)](https://github.com/mongoid/mongoid-shell/actions/workflows/lint.yml) [![Coverage Status](https://coveralls.io/repos/github/mongoid/mongoid-shell/badge.svg?branch=master)](https://coveralls.io/github/mongoid/mongoid-shell?branch=master)
 
 Create mongo command-lines from Mongoid configuration.
 
+## Installation
+
+Add the gem to your Gemfile and run `bundle install`.
+
+```ruby
+gem 'mongoid-shell'
+```
+
+## Usage
+
 For example, connect to your production database without having to remember the entire command line using a `db:production:shell` Rake task.
 
-``` ruby
-namespace :db
-  namespace :production
-    task :shell
-      Mongoid.load! File.join(Rails.root, "config/mongoid.yml"), :production
+```ruby
+namespace :db do
+  namespace :production do
+    task :shell do
+      Mongoid.load! File.join(Rails.root, 'config/mongoid.yml'), :production
       system Mongoid::Shell::Commands::Mongo.new.to_s
     end
   end
@@ -27,14 +29,14 @@ end
 
 Commands can be created for the current default session or you can pass a session as an argument to a new command.
 
-``` ruby
+```ruby
 Mongoid::Shell::Commands::Mongodump.new # will use Mongoid.default_session
-Mongoid::Shell::Commands::Mongodump.new(session: Moped::Session.new([ "127.0.0.1:27017" ]))
+Mongoid::Shell::Commands::Mongodump.new(session: Moped::Session.new(['127.0.0.1:27017']))
 ```
 
 Commands accept parameters.
 
-``` ruby
+```ruby
 out = File.join(Dir.tmpdir, 'db_backup')
 mongodump = Mongoid::Shell::Commands::Mongodump.new(db: 'another_database', out: out)
 system mongodump.to_s # mongodump --db another_database --out /tmp/db_backup
@@ -42,34 +44,32 @@ system mongodump.to_s # mongodump --db another_database --out /tmp/db_backup
 
 To specify parameters multiple times, set them to arrays.
 
-``` ruby
-mongodump = Mongoid::Shell::Commands::Mongodump.new(excludeCollection: %w(users products))
+```ruby
+mongodump = Mongoid::Shell::Commands::Mongodump.new(excludeCollection: %w[users products])
 system mongodump.to_s # mongodump --excludeCollection users --excludeCollection products
 ```
 
 To use output in logs, pass the `mask_sensitive` option to `to_s`.
 
-``` ruby
-> Mongoid::Shell::Commands::Mongo.new.to_s(mask_sensitive: true)
- => "mongo 59.1.22.1:27017/mongoid --username user --password ********"
+```ruby
+Mongoid::Shell::Commands::Mongo.new.to_s(mask_sensitive: true)
+# => "mongo 59.1.22.1:27017/mongoid --username user --password ********"
 
-> Mongoid::Shell::Commands::Mongo.new.to_s(mask_sensitive: '(masked)')
- => "mongo 59.1.22.1:27017/mongoid --username user --password (masked)"
+Mongoid::Shell::Commands::Mongo.new.to_s(mask_sensitive: '(masked)')
+# => "mongo 59.1.22.1:27017/mongoid --username user --password (masked)"
 ```
 
-Compatibility
--------------
+## Compatibility
 
 This gem supports Mongoid 3, 4, 5, 6, 7, 8 and 9.
 
-Supported Commands
-------------------
+## Supported Commands
 
 ### Mongo
 
 The mongo shell is an interactive JavaScript shell for MongoDB. The `Mongoid::Shell::Commands::Mongo` class generates a command line to connect to MongoDB. A particularly useful feature is that it will always yield the address of the master node of a MongoDB replica set.
 
-``` ruby
+```ruby
 Mongoid::Shell::Commands::Mongo.new.to_s
 ```
 
@@ -79,7 +79,7 @@ Supports `--username`, `--password`, `--eval`, `--nodb`, `--norc`, `--quiet`, `-
 
 Mongodump is a utility for creating a binary export of the contents of a database.
 
-``` ruby
+```ruby
 mongodump = Mongoid::Shell::Commands::Mongodump.new(collection: 'test')
 mongodump.to_s # mongodump --db test --collection test
 ```
@@ -100,7 +100,7 @@ system mongodump.to_s
 
 The mongorestore tool imports content from binary database dump, created by mongodump into a specific database.
 
-``` ruby
+```ruby
 mongorestore = Mongoid::Shell::Commands::Mongorestore.new(collection: 'test', restore: '/tmp/db_backup')
 mongorestore.to_s # mongorestore --db test --collection test /tmp/db_backup
 ```
@@ -111,7 +111,7 @@ The `Mongoid::Shell::Commands::Mongorestore` class supports `--db`, `--host`, `-
 
 The mongoexport tool produces a JSON or CSV export of data stored in a MongoDB instance.
 
-``` ruby
+```ruby
 mongoexport = Mongoid::Shell::Commands::Mongoexport.new(collection: 'traffic', out: 'traffic.json')
 mongoexport.to_s # mongoexport --db test --collection traffic --out traffic.json
 ```
@@ -122,8 +122,7 @@ The `Mongoid::Shell::Commands::Mongoexport` class supports `--verbose`, `--quiet
 
 The mongoimport tool imports content from an Extended JSON, CSV, or TSV export created by mongoexport, or potentially, another third-party export tool.
 
-
-``` ruby
+```ruby
 mongoimport = Mongoid::Shell::Commands::Mongoimport.new(collection: 'contacts', file: 'contacts.json')
 mongoimport.to_s # mongoimport --db test --collection contacts --file contacts.json
 ```
@@ -136,14 +135,12 @@ The mongostat utility provides a quick overview of the status of a currently run
 
 The `Mongoid::Shell::Commands::Mongostat` class supports `--host`, `--username`, `--password`, `--rowcount`, `--discover`, `--noheaders`, `--http`, `--all`, `--ssl` and `--authenticationDatabase`.
 
-Contributing
-------------
+## Contributing
 
-Fork the project. Make your feature addition or bug fix with tests. Send a pull request. Bonus points for topic branches.
+See [CONTRIBUTING.md](CONTRIBUTING.md), [CHANGELOG.md](CHANGELOG.md), and [RELEASING.md](RELEASING.md).
 
-Copyright and License
----------------------
+## License
 
-MIT License, see [LICENSE](http://github.com/mongoid/mongoid-shell/raw/master/LICENSE.md) for details.
+MIT License, see [LICENSE.md](LICENSE.md) for details.
 
-(c) 2013-2026 [Daniel Doubrovkine](http://github.com/dblock), [Artsy Inc.](http://artsy.net)
+(c) 2013-2026 [Daniel Doubrovkine](https://github.com/dblock), [Artsy Inc.](https://www.artsy.net)
