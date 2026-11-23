@@ -25,6 +25,7 @@ jobs:
     name: test (ruby=${{ matrix.entry.ruby }}, mongoid=${{ matrix.entry.mongoid }}, mongodb=${{ matrix.entry.mongodb }})
 
     env:
+      BUNDLE_BUILD__BSON: --with-cflags=-Wno-error=implicit-function-declaration
       COVERAGE: 'true'
       MONGOID_VERSION: ${{ matrix.entry.mongoid }}
 
