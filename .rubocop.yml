@@ -63,3 +63,18 @@ Spellcheck:
 Spellcheck/Spelling:
   Exclude:
   - LICENSE.md
+
+# One release example verifies the tag, the next development commit, and their files together.
+RSpec/MultipleExpectations:
+  inherit_mode:
+    merge:
+      - Exclude
+  Exclude:
+    - spec/release/release_spec.rb
+
+RSpec/ExampleLength:
+  inherit_mode:
+    merge:
+      - Exclude
+  Exclude:
+    - spec/release/release_spec.rb
