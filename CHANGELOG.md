@@ -6,6 +6,7 @@
 * [#30](https://github.com/mongoid/mongoid-shell/pull/30): Run tests only on default-branch pushes and pull requests, cancel superseded pull request runs, skip duplicate lint in the test matrix, and bound job times - [@dblock](https://github.com/dblock).
 * [#31](https://github.com/mongoid/mongoid-shell/pull/31): Release with ruby-gem-release from a manually dispatched GitHub Actions workflow using RubyGems Trusted Publishing, with dry runs - [@dblock](https://github.com/dblock).
 * [#33](https://github.com/mongoid/mongoid-shell/pull/33): Ignore `vendor/bundle` so the release workflow's clean-checkout check passes after `bundler-cache` installs gems - [@dblock](https://github.com/dblock).
+* [#34](https://github.com/mongoid/mongoid-shell/pull/34): Upgrade danger-pr-comment to 0.3.0 from the `danger` organization, skip empty Danger report comments, and require current Danger gems - [@dblock](https://github.com/dblock).
 
 ### 0.5.1 (2026/10/15)
 
