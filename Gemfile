@@ -33,9 +33,13 @@ end
 
 group :development, :test do
   gem 'bundler'
-  gem 'danger'
-  gem 'danger-changelog'
-  gem 'danger-pr-comment'
+  gem 'danger', '~> 9.6', '>= 9.6.2'
+  if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.1')
+    gem 'danger-changelog', '~> 0.10'
+  else
+    gem 'danger-changelog'
+  end
+  gem 'danger-pr-comment', '~> 0.3'
   gem 'ostruct'
   gem 'rake'
   gem 'rspec', '~> 3.0'
